@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <title>Responsive navbar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="row my-3 text-center">
+        <div class="col-1 align-self-middle"></div>
+        <div class="col-2" ><i class="fa fa-home fa-2x w-100"  id="icon-home" aria-hidden="true"></i> <font style="color:black;" class="text-center w-100" id="Home">होम </font></div>
+        <div class="col-2"><i class="fa fa-user-plus fa-2x w-100" id="icon-request" aria-hidden="true"></i> <font style="color:black;" class="text-center w-100" id="Request">रिक्वेस्ट </font></div>
+        <div class="col-2 "><i class="fa fa-sticky-note-o fa-2x w-100" id="icon-shortlist" aria-hidden="true"></i> <font style="color:black;" class="text-center w-100" id="Shortlist">शार्टलिस्ट </font></div>
+        <div class="col-2 "><i class="fa fa-comments fa-2x w-100" id="icon-chat" aria-hidden="true"></i> <font style="color:black;" class="text-center w-100" id="Chat">चैट </font></div>
+        <div class="col-2 "><i class="fa fa-phone fa-2x w-100" id="icon-call" aria-hidden="true"></i> <font style="color:black;" class="text-center w-100" id="Call">कॉल </font></div>
+        <div class="col-1 "></div>
+     </div>
+   </div>
+
+
+    </nav>
+<!--<img src="abcd.png" class="img-fluid">-->
+
+<script>
+//funtions to focus the icon at the botton of the page
+(function(){
+  if((window.location.href)==="https://vedantraj.github.io/templates/navbar2.html"){
+    document.getElementById('icon-home').style.color='#FFA500';
+    document.querySelector('#Home').style.color='#FFA500';
+  }
+}
+)();
+
+
+(function(){
+  if((window.location.href)==="file:///F:/vedantraj.github.io/templates/navbar2.html"){
+    document.getElementById('icon-request').style.color='#FFA500';
+    document.querySelector('#Request').style.color='#FFA500';
+  }
+}
+)();
+
+(function(){
+  if((window.location.href)==="file:///F:/vedantraj.github.io/templates/navbar2.html"){
+    document.getElementById('icon-shortlist').style.color='#FFA500';
+    document.querySelector('#Shortlist').style.color='#FFA500';
+  }
+}
+)();
+
+(function(){
+  if((window.location.href)==="file:///F:/vedantraj.github.io/templates/navbar2.html"){
+    document.getElementById('icon-chat').style.color='#FFA500';
+    document.querySelector('#Chat').style.color='#FFA500';
+  }
+}
+)();
+
+(function(){
+  if((window.location.href)==="file:///F:/vedantraj.github.io/templates/navbar2.html"){
+    document.getElementById('icon-call').style.color='#FFA500' ;
+    document.querySelector('#Call').style.color='#FFA500';
+  }
+}
+)();
+
+</script>
+  </body>
+  </html>

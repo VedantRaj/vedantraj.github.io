@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Paytm Loading</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="password"],
+      input[type="file"] select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+      }
+
+      label {
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+        font-size: 18px;
+      }
+
+      input[type="submit"] {
+        background-color: #857fc8;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      input[type="submit"]:hover {
+        background-color: black;
+      }
+
+      .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+      }
+
+      .col-25 {
+        float: left;
+        width: 25%;
+        margin-top: 6px;
+      }
+
+      .col-75 {
+        float: left;
+        width: 75%;
+        margin-top: 6px;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+      @media screen and (max-width: 600px) {
+        .col-25,
+        .col-75,
+        input[type="submit"] {
+          width: 100%;
+          margin-top: 0;
+        }
+      }
+
+      @media screen and (min-width: 600px) {
+        .col-25,
+        .col-75,
+        input[type="submit"] {
+          width: 60%;
+          margin-top: 0;
+        }
+        .container {
+          border-radius: 5px;
+          background-color: white;
+          padding-left: 30%;
+        }
+      }
+    </style>
+  </head>
+  {% include 'navbar.html' %}
+  <body>
+    <center></center>
+    <div class="container">
+      <form
+        method="POST"
+        action="https://securegw-stage.paytm.in/theia/processTransaction"
+        name="myForm"
+      >
+        <div>Please dont close or refresh this page....</div>
+        {% for row in data %}
+        <input type="hidden" name="{{ row }}" value="{{ data[row] }}" />
+        {% endfor %}
+      </form>
+      <script type="text/javascript">
+        document.myForm.submit();
+      </script>
+    </div>
+  </body>
+</html>

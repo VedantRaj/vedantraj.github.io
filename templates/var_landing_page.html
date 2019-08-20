@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html>
+<title>Vadhu Landing</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.btn-primary {
+
+   background-color: #857fc8;
+   border-radius: 12px;
+   border-color:#857fc8;
+
+
+}
+.btn:hover{
+  background-color: #625bb5;
+  border-color: #625bb5;
+}
+</style>
+<!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+.mySlides {display:none}
+
+* {
+  box-sizing: border-box;
+}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#dhunde{
+  display: none;
+
+}
+#biodata{
+  display: none;
+
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+width: 100%;
+margin-top: 0;
+  }
+}
+body {
+  /* padding: 20px; */
+  background: #f2f3f8;
+}
+h1 {
+  text-shadow: 0 1px 1px #fff;
+  text-align: center;
+}
+/* Search Bar Section */
+a {
+  color: #3B97D6;
+  text-decoration: none;
+}
+a.btn {
+  color: #fff;
+  float:right;
+}
+a:hover {
+  text-decoration: none;
+}
+a.btn:hover, a.btn:active, a.btn:focus {
+  color: #fff;
+}
+
+/* Grid */
+.row {
+  -moz-column-width: 25em;
+  -webkit-column-width: 25em;
+  -moz-column-gap: 1em;
+  -webkit-column-gap: 1em;
+}
+.row > .col-md-4 {
+  display: inline-block;
+  padding: .33rem;
+  width: 100%;
+  float: none;
+}
+.well {
+  position:relative;
+  display: block;
+  padding: 0;
+  background: #fff;
+  border-radius: 2px;
+  color: #333;
+}
+.well h3 {
+  padding: 0 10px;
+  margin-top: 10px;
+}
+.well p {
+}
+.well blockquote {
+  margin-left: 20px;
+  padding: 0 10px 0 20px;
+}
+.well cite {
+  text-align: right;
+  display: block;
+  padding: 0 10px 10px 10px;
+}
+.well img {
+  width: 40%;
+  height: 350px;
+  float: left;
+  margin: 6px 6px 0 6px;
+  border-radius: 2px;
+}
+.well ul {
+  width: 100%;
+  clear: left;
+  list-style: none;
+  height: 36px;
+  padding: 0;
+}
+.well ul li {
+  display: inline-block;
+  float: left;
+  background: #3B97D6;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-top: 1px;
+}
+.well ul li:hover {
+  background: #65addf;
+}
+.well ul li.fb {
+  margin-left: 6px;
+  float: right;
+  font-size:18px;
+}
+.well ul li.getPosts {
+margin-left: 6px;
+  float: right;
+  font-size:18px;
+}
+.well ul li.call {
+  background: #24f513;
+margin-left: 6px;
+  float: right;
+  font-size:18px;
+}
+
+.well ul li.del {
+  background: #3B97D6;
+  float: right;
+  font-size:18px;
+}
+.well ul li.del:hover {
+  background: #d75c5c;
+}
+.well .fa-question-circle {
+  color: #999;
+}
+.well .fa-question-circle:hover {
+  color: #000;
+  cursor: pointer;
+}
+.well .fa {
+  position: relative;
+}
+.well .fa span {
+  display: none;
+  position: absolute;
+  width: 140px;
+  left: -64px;
+  top: -38px;
+  background: #3B97D6;
+  color: #fff;
+  padding: 4px;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+.well .fa:hover span, .well .fa span:hover {
+  display: inline-block;
+}
+.well .fa span:after {
+  content: " ";
+  position: absolute;
+  left: 64px;
+  bottom: -5px;
+  border-top: 5px solid #3B97D6;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+}
+.well .fa span.shiftLeft {
+  left: -110px;
+}
+.well .fa span.shiftLeft:after {
+  left: 110px;
+}
+.alert {
+  width: 160px;
+  background: #fff;
+  position: fixed;
+  left: 50%;
+  margin-left: -80px;
+  top: 200px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.5);
+  text-align: center;
+}
+.alert a {
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  margin-top: 10px
+}
+.pagination {
+  text-align: center;
+
+  display: block;
+}
+.pagination a, .pagination strong {
+  background: #fff;
+  display: inline-block;
+  margin-right: 3px;
+  padding: 4px 12px;
+  text-decoration: none;
+  line-height: 1.5em;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: solid 1px #e0e0e0;
+}
+.pagination a:hover {
+  background-color: #3B97D6;
+  color: #fff;
+}
+.pagination a:active {
+background: rgba(190, 190, 190, 0.75);
+}
+.pagination strong {
+  color: #fff;
+  background-color: #3B97D6;
+}
+.stats {
+  margin-bottom: 0;
+}
+</style>
+  <link rel="stylesheet" href="{{ url_for('static', filename='jaaniye_inside.css') }}">
+  {% include 'navbar.html' %}
+  <body>
+     <h6 class="text-center mt-4 mb-4">प्रोफाइल बनाने के बाद आप इस प्रकार से वर ढूंढ सकते हे |</h6>
+       <h2>रिश्ते ही रिश्ते </h2>
+       <div class="text-center">
+         <button class="btn btn-primary mb-3 mr-2" onclick="prastav()">आये हुवे प्रस्ताव
+         </button>
+         <button class="btn btn-primary mb-3 mx-2" onclick="dhunde()">वर ढूंढे
+         </button>
+         <button class="btn btn-primary mb-3 ml-2" onclick="biodata()">चयनित बायोडाटा
+         </button>
+  </div></center>
+
+<div class="w3-content" style="max-width:800px">
+  <img class="mySlides" src="img_nature_wide.jpg" style="width:100%">
+  <div id="prastav">
+
+<div>-->
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" >
+
+      <div style="background-color:#D3EFE9;" class="text-center mt-3">
+          <div class="row d-flex flex-row">
+            <div class="col-3">
+               <img class="mt-4 img-fluid" src="{{ url_for('static', filename='var1.jpg') }}" alt="avatar">
+            </div>
+            <div class="col-7 text-justify mt-4">
+               <p>Name,<br>
+               Age,<br>
+               Religion, <br>
+               Caste, <br>
+               Dahej Bharat Mukt Shaadi-If Yes</p>
+               <div class="text-center"><a href="#" style="color:black;text-decoration:none;">अधिक जानकारी</a></div>
+            </div>
+            <div class="col-2">
+            <ul class="list-unstyled">
+              <!--<li class="del"><a href="#" class="btn">डिलीट</a></li>-->
+              <div class="mt-4">
+                <i class="fa fa-sticky-note-o fa-2x "  aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >शार्टलिस्ट</a></li>
+                <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >चैट</a></li>
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >कॉल</a></li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+      <div style="background-color:#D3EFE9;" class="text-center mt-3">
+          <div class="row d-flex flex-row">
+            <div class="col-3">
+               <img class="mt-4 img-fluid" src="{{ url_for('static', filename='var1.jpg') }}" alt="avatar">
+            </div>
+            <div class="col-7 text-justify mt-4">
+               <p>Name,<br>
+               Age,<br>
+               Religion, <br>
+               Caste, <br>
+               Dahej Bharat Mukt Shaadi-If Yes</p>
+               <div class="text-center"><a href="#" style="color:black;text-decoration:none;">अधिक जानकारी</a></div>
+            </div>
+            <div class="col-2">
+            <ul class="list-unstyled">
+              <!--<li class="del"><a href="#" class="btn">डिलीट</a></li>-->
+              <div class="mt-4">
+                <i class="fa fa-sticky-note-o fa-2x "  aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >शार्टलिस्ट</a></li>
+                <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >चैट</a></li>
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >कॉल</a></li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="background-color:#D3EFE9;" class="text-center mt-3">
+          <div class="row d-flex flex-row">
+            <div class="col-3">
+               <img class="mt-4 img-fluid" src="{{ url_for('static', filename='var1.jpg') }}" alt="avatar">
+            </div>
+            <div class="col-7 text-justify mt-4">
+               <p>Name,<br>
+               Age,<br>
+               Religion, <br>
+               Caste, <br>
+               Dahej Bharat Mukt Shaadi-If Yes</p>
+               <div class="text-center"><a href="#" style="color:black;text-decoration:none;">अधिक जानकारी</a></div>
+            </div>
+            <div class="col-2">
+            <ul class="list-unstyled">
+              <!--<li class="del"><a href="#" class="btn">डिलीट</a></li>-->
+              <div class="mt-4">
+                <i class="fa fa-sticky-note-o fa-2x "  aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >शार्टलिस्ट</a></li>
+                <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >चैट</a></li>
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >कॉल</a></li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="background-color:#D3EFE9;" class="text-center mt-3">
+          <div class="row d-flex flex-row">
+            <div class="col-3">
+               <img class="mt-4 img-fluid" src="{{ url_for('static', filename='var1.jpg') }}" alt="avatar">
+            </div>
+            <div class="col-7 text-justify mt-4">
+               <p>Name,<br>
+               Age,<br>
+               Religion, <br>
+               Caste, <br>
+               Dahej Bharat Mukt Shaadi-If Yes</p>
+               <div class="text-center"><a href="#" style="color:black;text-decoration:none;">अधिक जानकारी</a></div>
+            </div>
+            <div class="col-2">
+            <ul class="list-unstyled">
+              <!--<li class="del"><a href="#" class="btn">डिलीट</a></li>-->
+              <div class="mt-4">
+                <i class="fa fa-sticky-note-o fa-2x "  aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >शार्टलिस्ट</a></li>
+                <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >चैट</a></li>
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >कॉल</a></li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="background-color:#D3EFE9;" class="text-center mt-3">
+          <div class="row d-flex flex-row">
+            <div class="col-3">
+               <img class="mt-4 img-fluid" src="{{ url_for('static', filename='var1.jpg') }}" alt="avatar">
+            </div>
+            <div class="col-7 text-justify mt-4">
+               <p>Name,<br>
+               Age,<br>
+               Religion, <br>
+               Caste, <br>
+               Dahej Bharat Mukt Shaadi-If Yes</p>
+               <div class="text-center"><a href="#" style="color:black;text-decoration:none;">अधिक जानकारी</a></div>
+            </div>
+            <div class="col-2">
+            <ul class="list-unstyled">
+              <!--<li class="del"><a href="#" class="btn">डिलीट</a></li>-->
+              <div class="mt-4">
+                <i class="fa fa-sticky-note-o fa-2x "  aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >शार्टलिस्ट</a></li>
+                <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >चैट</a></li>
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >कॉल</a></li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div style="background-color:#D3EFE9;" class="text-center mt-3">
+          <div class="row d-flex flex-row">
+            <div class="col-3">
+               <img class="mt-4 img-fluid" src="{{ url_for('static', filename='var1.jpg') }}" alt="avatar">
+            </div>
+            <div class="col-7 text-justify mt-4">
+               <p>Name,<br>
+               Age,<br>
+               Religion, <br>
+               Caste, <br>
+               Dahej Bharat Mukt Shaadi-If Yes</p>
+               <div class="text-center"><a href="#" style="color:black;text-decoration:none;">अधिक जानकारी</a></div>
+            </div>
+            <div class="col-2">
+            <ul class="list-unstyled">
+              <!--<li class="del"><a href="#" class="btn">डिलीट</a></li>-->
+              <div class="mt-4">
+                <i class="fa fa-sticky-note-o fa-2x "  aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >शार्टलिस्ट</a></li>
+                <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >चैट</a></li>
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                <li><a href="#" style="font-size:13px;color:black;text-decoration:none;" >कॉल</a></li>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+    </div>
+
+
+      <div class="container">
+        <div class="row my-3 text-center align-item-center w-100">
+          <div class="col-1 align-self-middle align-self-middle"></div>
+          <div class="col-2 px-3"><i class="fa fa-home fa-2x w-100" style="color:black;" aria-hidden="true"></i> <font style="color:black;" class="text-center w-100">होम </font></div>&nbsp;&nbsp;
+          <div class="col-2 px-3"><i class="fa fa-user-plus fa-2x w-100" style="color:black;" aria-hidden="true"></i> <font style="color:black;" class="text-center w-100">रिक्वेस्ट </font></div>&nbsp;&nbsp;
+          <div class="col-2 px-3"><i class="fa fa-sticky-note-o fa-2x w-100" style="color:black;" aria-hidden="true"></i> <font style="color:black;" class="text-center w-100">शार्टलिस्ट </font></div>&nbsp;&nbsp;
+          <div class="col-2 px-3"><i class="fa fa-comments fa-2x w-100" style="color:black;" aria-hidden="true"></i> <font style="color:black;" class="text-center w-100">चैट </font></div>&nbsp;&nbsp;
+          <div class="col-2 px-3"><i class="fa fa-phone fa-2x w-100" style="color:black;" aria-hidden="true"></i> <font style="color:black;" class="text-center w-100">कॉल </font></div>&nbsp;&nbsp;
+          <div class="col-1"></div>
+       </div>
+     </div>
+
+
+
+    <!--<div class="col-md-4">
+      <div class="well">
+        <img src="{{ url_for('static', filename='var3.jpg') }}" class="avatar" alt="avatar">
+        <h3><strong>नाम:  </strong>कमलेश यादव <br><br>
+        <strong>उम्र:  </strong>26</h3>
+
+        <ul class="bottom">
+          <li class="del"><a href="#" class="btn">डिलीट</a></li>
+            <li class="fb"><a href="#" class="btn">छाटे </a></li>
+              <li class="call"><a href="#" class="btn"><font size="4px">&nbsp☎&nbsp</font></a></li>
+                      <li class="getPosts"><a href="#" class="btn">और जानिए</a></li>
+          <p><font size="1px">इन्होने आपको छाठा  है</font></p>
+        </ul>
+      </div>
+    </div>
+
+     <div class="col-md-4">
+      <div class="well">
+        <img src="{{ url_for('static', filename='var5.jpg') }}" class="avatar" alt="avatar">
+        <h3><strong>नाम:  </strong>श्याम अहीर <br><br>
+        <strong>उम्र:  </strong>32</h3>
+
+        <ul class="bottom">
+          <li class="del"><a href="#" class="btn">डिलीट</a></li>
+            <li class="fb"><a href="#" class="btn">छाटे </a></li>
+              <li class="call"><a href="#" class="btn"><font size="4px">&nbsp☎&nbsp</font></a></li>
+                      <li class="getPosts"><a href="#" class="btn">और जानिए</a></li>
+          <p><font size="1px">इन्होने आपसे संपर्क किया है</font></p>
+        </ul>
+      </div>
+    </div>
+
+
+     <div class="col-md-4">
+      <div class="well">
+        <img src="{{ url_for('static', filename='var2.jpg') }}" class="avatar" alt="avatar">
+        <h3><strong>नाम:  </strong>राम त्रिपाठी <br><br>
+        <strong>उम्र:  </strong>23</h3>
+
+        <ul class="bottom">
+          <li class="del"><a href="#" class="btn">डिलीट</a></li>
+            <li class="fb"><a href="#" class="btn">छाटे </a></li>
+              <li class="call"><a href="#" class="btn"><font size="4px">&nbsp☎&nbsp</font></a></li>
+                      <li class="getPosts"><a href="#" class="btn">और जानिए</a></li>
+          <p><font size="1px">इन्होने आपसे संपर्क किया है</font></p>
+        </ul>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+<div class="pagination clearfix">
+<a href="#">First</a>
+&nbsp;<a href="#">«</a>
+
+<a href="#">1</a>
+<strong>2</strong>
+<a href="#">3</a>
+
+<a href="#">»</a>
+&nbsp;<a href="#">Last</a>
+</div>
+
+</div>
+
+  </div>
+  <img class="mySlides" src="img_snow_wide.jpg" style="width:100%">
+  <div id="dhunde">
+
+<div>
+
+
+<div class="container">
+  <div class="row">
+
+
+    <div class="col-md-4">
+      <div class="well">
+        <img src="{{ url_for('static', filename='var3.jpg') }}" class="avatar" alt="avatar">
+        <h3><strong>नाम:  </strong>चन्दन यादव  <br><br>
+        <strong>उम्र:  </strong>26</h3>
+
+        <ul class="bottom">
+          <li class="fb"><a href="#" class="btn">छाटे </a></li>
+            <li class="call"><a href="#" class="btn"><font size="4px">&nbsp☎&nbsp</font></a></li>
+                    <li class="getPosts"><a href="#" class="btn">और जानिए</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="well">
+        <img src="{{ url_for('static', filename='var4.jpg') }}" class="avatar" alt="avatar">
+        <h2><strong>नाम:  </strong>विष्णु सिंह <br><br>
+        <strong>उम्र:  </strong>29</h2>
+
+        <ul class="bottom">
+          <li class="fb"><a href="#" class="btn">छाटे </a></li>
+            <li class="call"><a href="#" class="btn"><font size="4px">&nbsp☎&nbsp</font></a></li>
+                    <li class="getPosts"><a href="#" class="btn">और जानिए</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+     <div class="col-md-4">
+      <div class="well">
+        <img src="{{ url_for('static', filename='var1.jpg') }}" class="avatar" alt="avatar">
+        <h3><strong>नाम:  </strong>राजू तेली <br><br>
+        <strong>उम्र:  </strong>28</h3>
+
+        <ul class="bottom">
+          <li class="fb"><a href="#" class="btn">छाटे </a></li>
+            <li class="call"><a href="#" class="btn"><font size="4px">&nbsp☎&nbsp</font></a></li>
+                    <li class="getPosts"><a href="#" class="btn">और जानिए</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+      <div class="col-md-4">
+      <div class="well">
+        <img src="{{ url_for('static', filename='var5.jpg') }}" class="avatar" alt="avatar">
+        <h3><strong>नाम:  </strong>सुमित सिंह <br><br>
+        <strong>उम्र:  </strong>22</h3>
+
+        <ul class="bottom">
+          <li class="fb"><a href="#" class="btn">छाटे </a></li>
+            <li class="call"><a href="#" class="btn"><font size="4px">&nbsp☎&nbsp</font></a></li>
+                    <li class="getPosts"><a href="#" class="btn">और जानिए</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+      <div class="col-md-4">
+      <div class="well">
+        <img src="{{ url_for('static', filename='var3.jpg') }}" class="avatar" alt="avatar">
+        <h3><strong>नाम:  </strong>कृष्णा धोबा <br><br>
+        <strong>उम्र:  </strong>24</h3>
+
+        <ul class="bottom">
+          <li class="fb"><a href="#" class="btn">छाटे </a></li>
+            <li class="call"><a href="#" class="btn"><font size="4px">&nbsp☎&nbsp</font></a></li>
+                    <li class="getPosts"><a href="#" class="btn">और जानिए</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+      <div class="col-md-4">
+      <div class="well">
+        <img src="{{ url_for('static', filename='var2.jpg') }}" class="avatar" alt="avatar">
+        <h3><strong>नाम:  </strong>हिमेश सिंह <br><br>
+        <strong>उम्र:  </strong>25</h3>
+
+        <ul class="bottom">
+          <li class="fb"><a href="#" class="btn">छाटे </a></li>
+            <li class="call"><a href="#" class="btn"><font size="4px">&nbsp☎&nbsp</font></a></li>
+                    <li class="getPosts"><a href="#" class="btn">और जानिए</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+<div class="pagination clearfix">
+<a href="#">First</a>
+&nbsp;<a href="#">«</a>
+
+<a href="#">1</a>
+<strong>2</strong>
+<a href="#">3</a>
+
+<a href="#">»</a>
+&nbsp;<a href="#">Last</a>
+</div>
+
+</div>
+
+  </div>
+  <img class="mySlides" src="img_mountains_wide.jpg" style="width:100%">
+  <div id="biodata">
+
+<div>
+
+
+<div class="container">
+  <div class="row">
+
+
+    <div class="col-md-4">
+      <div class="well">
+        <img src="{{ url_for('static', filename='var4.jpg') }}" class="avatar" alt="avatar">
+        <h3><strong>नाम:  </strong>कुलदीप मेघवाल <br><br>
+        <strong>उम्र:  </strong>29</h3>
+
+        <ul class="bottom">
+          <li class="del"><a href="#" class="btn">डिलीट</a></li>
+            <li class="fb"><a href="#" class="btn">छाटे </a></li>
+              <li class="call"><a href="#" class="btn"><font size="4px">&nbsp☎&nbsp</font></a></li>
+                      <li class="getPosts"><a href="#" class="btn">और जानिए</a></li>
+  <p><font size="1px">आपने इनको छाठा है |</font></p>
+        </ul>
+      </div>
+    </div>
+
+
+     <div class="col-md-4">
+      <div class="well">
+        <img src="{{ url_for('static', filename='var1.jpg') }}" class="avatar" alt="avatar">
+        <h3><strong>नाम:  </strong>दिनेश चंद्र <br><br>
+        <strong>उम्र:  </strong>25</h3>
+
+        <ul class="bottom">
+          <li class="del"><a href="#" class="btn">डिलीट</a></li>
+            <li class="fb"><a href="#" class="btn">छाटे </a></li>
+              <li class="call"><a href="#" class="btn"><font size="4px">&nbsp☎&nbsp</font></a></li>
+                      <li class="getPosts"><a href="#" class="btn">और जानिए</a></li>
+         <p><font size="1px">आपने इनको छाठा है |</font></p>
+        </ul>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<div class="pagination clearfix">
+<a href="#">First</a>
+&nbsp;<a href="#">«</a>
+
+<a href="#">1</a>
+<strong>2</strong>
+<a href="#">3</a>
+
+<a href="#">»</a>
+&nbsp;<a href="#">Last</a>
+</div>
+
+</div>
+
+  </div>
+</div>-->
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+// var slideIndex = 1;
+// showDivs(slideIndex);
+var p = document.getElementById("prastav");
+var d = document.getElementById("dhunde");
+var b = document.getElementById("biodata");
+
+d.style.display = "none";
+b.style.display = "none";
+
+function prastav() {
+  p.style.display = "block";
+  d.style.display = "none";
+  b.style.display = "none";
+}
+function dhunde() {
+  p.style.display = "none";
+  d.style.display = "block";
+  b.style.display = "none";
+}
+function biodata() {
+  p.style.display = "none";
+  d.style.display = "none";
+  b.style.display = "block";
+}
+var winHeight = $(window).height();
+var wH = (winHeight / 2) - 41;
+
+$('.del').on('click', function(){
+  $(this).closest('.col-md-4').addClass('marked');
+
+  $('body').find('.alert').remove();
+  $('body').append('<div class="alert">Are you sure?<br><a href="#" class="yes">delete</a><a href="#" class="no">cancel</a>');
+  $('body').find('.alert').css({
+    'top': wH + 'px'
+  }).find('.no').on('click',function(){
+    $(this).closest('.alert').remove();
+    $('.col-md-4').removeClass('marked');
+  }).closest('.alert').find('.yes').on('click', function(){
+    $(this).closest('.alert').remove();
+    $('.marked').remove();
+  });
+});
+$(window).resize(function(){
+  var winHeight = $(window).height();
+  var wH = (winHeight / 2) - 41;
+  $('body').find('.alert').css({
+    'top': wH + 'px'
+  });
+});
+
+// function plusDivs(n) {
+//   showDivs(slideIndex += n);
+// }
+
+// function currentDiv(n) {
+//   showDivs(slideIndex = n);
+// }
+
+// function showDivs(n) {
+//   var i;
+//   var x = document.getElementsByClassName("mySlides");
+//   var dots = document.getElementsByClassName("demo");
+//   if (n > x.length) {slideIndex = 1}
+//   if (n < 1) {slideIndex = x.length}
+//   for (i = 0; i < x.length; i++) {
+// x[i].style.display = "none";
+//   }
+//   for (i = 0; i < dots.length; i++) {
+// dots[i].className = dots[i].className.replace(" w3-red", "");
+//   }
+//   x[slideIndex-1].style.display = "block";
+//   dots[slideIndex-1].className += " w3-red";
+// }
+</script>
+
+ <script>
+
+    function goBack() {
+     window.history.back();
+    }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

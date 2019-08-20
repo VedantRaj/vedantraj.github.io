@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Var initital</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../static/var_initial.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='var_initial.css') }}">
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         <script type="text/javascript">alert("{{ message }}")</script>
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+</head>
+{% include 'navbar.html' %}
+<body>
+
+<!-- <h1>RISHTEY HI RISHTEY</h1> -->
+
+
+
+<p><!--वर की बायोडाटाी बानये--> Var Ka Biodata Banayea</p>
+<div class="container">
+<form method='POST' enctype="multipart/form-data">
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">प्रोफ़ाइल चित्र चुनें Choose a profile picture</label>
+    </div>
+    <div class="col-75">
+     <input type="file" class='UPLOAD' accept="image/png, image/jpeg, image/jpg" name="profile_image" required >
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">नाम Name</label>
+    </div>
+    <div class="col-75">
+      <input type="text" placeholder="Enter Name नाम दर्ज" name="name" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="lname"> आयु  Age</label>
+    </div>
+    <div class="col-75">
+      <input type="number" placeholder="Enter Age उम्र दर्ज करें" name="age" required min="18" max="40">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="lname"> पास वर्ड  Password</label>
+    </div>
+    <div class="col-75">
+      <input type="password" placeholder="Enter Password पास वर्ड दर्ज करें" name="password" required id='password'>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="lname"> पास वर्ड  Password Again </label>
+    </div>
+    <div class="col-75">
+      <input type="password" placeholder="Enter Password पासवर्ड फिर से दर्ज करें" name="password_again" required id='password_again' onkeyup='check_pass();'>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">मोबाइल नंबर Mobile No.</label>
+    </div>
+    <div class="col-75">
+      <input type="number" placeholder="Enter Mobile No." name="mobno" required min="1000000000" max="9999999999">
+      <span  class='avail'></span>
+    </div>
+  </div>
+
+   <div class="row">
+    <div class="col-25">
+      <label for="fname">एजेंट कोड Agent Code</label>
+    </div>
+    <div class="col-75">
+    {% if code == '0' %}
+      <input type="text" placeholder="एजेंट कोड कोड दर्ज करें" name="agent" >
+    {% else %}
+      <input type="hidden" placeholder="एजेंट कोड कोड दर्ज करें" name="agent" >
+      <h5>{{ code }}
+    {% endif %}
+    </div>
+   </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname"><h5>नियम और शर्तें लागू Terms and Conditions applied </h5></label>
+    </div>
+  </div>
+
+    <input type="submit" value="Make payment and find bride पेमेंट करें और वधु ढूंढे " id='submit' name='later'>
+    <input type="submit" value="Create more detailed profile अधिक विस्तृत प्रोफ़ाइल बनाएं " id='submit' name='now'>
+
+</form>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+$('input#mobno').change(()=>{
+  $('span.avail').text('Checking')
+  if ($('input#mobno').val() > 1000000000){
+  $.ajax({
+    'url': '/checkmobile/'+$('input#mobno').val(),
+
+    'success': (res)=>{
+      console.log(res)
+      if(res['available']){
+        $('span.avail').text('Uplabdh hai')
+        document.getElementById('mobno').style.color = 'green';
+      }
+      else{
+        $('span.avail').text('Uplabdh nahi hai')
+        document.getElementById('mobno').style.color = 'red';
+      }
+    },
+  })}
+})
+
+</script>
+</body>
+<script type="text/javascript">
+  function check_pass() {
+    if (document.getElementById('password').value != document.getElementById('password_again').value){
+      document.getElementById('submit').disabled = true;
+      document.getElementById('password_again').style.color = 'red';
+    }
+    else{
+      document.getElementById('password_again').style.color = 'green';
+    }
+    if(document.getElementById('password').value == document.getElementById('password_again').value) {
+        document.getElementById('submit').disabled = false;
+    }
+}
+</script>
+</html>

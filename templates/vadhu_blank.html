@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Vadhu Blank</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+      <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+
+    @media screen and (max-width: 600px) {
+      .padding{
+        width: 100%;
+        align-items: center;
+        padding-top: 40%;
+        padding-bottom: 20%;
+        height: 100%;
+        margin: 0px;
+        font-family: 'segoe ui';
+        /* border: 1px black solid; */
+
+      /* img{
+        width: "70%";
+        height: "40%";
+      } */
+    }
+    </style>
+    <title>Landing page</title>
+  </head>
+  {% include 'navbar.html' %}
+  <body>
+      <div class="padding">
+    <center><br><br>
+      <img src="{{ url_for('static', filename='img2.png') }}" width="40%" height="40%">
+      <div class="w3-container" style="padding:50px 20px">
+        <p class=" w3-xlarge">
+      25 जुलाई से आप अपनी प्रोफाइल बना कर वर ढूंढना शुरू कर सकते हैं |</p>
+      </p>
+      </div>
+    </center>
+  </div>
+  </body>
+</html>
