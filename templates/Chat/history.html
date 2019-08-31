@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>History</title>
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %}
+    <script type="text/javascript">
+      alert("{{ message }}");
+    </script>
+    {% endfor %} {% endif %} {% endwith %}
+    <style>
+      table {
+        border-collapse: separate !important;
+        border-spacing: 10px;
+      }
+      .edit-btn {
+        background-color: #857fc8 !important;
+        border-color: #857fc8 !important;
+        border-radius: 10px !important;
+      }
+    </style>
+  </head>
+  {% include 'navbar.html' %}
+  <body>
+    <div class="container mt-6 mb-6">
+      <!-- MY REJECTED PROFILES -->
+      <div class="row d-flex flex-row mt-2">
+        <div class="text-center w-100 py-2 banner-msg">
+          रिजेक्ट किए ग​ए प्रस्ताव​
+        </div>
+      </div>
+      {% for value in rejected %}
+      <div class="text-center mt-3">
+        <div class="row d-flex flex-row">
+          <div class="col-4">
+            <img
+              src="{{ url_for('profile_img', id=value.id) }}"
+              class="img-fluid w-100 my-3"
+              alt="profile_pic"
+            />
+          </div>
+          <div class="col-8 text-justify mt-4">
+            <p>
+              {{ value.name }}<br />
+              {{ value.age }}<br />
+              {{ value.religion }}<br />
+              {{ value.jaati }}<br />
+            </p>
+          </div>
+        </div>
+        <div class="row d-flex flex-row">
+          <div class="col w-100 connect-btn">
+            <a
+              href="/connect/{{ value.id }}/approve"
+              class="btn btn-large w-100"
+            ></a>
+            आज्ञा दें
+          </div>
+          <div class="col w-100 chat-btn">
+            <a class="btn btn-large w-100" href="/chat/{{ value.id }}">
+              <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+              चैट
+            </a>
+          </div>
+        </div>
+        <div class="row d-flex flex-row">
+          <div class="text-center w-100 more-info-btn">
+            <a
+              href="/showprofile/{{ value.id }}"
+              class="btn btn-large w-100"
+              style="color:black;text-decoration:none;"
+            >
+              अधिक जानकारी
+            </a>
+          </div>
+        </div>
+      </div>
+      {% else %} {% if stats.pendingReq %}
+      <p>Pending Request: <a href="/connection#requests">Click here</a></p>
+      {% elif stats.connect %}
+      <p>Home Tab: <a href="/listprofiles">Call rishtey</a></p>
+      {% elif stats.shortlist %}
+      <p>Home Tab: <a href="/listprofiles">Shortlist rishtey</a></p>
+      {% else %}
+      <p>Shortlist Tab: <a href="/shortlist">Chat with shortlist</a></p>
+      {% endif %} {% endfor %}
+
+      <!-- MY BLOCKED PROFILES -->
+      <div class="row d-flex flex-row mt-2">
+        <div class="text-center w-100 py-2 banner-msg">
+          मेरे द्वारा ब्लौक किए ग​ए प्रोफ़ाइल
+        </div>
+      </div>
+      {% for value in blocked %}
+      <div class="text-center mt-3">
+        <div class="row d-flex flex-row">
+          <div class="col-4">
+            <img
+              src="{{ url_for('profile_img', id=value.id) }}"
+              class="img-fluid w-100 my-3"
+              alt="profile_pic"
+            />
+          </div>
+          <div class="col-8 text-justify mt-4">
+            <p>
+              {{ value.name }}<br />
+              {{ value.age }}<br />
+              {{ value.religion }}<br />
+              {{ value.jaati }}<br />
+            </p>
+          </div>
+        </div>
+        <div class="row d-flex flex-row">
+          <div class="col w-100 shortlist-btn">
+            <a href="/unblockuser/{{ value.id }}" class="btn btn-large w-100"
+              >ब्लौक हटायें</a
+            >
+          </div>
+          <div class="col w-100 chat-btn">
+            <a class="btn btn-large w-100" href="/chat/{{ value.id }}">
+              <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+              चैट
+            </a>
+          </div>
+        </div>
+        <div class="row d-flex flex-row">
+          <div class="text-center w-100 more-info-btn">
+            <a
+              href="/showprofile/{{ value.id }}"
+              class="btn btn-large w-100"
+              style="color:black;text-decoration:none;"
+            >
+              अधिक जानकारी
+            </a>
+          </div>
+        </div>
+      </div>
+      {% else %} {% if stats.pendingReq > 0 %}
+      <p>Pending Request: <a href="/connection#requests">Click here</a></p>
+      {% elif stats.connect %}
+      <p>Home Tab: <a href="/listprofiles">Call rishtey</a></p>
+      {% elif stats.shortlist %}
+      <p>Home Tab: <a href="/listprofiles">Shortlist rishtey</a></p>
+      {% else %}
+      <p>Shortlist Tab: <a href="/shortlist">Chat with shortlist</a></p>
+      {% endif %} {% endfor %}
+      <!-- GOT BLOCKED PROFILES -->
+      <div class="row d-flex flex-row mt-2">
+        <div class="text-center w-100 py-2 banner-msg">
+          दुसरा पक्ष बात आगे नहीं बढाना चाहता
+        </div>
+      </div>
+      {% for value in gotblocked %}
+      <div class="text-center mt-3">
+        <div class="row d-flex flex-row">
+          <div class="col-4">
+            <img
+              src="{{ url_for('profile_img', id=value.id) }}"
+              class="img-fluid w-100 my-3"
+              alt="profile_pic"
+            />
+          </div>
+          <div class="col-8 text-justify mt-4">
+            <p>
+              {{ value.name }}<br />
+              {{ value.age }}<br />
+              {{ value.religion }}<br />
+              {{ value.jaati }}<br />
+            </p>
+          </div>
+        </div>
+      </div>
+      {% else %} {% if stats.pendingReq > 0 %}
+      <p>Pending Request: <a href="/connection#requests">Click here</a></p>
+      {% elif stats.connect %}
+      <p>Home Tab: <a href="/listprofiles">Call rishtey</a></p>
+      {% elif stats.shortlist %}
+      <p>Home Tab: <a href="/listprofiles">Shortlist rishtey</a></p>
+      {% else %}
+      <p>Shortlist Tab: <a href="/shortlist">Chat with shortlist</a></p>
+      {% endif %} {% endfor %}
+    </div>
+  </body>
+</html>

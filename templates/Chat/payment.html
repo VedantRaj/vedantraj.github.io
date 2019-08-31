@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Payment Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  {% include 'navbar.html' %}
+  <body>
+    <!-- <h2 style="text-align:center">रिश्ते ही रिश्ते</h2> -->
+
+    <div class="container mt-6 mb-6">
+      <!-- <img src="{{url_for('profile_img', id=context.user.id)}}" alt="John" style="max-height: 300px;"> -->
+      <!-- <h2>{{ context.user.name }}</h2>
+      <p>{{ context.user.age }}</p>
+      <p>{{ context.user.mobno }}</p> -->
+
+      <p class="text-justify">
+        1 सितंबर से आप रिश्ता ढूंढना शुरू कर सकते हैं | <br />
+        <br />
+        मात्र 77 पैसे में देखें एक रिश्ता। हमारी फीस 2100 रूपये है जिसमें आपको
+        ये सुविधाएँ मिलेंगी: <br />
+        1. आप छह महीने तक रोज़ 15 रिश्ते देख सकते हैं। <br />
+        2. इस तरह आप छह महीनों में कुल 2700 रिश्ते देख पाएंगे। <br />
+        आपको रिश्ते ढूंढने के लिए निम्न फीचर मिलेंगे: <br />
+        कॉल: हर रिश्ते/प्रोफाइल के साथ कॉल बटन है, रोज़ मिलने वाले 15 रिश्तों के
+        विकल्प में से आप चुनिंदा पांच से कॉल के ज़रिये जुड़ सकते हैं। <br />
+        शॉर्टलिस्ट: आये हुए 15 रिश्तों में से पांच से कॉल के ज़रिये जुड़ने के बाद
+        भी यदि आपको कोई अतिरिक्त रिश्ता/प्रोफाइल पसंद आता है तो आप उसे
+        शॉर्टलिस्ट करके रख सकते हैं और अगले दिन इनसे कॉल के ज़रिये जुड़ सकते हैं।
+        <br />
+        चैट: हर रिश्ते/प्रोफाइल के साथ चैट बटन है, चैट पर आप किसी से भी कितनी ही
+        बात कर सकते हैं। चैट अनलिमिटेड है। <br />
+        आपको विवाह की अग्रिम शुभकामनायें। <br />
+        जल्द होने वाले विवाह की बहुत-बहुत शुभकामनायें। <br />
+      </p>
+
+      <!-- <form method="POST">
+        <div class="row my-4 text-center">
+          <div class="col">
+            <input
+              type="text"
+              placeholder="coupon code"
+              name="coupon"
+              id="coupon"
+              required
+              class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0"
+            />
+            <p
+              class="w-100 lead text-muted text-design mb-2 d-none"
+              id="name_alert"
+            >
+              Coupon
+            </p>
+          </div>
+        </div>
+      </form> -->
+      <!-- <form method="POST" id="myForm">
+        <div class="row d-flex flex-row fixed-bottom-2">
+          <div class="col-8 w-100">
+            <input
+              type="text"
+              class="form-control w-100"
+              name="code"
+              id="code"
+              placeholder="Coupon code"
+              required
+            />
+          </div>
+          <div class="col-4 w-100 px-0">
+            <button
+              class="btn btn-large btn-success w-100"
+              type="submit"
+              value="send msg"
+              id="btnsubmit"
+            >
+              <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+              Apply
+            </button>
+          </div>
+        </div>
+      </form> -->
+      <br />
+      <!-- <p>Agent Code - {{ context.user.agent_id }}</p> -->
+      {% if context.status %}
+      <div class="card payment">
+        <p>Payment of Successful. Here are payment details:</p>
+        <p>Payment Id - {{ context.payment.id }}</p>
+        <p>Amount - {{ context.payment.amount / 100 }}</p>
+        <p>Method - {{ context.payment.method }}</p>
+        <p>Contact - {{ context.payment.contact }}</p>
+      </div>
+      {% endif %} {% if context.user.paid %}
+      <br />
+      <p>
+        <button
+          onclick="window.location='/listprofiles';"
+          class="btn btn-block btn-primary"
+        >
+          वर / वधू ढूंढना शुरू करें
+        </button>
+      </p>
+      {% elif context.error %}
+      <p>Some error occured. Contact admin</p>
+      {% elif not context.error %}
+      <!-- <p><a href="{{ context.pay_url }}"><button>Make payment of INR {{context.amount}}</button></a></p> -->
+      <button id="rzp-button" class="btn btn-block btn-primary">
+        {{ context.amount }} का पेमेंट करें
+      </button>
+      {% endif %}
+    </div>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script type="text/javascript">
+      var xhr = new XMLHttpRequest(),
+        method = "GET",
+        url = "{{context.callback}}";
+      var options = {
+        key: "rzp_live_CIv3thqiHvbxWV",
+        amount: "{{context.amount}}",
+        name: "{{context.user.name}}",
+        description: "Registration Fee",
+        order_id: "{{context.order_id}}",
+        handler: function(response) {
+          // console.log(response.razorpay_payment_id);
+          // console.log(JSON.stringify(response));
+          url =
+            url +
+            "?payment_id=" +
+            response.razorpay_payment_id +
+            "&payment_status=" +
+            response.razorpay_invoice_status;
+          xhr.open(method, url, true);
+          xhr.send();
+          // console.log("XHR Status: "+xhr.status);
+          window.location = url;
+        },
+        prefill: {
+          name: "{{context.user.name}}",
+          email: "dummy@gmail.com",
+          contact: "{{context.user.mobno}}"
+        },
+        theme: {
+          color: "#F37254"
+        }
+      };
+      var rzp1 = new Razorpay(options);
+      document.getElementById("rzp-button").onclick = function(e) {
+        rzp1.open();
+        e.preventDefault();
+      };
+    </script>
+  </body>
+</html>

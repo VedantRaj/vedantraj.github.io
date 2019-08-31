@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Var ka registration</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for message in messages %}
+  <script type="text/javascript">alert("{{ message }}")</script>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+</head>
+{% include 'navbar.html' %}
+<style>
+    .btn{
+      background-color:#857fc8;
+      border-color: #857fc8;
+      border-radius: 10px;
+    }
+    .btn:hover{
+      background-color:#635da7;
+    }
+  select{
+      text-align-last:center !important;
+    }
+    #niyam{
+      font-size:15px;
+      text-decoration: none;
+      color:#000;
+    }
+    .text-design{
+      font-size: 12px;
+      color:#FFA500 !important;
+    }
+  </style>
+<body>
+
+  <!-- <h1>RISHTEY HI RISHTEY</h1> -->
+  <div class="container mt-6">
+    <div class="row text-center">
+      <div class="col align-middle">
+        <h3 class="font-weight-bold pt-4"> वर का बायोडाटा बानये</h3>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+
+    <form method='POST' enctype="multipart/form-data" id="myForm">
+
+      <div class="row text-center align-item-middle">
+        <div class="col-12 align-middle">
+          <label for="fname" class="pt-4">प्रोफ़ाइल चित्र चुनें</label><br />
+            <input type="file" class='UPLOAD' accept="image/png, image/jpeg, image/jpg" name="profile_image" style='padding: 0 3em;'>
+        </div>
+        <!-- <div class="col-8">
+        <div class="row text-right">
+          <div class="col">
+              <img src="JOJOThemes.png" class="img-fluid rounded-circle w-50" /> 
+          </div>
+        </div>
+      </div> -->
+      </div>
+
+      <div class="row my-4 text-center">
+        <div class="col">
+          <input type="text" placeholder="नाम दर्ज करे" name="name" id="name" required
+            class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0">
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="name_alert">नाम दर्ज करें</p>
+        </div>
+      </div>
+
+      <div class="row my-4 text-center">
+        <div class="col">
+          <input type="number" placeholder=" उम्र दर्ज करें" name="age" id="age" required min="18"
+            class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="age_alert">उम्र 18 से अधिक होनी चाहिए</p>
+        </div>
+      </div>
+
+      <div class="row my-4 text-center">
+        <div class="col">
+          <input type="text" placeholder="पिता का नाम दर्ज करे" name="fname" id="fname" required
+            class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="father_name_alert">पिता का नाम दर्ज करे</p>
+        </div>
+      </div>
+
+      <div class="row my-4 text-center">
+        <div class="col">
+          <input type="number" placeholder="आपके परिवार में कितने सदस्य हैं ?" name="fcount" id="fcount" required
+            class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="family_size_alert">आपके परिवार में कितने सदस्य
+            हैं ?</p>
+        </div>
+      </div>
+
+      <div class="row my-4 text-center">
+        <div class="col">
+          <input type="number" id='mobno' placeholder="मोबाइल नंबर दर्ज करें" name="mobno" required min="1000000000"
+            max="9999999999" class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="mobno_alert">फोन नंबर उपलब्ध नहीं है</p>
+        </div>
+      </div>
+
+      <div class="row my-4 text-center">
+        <div class="col">
+          <input type="password" placeholder="पास वर्ड दर्ज करें" name="password" required id='password'
+            class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="password_alert">पास वर्ड दर्ज करें</p>
+        </div>
+      </div>
+
+      <div class="row my-4 text-center">
+        <div class="col">
+          <input type="password" placeholder="पासवर्ड फिर से दर्ज करें" name="password_again" required
+            id='password_again' class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="confirm_password_alert">दोनों में एक ही पासवर्ड
+            डाले</p>
+        </div>
+      </div>
+
+      <div class="row mt-3 text-center">
+        <div class="col">
+          <h6 class="font-weight-normal">धर्म</h6>
+        </div>
+      </div>
+      <div class="row text-center d-flex justify-content-center">
+        <div class="col-12">
+          <select name="religion" style="width: 100%; text-align: center; text-align-last: center;" id="religion"
+            onchange="getJatti()" required
+            class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+            {% for item in religion %}
+            <option value="{{ item }}">{{ religion[item] }}</option>
+            {% endfor %}
+          </select>
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="religion_alert">धर्म दर्ज करें</p>
+        </div>
+      </div>
+
+      <div id="christan_jatti" class="d-none">
+        <div class="row mt-3 text-center">
+          <div class="col">
+            <h6 class="font-weight-normal">जाति</h6>
+          </div>
+        </div>
+        <div class="row text-center" id="fdiv">
+          <div class="col" id="sdiv">
+            <select style="width: 100%; text-align: center; text-align-last: center;"
+              class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in christan_jatti %}
+              <option value="{{ item }}">{{ christan_jatti[item] }}</option>
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="caste_alert">जाति दर्ज करें</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="hindu_jatti">
+        <div class="row mt-3 text-center">
+          <div class="col">
+            <h6 class="font-weight-normal">जाति</h6>
+          </div>
+        </div>
+        <div class="row text-center" id="fdiv">
+          <div class="col" id="sdiv">
+            <select id="jaati" name="jaati" style="width: 100%; text-align: center; text-align-last: center;"
+              class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in hindu_jatti %}
+              <option value="{{ item }}">{{ hindu_jatti[item] }}</option>
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="caste_alert">जाति दर्ज करें</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="islam_jatti" class="d-none">
+        <div class="row mt-3 text-center">
+          <div class="col">
+            <h6 class="font-weight-normal">जाति</h6>
+          </div>
+        </div>
+        <div class="row text-center" id="fdiv">
+          <div class="col" id="sdiv">
+            <select style="width: 100%; text-align: center; text-align-last: center;"
+              class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in islam_jatti %}
+              <option value="{{ item }}">{{ islam_jatti[item] }}</option>
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="caste_alert">जाति दर्ज करें</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="sikh_jatti" class="d-none">
+        <div class="row mt-3 text-center">
+          <div class="col">
+            <h6 class="font-weight-normal">जाति</h6>
+          </div>
+        </div>
+        <div class="row text-center" id="fdiv">
+          <div class="col" id="sdiv">
+            <select style="width: 100%; text-align: center; text-align-last: center;"
+              class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in sikh_jatti %}
+              <option value="{{ item }}">{{ sikh_jatti[item] }}</option>
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="caste_alert">जाति दर्ज करें</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="jain_jatti" class="d-none">
+        <div class="row mt-3 text-center">
+          <div class="col">
+            <h6 class="font-weight-normal">जाति</h6>
+          </div>
+        </div>
+        <div class="row text-center" id="fdiv">
+          <div class="col jaati" id="sdiv">
+            <select style="width: 100%; text-align: center; text-align-last: center;"
+              class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in jain_jatti %}
+              <option value="{{ item }}">{{ jain_jatti[item] }}</option>
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="caste_alert">जाति दर्ज करें</p>
+          </div>
+        </div>
+      </div>
+      <!-- ++++++++++++++++++++++++++++++++++ -->
+
+      <div class="row mt-4 text-center">
+        <div class="col">
+          <h6 class="font-weight-normal">आपका कामकाज</h6>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col">
+          <select name='occupation' style="width: 100%; text-align: center; text-align-last: center;" id="occupation"
+            required class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+            {% for item in occupation %}
+            <option value="{{ item }}">{{ occupation[item] }}</option>
+            {% endfor %}
+          </select>
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="occupation_alert">आपका कामकाज दर्ज करें</p>
+        </div>
+      </div>
+
+      <div class="row mt-4 text-center">
+        <div class="col">
+          <h6 class="font-weight-normal">पिता/परिवार कामकाज</h6>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col">
+          <select name='poccupation' style="width: 100%; text-align: center; text-align-last: center;" id="foccupation"
+            required class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+            {% for item in occupation %}
+            <option value="{{ item }}">{{ occupation[item] }}</option>
+            {% endfor %}
+          </select>
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="foccupation_alert">पिता/परिवार कामकाज दर्ज करें
+          </p>
+        </div>
+      </div>
+
+
+      <div class="row mt-4 text-center">
+        <div class="col">
+          <h6 class="font-weight-normal">शिक्षा</h6>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col">
+          <select name='education' style="width: 100%; text-align: center; text-align-last: center;" id="education"
+            required class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+            {% for item in education %}
+            <option value="{{ item }}">{{ education[item] }}</option>
+            {% endfor %}
+          </select>
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="education_alert">शिक्षा दर्ज करें</p>
+        </div>
+      </div>
+
+      <div class="row mt-4 text-center">
+        <div class="col">
+          <h6 class="font-weight-normal">वैवाहिक स्थिति</h6>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col">
+          <select name='marital' style="width: 100%; text-align: center; text-align-last: center;" id="marital" required
+            class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+            {% for item in marital %}
+            <option value="{{ item }}">{{ marital[item] }}</option>
+            {% endfor %}
+          </select>
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="marital_alert">वैवाहिक स्थिति दर्ज करें</p>
+        </div>
+      </div>
+
+      <div class="container mt-5">
+        <div class="row text-center">
+          <div class="col align-middle">
+            <h3 class="font-weight-bold pt-4"> पता</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="row my-4 text-center">
+        <div class="col">
+          <input type="number" onkeyup='getData()' placeholder="पिन कोड दर्ज करें" id="pincode" name="PINCODE" required
+            class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="pincode_alert">पिन कोड दर्ज करें</p>
+        </div>
+      </div>
+
+      <div class="row my-4 text-center">
+        <div class="col">
+          <input type="text" placeholder="गांव दर्ज करें" name="village"
+            class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+        </div>
+      </div>
+
+      <div class="row my-4 text-center">
+        <div class="col">
+          <input type="text" placeholder="तहसील दर्ज करें" name="tehshil"
+            class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+        </div>
+      </div>
+
+      <div class="row my-4 text-center">
+        <div class="col">
+          <input type="text" placeholder="जिला दर्ज करें" name="district"
+            class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+        </div>
+      </div>
+
+      <div class="row mt-3 text-center">
+        <div class="col">
+          <h6 class="font-weight-bold"> राज्य चुनें</h6>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <select name="state" style="width: 100%; text-align: center; text-align-last: center;" id="state" required
+            class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+            <option value=""></option>
+            {% for item in state %}
+            <option value="{{ item }}">{{ state[item] }}</option>
+            {% endfor %}
+          </select>
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="state_alert">राज्य चुनें</p>
+        </div>
+      </div>
+
+      <div class="row mt-3 text-center">
+        <div class="col">
+          <h6 class="font-weight-bold">दूसरा पक्ष आपसे कैसे कनेक्ट करे ?</h6>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col">
+          <select name="consent" style="width: 100%; text-align: center; text-align-last: center;" id="consent" required
+            class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+            {% for item in consent %}
+            <option value="{{ item }}">{{ consent[item] }}</option>
+            {% endfor %}
+          </select>
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="consent_alert">दूसरा पक्ष आपसे कैसे कनेक्ट करे?
+          </p>
+        </div>
+      </div>
+
+      <div class="row mt-3 text-center">
+        <div class="col">
+          <h6 class="font-weight-bold">क्या आप दहेज / बारात मुक्त शादी करना चाहते हैं ?</h6>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col">
+          <select name="dowry" style="width: 100%; text-align: center; text-align-last: center;" id="dowry"
+            class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+            <option value="null"></option>
+            <option value="yes">हाँ</option>
+            <option value="no">नहीं</option>
+          </select>
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="dowry_alert">दक्या आप दहेज / बारात मुक्त शादी करना चाहते हैं ?</p>
+        </div>
+      </div>
+
+
+      <div class="row mt-2 text-center">
+        <div class="col">
+          {% if code == '0' %}
+          <input type="hidden" placeholder="एजेंट कोड कोड दर्ज करें" name="agent">
+          {% else %}
+          <input type="text" placeholder="एजेंट कोड कोड दर्ज करें" name="agent">
+          {% endif %}
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row text-center">
+        <div class="col">
+          <input type="checkbox" checked id="checkbox" required class="text-center"> <a href="/termsofuse"
+            id="niyam">नियम और शर्तें लागू</a>
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="terms_alert">नियम और शर्तें लागू पे क्लिक करे</p>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row m2-2 mb-4 text-center">
+        <div class="col">
+          <input type="button" id='btnsubmit' value="सबमिट करे और वधु खोजे"
+            class="btn btn-rounded-circle btn-primary w-75">
+        </div>
+      </div>
+
+
+
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+
+    var delay = (function () {
+      var timer = 0;
+      return function (callback, ms) {
+        clearTimeout(timer);
+        timer = setTimeout(callback, ms);
+      };
+    })();
+    function getData() {
+      delay(function () {
+        $.ajax({
+          'url': '/pincode/' + $("input[name='PINCODE']").val(),
+          'success': function (response) {
+            console.log(response);
+            document.getElementById("pincode_alert").classList.add("d-none");
+            $("select[name='state']").val(response['data'][3]);
+            $("input[name='district']").val(response['data'][5]);
+            // document.getElementById("btnsubmit").disabled = false;
+          },
+          'error': function (e) {
+            // alert("कृपया पिन कोड की जांच करे");
+            document.getElementById('pincode_alert').textContent = "कृपया पिन कोड की जांच करे";
+            document.getElementById('pincode_alert').classList.remove("d-none");
+            // document.getElementById("btnsubmit").disabled = true;
+          }
+        });
+      }, 2000);
+    };
+
+    $('input#mobno').change(() => {
+      $('span.avail').text('Checking')
+      if ($('input#mobno').val() > 1000000000 && $('input#mobno').val() < 9999999999) {
+        $.ajax({
+          'url': '/checkmobile/' + $('input#mobno').val(),
+
+          'success': (res) => {
+            console.log(res)
+            if (res['available']) {
+              //$('span.avail').text('उपलब्ध है |')
+              document.getElementById('mobno_alert').textContent= 'फोन नंबर उपलब्ध है';
+              document.getElementById("mobno_alert").classList.remove("d-none");
+              document.getElementById('mobno').style.color = 'green';
+            }
+            else {
+              //$('span.avail').text('उपलब्ध नहीं है |')
+              document.getElementById('mobno_alert').textContent= 'फोन नंबर उपलब्ध नहीं है';
+              document.getElementById("mobno_alert").classList.remove("d-none");
+              document.getElementById('mobno').style.color = 'red';
+            }
+          },
+        })
+      } else {
+        // $('span.avail').text('फोन नंबर 10 अंकों का होना चाहिए');
+        document.getElementById('mobno_alert').textContent= 'फोन नंबर 10 अंकों का होना चाहिए';
+        document.getElementById("mobno_alert").classList.remove("d-none");
+      }
+    });
+
+    $("#btnsubmit").click((e) => {
+      e.preventDefault();
+      var count = 0;
+      if ($('input#name').val() == '') {
+        document.getElementById('name_alert').classList.remove('d-none');
+        document.getElementById('name').focus(); 
+      }
+      else if ($('input#name').val() != '') {
+        document.getElementById('name_alert').classList.add('d-none'); count++;
+      }
+
+      if ($('input#age').val() == '') {
+        document.getElementById('age_alert').textContent = 'उम्र दर्ज करें';
+        document.getElementById('age_alert').classList.remove('d-none');
+        document.getElementById('age').focus(); 
+      }
+      else if ($('input#age').val() > 18) {
+        document.getElementById('age_alert').classList.add('d-none'); count++;
+      }
+      else if ($('input#age').val() < 18) {
+        document.getElementById('age_alert').textContent = 'उम्र 18 से अधिक होनी चाहिए';
+        document.getElementById('age_alert').classList.remove('d-none');
+        document.getElementById('age').focus(); 
+      }
+      if ($('input#fname').val() == '') {
+        document.getElementById('father_name_alert').classList.remove('d-none');
+        document.getElementById('fname').focus(); 
+      }
+      else if ($('input#fname').val() != '') {
+        document.getElementById('father_name_alert').classList.add('d-none'); count++;
+      }
+
+      if ($('input#fcount').val() == '') {
+        document.getElementById('family_size_alert').classList.remove('d-none');
+        document.getElementById('fcount').focus(); 
+      }
+
+      else if ($('input#fcount').val() != '') {
+        document.getElementById('family_size_alert').classList.add('d-none'); count++;
+      }
+
+      if ($('input#mobno').val() == '') {
+        document.getElementById('mobno_alert').textContent = 'मोबाइल नंबर दर्ज करें';
+        document.getElementById('mobno_alert').classList.remove('d-none');
+        document.getElementById('mobno').focus(); 
+      }
+      else if ($('#mobno_alert').text() != 'फोन नंबर उपलब्ध है') {
+        document.getElementById('mobno_alert').textContent = 'फोन नंबर उपलब्ध नहीं है';
+        document.getElementById('mobno_alert').classList.remove('d-none');
+        document.getElementById('mobno').focus(); 
+      }
+      else if ($('#mobno_alert').text() == 'फोन नंबर उपलब्ध है') {
+        document.getElementById('mobno_alert').textContent = 'फोन नंबर उपलब्ध है';
+        document.getElementById('mobno_alert').classList.remove('d-none');  count++;
+      }
+
+      if ($('input#password').val() == '') {
+        document.getElementById('password_alert').classList.remove('d-none');
+        document.getElementById('password').focus(); 
+      }
+
+      else if ($('input#password').val() != '') {
+        document.getElementById('password_alert').classList.add('d-none');  count++;
+      }
+
+      if ($('input#password_again').val() == '') {
+        document.getElementById('confirm_password_alert').textContent = 'दोबारा पासवर्ड दर्ज करें';
+        document.getElementById('confirm_password_alert').classList.remove('d-none');
+        document.getElementById('password_again').focus(); 
+      }
+      else if ($('input#password').val() != $('input#password_again').val()) {
+        document.getElementById('confirm_password_alert').textContent = 'दोनों में एक ही पासवर्ड डालेें';
+        document.getElementById('confirm_password_alert').classList.remove('d-none');
+        document.getElementById('password_again').focus(); 
+      }
+      else if ($('input#password').val() == $('input#password_again').val()) {
+        document.getElementById('password_alert').classList.add('d-none');
+        document.getElementById('confirm_password_alert').classList.add('d-none'); count++;
+      }
+
+      if ($('select#religion').val() == 'null') {
+        document.getElementById('religion_alert').classList.remove('d-none');
+        document.getElementById('religion').focus(); 
+      }
+      else if ($('select#religion').val() != 'null') {
+        document.getElementById('religion_alert').classList.add('d-none'); count++;
+      }
+
+      //if ($('select#jaati').val() == 'null') {
+      //  document.getElementById('caste_alert').classList.remove('d-none');
+      //  document.getElementById('jaati').focus(); 
+      //}
+      //else if ($('select#jaati').val() != 'null') {
+      //  document.getElementById('caste_alert').classList.add('d-none'); count++;
+      //}
+
+      if ($('select#occupation').val() == 'null') {
+        document.getElementById('occupation_alert').classList.remove('d-none');
+        document.getElementById('occupation').focus(); 
+      }
+      else if ($('select#occupation').val() != 'null') {
+        document.getElementById('occupation_alert').classList.add('d-none'); count++;
+      }
+      if ($('select#foccupation').val() == 'null') {
+        document.getElementById('foccupation_alert').classList.remove('d-none');
+        document.getElementById('foccupation').focus(); 
+      }
+      else if ($('select#foccupation').val() != 'null') {
+        document.getElementById('foccupation_alert').classList.add('d-none'); count++;
+      }
+      if ($('select#consent').val() == 'null') {
+        document.getElementById('consent_alert').classList.remove('d-none');
+        document.getElementById('consent').focus(); 
+      }
+      else if ($('select#consent').val() != 'null') {
+        document.getElementById('consent_alert').classList.add('d-none'); count++;
+      }
+      if($('select#dowry').val() == 'null') {
+        document.getElementById('dowry_alert').classList.remove('d-none');
+        document.getElementById('dowry').focus();
+      } else if ($('select#dowry').val() != 'null') {
+        document.getElementById('dowry_alert').classList.add('d-none'); count++;
+      }
+      if ($('select#education').val() == 'null') {
+        document.getElementById('education_alert').classList.remove('d-none');
+        document.getElementById('education').focus(); 
+      }
+      else if ($('select#education').val() != 'null') {
+        document.getElementById('education_alert').classList.add('d-none'); count++;
+      }
+      if ($('select#marital').val() == 'null') {
+        document.getElementById('marital_alert').classList.remove('d-none');
+        document.getElementById('marital').focus(); 
+      }
+      else if ($('select#marital').val() == 'null') {
+        document.getElementById('marital_alert').classList.add('d-none'); count++;
+      }
+      if ($('input#pincode').val() == '') {
+        document.getElementById('pincode_alert').classList.remove('d-none');
+        document.getElementById('pincode').focus(); 
+      }
+      else if ($('input#pincode').val() != '') {
+        document.getElementById('pincode_alert').classList.add('d-none'); count++;
+      }
+      if ($('select#state').val() == 'null') {
+        document.getElementById('state_alert').classList.remove('d-none');
+        document.getElementById('state').focus(); 
+      }
+      else if ($('select#state').val() != 'null') {
+        document.getElementById('state_alert').classList.add('d-none'); count++;
+      }
+      if ($('input#checkbox').is(':checked') == false) {
+        document.getElementById('terms_alert').classList.remove('d-none');
+        document.getElementById('checkbox').focus(); 
+      }
+      else if ($('input#checkbox').is(':checked') == true) {
+        document.getElementById('terms_alert').classList.add('d-none'); count++;
+      }
+      if (count == 16) {
+        document.getElementById('myForm').submit();
+      }
+    });
+
+    $('input#password_again').change(() => {
+      if ($('input#password').val() != $('input#password_again').val()) {
+        document.getElementById('password_again_alert')
+        //$('span.chkpass').text('दोनों में एक ही पासवर्ड डाले');
+        document.getElementById('confirm_password_alert').textContent = 'दोनों में एक ही पासवर्ड डाले';
+        document.getElementById('confirm_password_alert').classList.remove("d-none");
+        // document.getElementById('submit').disabled = true;
+        //document.getElementById('password_again').style.color = 'red';
+      } else {
+        // $('span.chkpass').text('');
+        document.getElementById('confirm_password_alert').classList.add("d-none");
+        document.getElementById('password_alert').classList.add('d-none');
+        // document.getElementById('submit').disabled = false;
+        //document.getElementById('password_again').style.color = 'green';
+      }
+    });
+
+    $('input#age').change(() => {
+      if ($('input#age').val() < 21) {
+        document.getElementById('age_alert').textContent = "उम्र 21 से अधिक होनी चाहिए";
+        document.getElementById('age_alert').classList.remove('d-none');
+      } else {
+        // $('span.chkage').text('');
+        document.getElementById('age_alert').textContent = "";
+        document.getElementById('age_alert').classList.add('d-none');
+      }
+    });
+
+  </script>
+</body>
+<script type="text/javascript">
+
+  function getJatti() {
+    var elm = document.getElementById('religion');
+    var christan = document.getElementById('christan_jatti');
+    var sikh = document.getElementById('sikh_jatti');
+    var islam = document.getElementById('islam_jatti');
+    var hindu = document.getElementById('hindu_jatti');
+    var jain = document.getElementById('jain_jatti');
+    var strcon = elm.selectedIndex;
+    console.log("getJatti function " + strcon);
+    if (strcon === 0) {
+      hindu.classList.toggle('d-none');
+      $('#hindu_jatti > #fdiv > #sdiv > select').attr('name', 'jaati');
+      $('#hindu_jatti > #fdiv > #sdiv > select').attr('id', 'jaati');
+      $('#islam_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#islam_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#sikh_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#sikh_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#christan_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#christan_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#jain_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#jain_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      islam.classList.add('d-none');
+      sikh.classList.add('d-none');
+      jain.classList.add('d-none');
+      christan.classList.add('d-none');
+    }
+    if (strcon === 1) {
+      islam.classList.toggle('d-none');
+      $('#hindu_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#hindu_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#islam_jatti > #fdiv > #sdiv > select').attr('name', 'jaati');
+      $('#islam_jatti > #fdiv > #sdiv > select').attr('id', 'jaati');
+      $('#sikh_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#sikh_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#christan_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#christan_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#jain_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#jain_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      hindu.classList.add('d-none');
+      sikh.classList.add('d-none');
+      jain.classList.add('d-none');
+      christan.classList.add('d-none');
+    }
+    if (strcon === 2) {
+      sikh.classList.toggle('d-none');
+      $('#hindu_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#hindu_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#islam_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#islam_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#sikh_jatti > #fdiv > #sdiv > select').attr('name','jaati');
+      $('#sikh_jatti > #fdiv > #sdiv > select').attr('id','jaati');
+      $('#christan_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#christan_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#jain_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#jain_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      islam.classList.add('d-none');
+      hindu.classList.add('d-none');
+      jain.classList.add('d-none');
+      christan.classList.add('d-none');
+    }
+    if (strcon === 3) {
+      christan.classList.toggle('d-none');
+      $('#hindu_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#hindu_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#islam_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#islam_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#sikh_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#sikh_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#christan_jatti > #fdiv > #sdiv > select').attr('name', 'jaati');
+      $('#christan_jatti > #fdiv > #sdiv > select').attr('id', 'jaati');
+      $('#jain_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#jain_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      sikh.classList.add('d-none');
+      islam.classList.add('d-none');
+      hindu.classList.add('d-none');
+      jain.classList.add('d-none');
+    }
+    if (strcon === 4) {
+      jain.classList.toggle("d-none");
+      $('#hindu_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#hindu_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#islam_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#islam_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#sikh_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#sikh_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#christan_jatti > #fdiv > #sdiv > select').removeAttr('name');
+      $('#christan_jatti > #fdiv > #sdiv > select').removeAttr('id');
+      $('#jain_jatti > #fdiv > #sdiv > select').attr('name', 'jaati');
+      $('#jain_jatti > #fdiv > #sdiv > select').attr('id', 'jaati');
+      christan.classList.add('d-none');
+      sikh.classList.add('d-none');
+      islam.classList.add('d-none');
+      hindu.classList.add('d-none');
+    }
+  }
+</script>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <title>Admin panel</title>
+    <style type="text/css">
+      a[disable] {
+        color: grey;
+      }
+    </style>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  </head>
+  <body>
+    <h1>Admin Panel</h1>
+    <table id="main_table" class=" cell-border hover row-border stripe order-column">
+      <thead>
+        <tr>
+          <th>gender</th>
+          <th>name</th>
+          <th>Verify</th>
+          <th>agent id</th>
+          <th>address</th>
+          <th>mobile</th>
+          <th>age</th>
+          <th>images</th>
+          <th>education</th>
+          <th>religion</th>
+          <th>jaati</th>
+          <th>occupation</th>
+          <th>father occ</th>
+          <th>matches</th>
+          <th>paid</th>
+          <th>payment_id</th>
+          <th>payment_req_id</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for value in context %}
+        <tr>
+          <td>{{value['gender']}}</td>
+          <td>{{value['name']}}</td>
+          <td>
+            {% if value['religion'] %}
+            {% if value['religion'][1] == 1 %}
+            <p>Verified</p>
+            {% else %}
+              {% if value['religion'][0] == 3 %}
+              <a href="#" id="verify" data-id="{{value['id']}}" data-agent="{{value['agent_id']}}">Verify</a>
+              {% else %}
+              {% if value['gender'] == 'agent' %}
+              <p>Not yet</p>
+              {% endif %}
+              {% endif %}
+            {% endif %}
+            {% endif %}
+          </td>
+          <td>{{value['agent_id']}}</td>
+          <td>{{value['address']}}</td>
+          <td>{{value['mobno']}}</td>
+          <td>{{value['age']}}</td>
+          <td>
+            <a href="{{url_for('profile_img', id=value.id)}}" target="_blank">Pic</a>
+            <a href="{{url_for('identity_img', id=value.id)}}" target="_blank">Iden</a>
+            <a href="{{url_for('cheque_img', id=value.id)}}" target="_blank">Cheque</a>
+          </td>
+          <td>{{value['education']}}</td>
+          <td>{{value['religion']}}</td>
+          <td>{{value['jaati']}}</td>
+          <td>{{value['occupation']}}</td>
+          <td>{{value['poccupation']}}</td>
+          <td>{{value['matches']}}</td>
+          <td>{{value['paid']}}</td>
+          <td>{{value['payment_id']}}</td>
+          <td>{{value['payment_req_id']}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+  <script type="text/javascript">
+    $('#verify').click(()=>{
+      var identity = {'id':$('#verify').data('id'),'agent':$('#verify').data('agent')};
+      console.log(identity);
+      $.ajax({
+        'url': '/agentverify',
+        'type': 'POST',
+        'contentType':'application/json',
+        'data': JSON.stringify(identity),
+        'success': (res) => {
+          console.log(res);
+          if (res['success']) {
+            alert("Verified");
+            // location.reload(true)
+          }
+        }
+      })
+    })
+    var data = '{{context}}';
+    window.$("#main_table").DataTable({
+
+    });
+  </script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OTP Submit</title>
+  </head>
+  {% include 'navbar.html' %}
+  <style>
+    .btn-primary {
+      background-color: #857fc8;
+      border-radius: 12px;
+      border-color: #857fc8;
+    }
+    .btn:hover {
+      background-color: #625bb5;
+      border-color: #625bb5;
+    }
+    .text-design {
+      font-size: 12px;
+      color: #ffa500 !important;
+    }
+  </style>
+  <body>
+    <div class="container mt-6">
+      <form method="POST">
+        <H2 class="text-center"
+          >मैसेज में आये हुए OTP को दर्ज करके अपना पासवर्ड चेंज करें</H2
+        >
+        <input
+          type="number"
+          style="text-align:center;font-size:12px;"
+          class="border-top-0 border-left-0 border-right-0 w-100"
+          placeholder="OTP दर्ज करें"
+          name="otp"
+          required
+        />
+        <input
+          type="submit"
+          class="btn btn-primary w-100 mt-5 mb-5"
+          id="btnsubmit"
+          value="सबमिट करें"
+        />
+      </form>
+    </div>
+  </body>
+  <script></script>
+</html>

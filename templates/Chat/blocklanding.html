@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Block Landing</title>
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %}
+    <script type="text/javascript">
+      alert("{{ message }}");
+    </script>
+    {% endfor %} {% endif %} {% endwith %}
+  </head>
+  {% include 'navbar.html' %}
+  <body>
+    <div class="container mt-6 mb-6">
+      <div class="row d-flex flex-row">
+        <div class="col">
+          <p class="text-justify">
+            सावधान! <br />
+
+            क्या आप वाकई में इनको ब्लॉक करना चाहते हैं ? ब्लॉक करने के बाद आप
+            इनसे या यह आप से इस एप्प के दूवारा कांटेक्ट नहीं कर पाएंगे | <br />
+
+            ध्यान रहे! <br />
+
+            आप जब भी चाहें इन्हे अनब्लॉक कर सकते हैं | अनब्लॉक करने के लिए अपनी
+            प्रोफाइल बटन मैं पुराने प्रोफाइल में जाएँ <br />
+          </p>
+        </div>
+      </div>
+      <br />
+      {% if error %}
+      <h6>{{ error }}</h6>
+      {% else %}
+      <form action="/blockuser" method="POST">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="{{ value.name }}"
+            readonly
+          />
+        </div>
+        <div class="form-group d-none">
+          <label for="name">Receiver Id</label>
+          <input
+            type="text"
+            class="form-control"
+            value="{{ value.id }}"
+            name="receiver_id"
+            id="receiver_id"
+            readonly
+          />
+        </div>
+        <div class="form-group d-none">
+          <label for="name">Status</label>
+          <input
+            type="text"
+            class="form-control"
+            value="block"
+            name="status"
+            id="status"
+            readonly
+          />
+        </div>
+        <div class="form-group">
+          <label for="reason" class="text-center"
+            >कृपया ब्लॉक करने का कारण चुनें</label
+          >
+          <select class="form-control" name="reason" id="reason">
+            {% for item in blockreason %}
+            <option value="{{ item }}">{{ blockreason[item] }}</option>
+            {% endfor %}
+          </select>
+          <button type="submit" class="btn btn-large block-btn">
+            ब्लौक करें
+          </button>
+        </div>
+      </form>
+      {% endif %}
+    </div>
+  </body>
+</html>

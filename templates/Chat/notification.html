@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <title>Listings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <body>
+    {% include 'navbar.html' %}
+
+    <div class="container mt-6 mb-6">
+      <div class="card">
+        <h3>Notifications:</h3>
+        {% for value in notifications %}
+        <div class="card-body">
+          <div class="well">
+            <h4>{{ value["text"] }}</h4>
+            <h6>{{ value["name"] }}</h6>
+            <h6>{{ value["timestamp"] }}</h6>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

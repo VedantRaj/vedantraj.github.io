@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <title>Listings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
+  <style>
+    .btn-primary {
+      background-color: #857fc8;
+      border-radius: 12px;
+      border-color: #857fc8;
+    }
+    .btn.active.focus,
+    .btn.active:focus,
+    .btn.focus,
+    .btn.focus:active,
+    .btn:active:focus,
+    .btn:focus {
+      outline: thin dotted;
+      outline-offset: -2px;
+    }
+  </style>
+  <body>
+    {% include 'navbar.html' %}
+    <div class="container mt-5 mb-6">
+      {% for value in profiles %}
+      <div class="text-center" id="{{ value.id }}">
+        <div class="">
+          <!-- First div for image and text -->
+          <div class="row d-flex flex-row">
+            <!-- Image div col-4 -->
+            <div class="col-4">
+              <img
+                class="mt-4 img-fluid"
+                src="{{ url_for('profile_img', id=value.id) }}"
+                alt="profile_pic"
+              />
+            </div>
+            <!-- Text div col-8 -->
+            <div class="col-8 text-justify mt-4">
+              <p>
+                {{ value.name }}<br />
+                {{ value.age }}<br />
+                {{ value.religion }}<br />
+                {{ value.jaati }}<br />
+                {% if value.dowry == "yes" %} Dahej Bharat Mukt Shaadi {% endif
+                %}
+              </p>
+            </div>
+          </div>
+          <!-- Second div for two buttons -->
+          <div class="row d-flex flex-row">
+            {% if connect or shortlist %} {% if value.interactions.connected %}
+            <div class="col w-100 connect-btn">
+              <a class="btn btn-large w-100" href="tel:+91-{{ value.mobno }}">
+                {{ value.mobno }}
+              </a>
+            </div>
+            {% elif value.interactions.pending %}
+            <div class="col w-100 connect-btn">
+              <a
+                class="btn btn-large w-100"
+                href="/connect/{{ value.id }}/approved"
+              >
+                रिक्वेस्ट स्विकार करें
+              </a>
+            </div>
+            {% elif value.interactions.sent %}
+            <div class="col w-100 shortlist-btn">
+              <a class="btn btn-large w-100" href="#">
+                आपका रिक्वेस्ट पेंडिंग है
+              </a>
+            </div>
+            {% elif value.interactions.shortlisted and connect %}
+            <div class="col w-100 connect-btn">
+              <a
+                href="/connect/{{ value.id }}/pending"
+                class="btn btn-large w-100"
+              >
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                कॉल
+              </a>
+            </div>
+            {% elif value.interactions.shortlisted %}
+            <div class="col w-100 shortlist-btn">
+              <a href="#" class="btn btn-large w-100">
+                आपने इन्हें शॉर्टलिस्ट किया
+              </a>
+            </div>
+            {% elif connect %}
+            <div class="col w-100 connect-btn">
+              <a
+                href="/connect/{{ value.id }}/pending"
+                class="btn btn-large w-100"
+              >
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                कॉल
+              </a>
+            </div>
+            {% elif shortlist %}
+            <div class="col w-100 shortlist-btn">
+              <a href="/shortlist/{{ value.id }}/pending">
+                <i class="fa fa-sticky-note-o fa-2x" aria-hidden="true"></i>
+                शार्टलिस्ट
+              </a>
+            </div>
+            {% endif %} {% else %}
+            {% if value.interactions.connected %}
+            <div class="col w-100 connect-btn">
+              <a class="btn btn-large w-100" href="tel:+91-{{ value.mobno }}">
+                {{ value.mobno }}
+              </a>
+            </div>
+            {% elif value.interactions.pending %}
+            <div class="col w-100 connect-btn">
+              <a
+                class="btn btn-large w-100"
+                href="/connect/{{ value.id }}/approved"
+              >
+                रिक्वेस्ट स्विकार करें
+              </a>
+            </div>
+            {% elif value.interactions.sent %}
+            <div class="col w-100 shortlist-btn">
+              <a class="btn btn-large w-100" href="#">
+                आपका रिक्वेस्ट पेंडिंग है
+              </a>
+            </div>
+            {% elif value.interactions.shortlisted %}
+            <div class="col w-100 shortlist-btn">
+              <a href="#" class="btn btn-large w-100">
+                आपने इन्हें शॉर्टलिस्ट किया
+              </a>
+            </div>
+            {% else %}
+            <div class="col w-100 shortlist-btn">
+              <a href="/shortlist#modal">
+                शार्टलिस्ट
+              </a>
+            </div>
+            {% endif %}
+            {% endif %}
+
+            <div class="col w-100 chat-btn">
+              <a class="btn btn-large w-100" href="/chat/{{ value.id }}">
+                <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                चैट
+              </a>
+            </div>
+          </div>
+          <!-- Third div for additional details buttons -->
+          <div class="row d-flex flex-row mt-1">
+            <div class="text-center w-100 more-info-btn">
+              <a
+                class="btn btn-large w-100"
+                href="/showprofile/{{ value.id }}"
+                style="color:black;text-decoration:none;"
+                >अधिक जानकारी</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <!-- Modal for information -->
+    <!-- <div class="modal fade" tabindex="-1" role="dialog" id="connectModal">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Connect</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Phone Number</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              बंद करे
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </body>
+  <!-- <script>
+    function handleModal(evt) {
+      //var button = $(evt);
+      var id = evt.target.getAttribute("data-id");
+      var name = button.data("name");
+      var phone = button.data("phone");
+      var consent = button.data("consent");
+      var showmsg = "";
+      if (consent == "yes") {
+        showmsg = "मोबाइल नंबर " + phone;
+        timer = 4000;
+      } else {
+        showmsg = "फोन नम्बर देखने का रिक्वेस्ट चला गया है।";
+      }
+      $("#connectModal")
+        .find(".modal-title")
+        .text(name);
+      $("#connectModal")
+        .find("#modal-body p")
+        .text(showmsg);
+      $("#connectModal").modal("show");
+      $.ajax({
+        type: "GET",
+        url: url,
+        success: function() {
+          alert("ajax success");
+        }
+      });
+      setTimeout(function() {
+        $("connectModal").modal("hide");
+      }, timer);
+    }
+  </script> -->
+</html>

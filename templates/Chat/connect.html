@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html>
+  <title>Connections</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <body>
+    {% include 'navbar.html' %}
+    <br />
+    <style>
+      .nav-link a {
+        color: black;
+      }
+      #showphone.active {
+        background-color: rgba(19, 206, 102, 0.28);
+      }
+      #showreq.active {
+        background-color: rgba(245, 250, 158, 0.43);
+      }
+    </style>
+
+    <div class="container mt-5 mb-6 p-0">
+      <ul class="nav nav-pills nav-fill">
+        <li class="nav-item active" id="showphone">
+          <a class="nav-link" href="#">फोन नम्बर</a>
+        </li>
+        <li class="nav-item" id="showreq">
+          <a class="nav-link" href="#">फोन नम्बर के रिक्वेस्ट</a>
+        </li>
+      </ul>
+      <div class="container" id="phoneNumber">
+        {% for value in connections %}
+        <div class="text-center mt-3">
+          <div class="row d-flex row-flex profile-card">
+            <!-- Image div col-4 -->
+            <div class="col-4">
+              <img
+                class="mt-4 img-fluid"
+                src="{{ url_for('profile_img', id=value.id) }}"
+                alt="profile_pic"
+              />
+            </div>
+            <!-- Text div col-8 -->
+            <div class="col-8 text-justify mt-4">
+              <p>
+                {{ value.name }}<br />
+                {{ value.age }}<br />
+                {{ value.religion }}<br />
+                {{ value.jaati }}<br />
+                {% if value.dowry == "yes" %} Dahej Bharat Mukt Shaadi {% endif
+                %}
+              </p>
+            </div>
+          </div>
+          <!-- Second div for buttons -->
+          <div class="row d-flex flex-row connect-btn">
+            {% if connect or shortlist %} {% if value.interactions.connected %}
+            <div class="col w-100 connect-btn">
+              <a class="btn btn-large w-100" href="tel:+91-{{ value.mobno }}">
+                {{ value.mobno }}
+              </a>
+            </div>
+            {% elif value.interactions.pending %}
+            <div class="col w-100 connect-btn">
+              <a
+                class="btn btn-large w-100"
+                href="/connect/{{ value.id }}/approved"
+              >
+                रिक्वेस्ट स्विकार करें
+              </a>
+            </div>
+            {% elif value.interactions.sent %}
+            <div class="col w-100 shortlist-btn">
+              <a class="btn btn-large w-100" href="#">
+                आपका रिक्वेस्ट पेंडिंग है
+              </a>
+            </div>
+            {% elif value.interactions.shortlisted and connect %}
+            <div class="col w-100 connect-btn">
+              <a
+                href="/connect/{{ value.id }}/pending"
+                class="btn btn-large w-100"
+              >
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                कॉल
+              </a>
+            </div>
+            {% elif value.interactions.shortlisted %}
+            <div class="col w-100 shortlist-btn">
+              <a href="#" class="btn btn-large w-100">
+                आपने इन्हें शॉर्टलिस्ट किया
+              </a>
+            </div>
+            {% elif connect %}
+            <div class="col w-100 connect-btn">
+              <a
+                href="/connect/{{ value.id }}/pending"
+                class="btn btn-large w-100"
+              >
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                कॉल
+              </a>
+            </div>
+            {% elif shortlist %}
+            <div class="col w-100 shortlist-btn">
+              <a href="/shortlist/{{ value.id }}/pending">
+                <i class="fa fa-sticky-note-o fa-2x" aria-hidden="true"></i>
+                शार्टलिस्ट
+              </a>
+            </div>
+            {% endif %} {% else %}
+            {% if value.interactions.connected %}
+            <div class="col w-100 connect-btn">
+              <a class="btn btn-large w-100" href="tel:+91-{{ value.mobno }}">
+                {{ value.mobno }}
+              </a>
+            </div>
+            {% elif value.interactions.pending %}
+            <div class="col w-100 connect-btn">
+              <a
+                class="btn btn-large w-100"
+                href="/connect/{{ value.id }}/approved"
+              >
+                रिक्वेस्ट स्विकार करें
+              </a>
+            </div>
+            {% elif value.interactions.sent %}
+            <div class="col w-100 shortlist-btn">
+              <a class="btn btn-large w-100" href="#">
+                आपका रिक्वेस्ट पेंडिंग है
+              </a>
+            </div>
+            {% elif value.interactions.shortlisted %}
+            <div class="col w-100 shortlist-btn">
+              <a href="#" class="btn btn-large w-100">
+                आपने इन्हें शॉर्टलिस्ट किया
+              </a>
+            </div>
+            {% else %}
+            <div class="col w-100 shortlist-btn">
+              <a href="/shortlist#modal">
+                शार्टलिस्ट
+              </a>
+            </div>
+            {% endif %}
+            {% endif %}
+            <!-- <div class="col w-100">
+              <a class="btn btn-large w-100" href="tel:+91-{{ value.mobno }}">
+                {{ value.mobno }}
+              </a>
+            </div> -->
+            <div class="col w-100 chat-btn">
+              <a class="btn btn-large w-100" href="/chat/{{ value.id }}">
+                <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                चैट
+              </a>
+            </div>
+          </div>
+          <!-- Third div for additional details buttons -->
+          <div class="row d-flex flex-row mt-1">
+            <div class="text-center w-100" style="background-color: #BEC5C1">
+              <a
+                class="btn btn-large w-100"
+                href="/showprofile/{{ value.id }}"
+                style="color:black;text-decoration:none;"
+                >अधिक जानकारी</a
+              >
+            </div>
+          </div>
+        </div>
+        {% else %}
+        {% if stats.pendingReq > 0 %}
+        <p>Pending Request: <a href="/connection#requests">Click here</a></p>
+        {% elif stats.connect %}
+        <p>Home Tab: <a href="/listprofiles">Call rishtey</a></p>
+        {% elif stats.shortlist %}
+        <p>Home Tab: <a href="/listprofiles">Shortlist rishtey</a></p>
+        {% else %}
+        <p>Shortlist Tab: <a href="/shortlist">Chat with shortlist</a></p>
+        {% endif %}
+        {% endfor %}
+      </div>
+      <div class="container d-none" id="requests">
+        <div class="row d-flex flex-row">
+          <div class="text-center w-100 py-2 banner-msg">
+            आयें हुए प्रस्ताव​
+          </div>
+        </div>
+        {% for value in recvReq %}
+        <div class="text-center mt-3">
+          <div class="row d-flex row-flex profile-card">
+            <!-- Image div col-4 -->
+            <div class="col-4">
+              <img
+                class="mt-4 img-fluid"
+                src="{{ url_for('profile_img', id=value.id) }}"
+                alt="profile_pic"
+              />
+            </div>
+            <!-- Text div col-8 -->
+            <div class="col-8 text-justify mt-4">
+              <p>
+                {{ value.name }}<br />
+                {{ value.age }}<br />
+                {{ value.religion }}<br />
+                {{ value.jaati }}<br />
+                {% if value.dowry == "yes" %} Dahej Bharat Mukt Shaadi {% endif
+                %}
+              </p>
+            </div>
+          </div>
+          <!-- Second div for buttons -->
+          <div class="row d-flex flex-row connect-btn">
+            {% if connect or shortlist %} {% if value.interactions.connected %}
+            <div class="col w-100 connect-btn">
+              <a class="btn btn-large w-100" href="tel:+91-{{ value.mobno }}">
+                {{ value.mobno }}
+              </a>
+            </div>
+            {% elif value.interactions.pending %}
+            <div class="col w-100 connect-btn">
+              <a
+                class="btn btn-large w-100"
+                href="/connect/{{ value.id }}/approved"
+              >
+                रिक्वेस्ट स्विकार करें
+              </a>
+            </div>
+            {% elif value.interactions.sent %}
+            <div class="col w-100 shortlist-btn">
+              <a class="btn btn-large w-100" href="#">
+                आपका रिक्वेस्ट पेंडिंग है
+              </a>
+            </div>
+            {% elif value.interactions.shortlisted and connect %}
+            <div class="col w-100 connect-btn">
+              <a
+                href="/connect/{{ value.id }}/pending"
+                class="btn btn-large w-100"
+              >
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                कॉल
+              </a>
+            </div>
+            {% elif value.interactions.shortlisted %}
+            <div class="col w-100 shortlist-btn">
+              <a href="#" class="btn btn-large w-100">
+                आपने इन्हें शॉर्टलिस्ट किया
+              </a>
+            </div>
+            {% elif connect %}
+            <div class="col w-100 connect-btn">
+              <a
+                href="/connect/{{ value.id }}/pending"
+                class="btn btn-large w-100"
+              >
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                कॉल
+              </a>
+            </div>
+            {% elif shortlist %}
+            <div class="col w-100 shortlist-btn">
+              <a href="/shortlist/{{ value.id }}/pending">
+                <i class="fa fa-sticky-note-o fa-2x" aria-hidden="true"></i>
+                शार्टलिस्ट
+              </a>
+            </div>
+            {% endif %} {% else %}
+            {% if value.interactions.connected %}
+            <div class="col w-100 connect-btn">
+              <a class="btn btn-large w-100" href="tel:+91-{{ value.mobno }}">
+                {{ value.mobno }}
+              </a>
+            </div>
+            {% elif value.interactions.pending %}
+            <div class="col w-100 connect-btn">
+              <a
+                class="btn btn-large w-100"
+                href="/connect/{{ value.id }}/approved"
+              >
+                रिक्वेस्ट स्विकार करें
+              </a>
+            </div>
+            {% elif value.interactions.sent %}
+            <div class="col w-100 shortlist-btn">
+              <a class="btn btn-large w-100" href="#">
+                आपका रिक्वेस्ट पेंडिंग है
+              </a>
+            </div>
+            {% elif value.interactions.shortlisted %}
+            <div class="col w-100 shortlist-btn">
+              <a href="#" class="btn btn-large w-100">
+                आपने इन्हें शॉर्टलिस्ट किया
+              </a>
+            </div>
+            {% else %}
+            <div class="col w-100 shortlist-btn">
+              <a href="/shortlist#modal">
+                शार्टलिस्ट
+              </a>
+            </div>
+            {% endif %}
+            {% endif %}
+            <!-- <div class="col w-100">
+              <a
+                class="btn btn-large w-100"
+                href="/connect/{{ value.id }}/approved"
+              >
+                आज्ञा दें
+              </a>
+            </div> -->
+            <div class="col w-100 chat-btn">
+              <a class="btn btn-large w-100" href="/chat/{{ value.id }}">
+                <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                चैट
+              </a>
+            </div>
+          </div>
+          <!-- Third div for additional details buttons -->
+          <div class="row d-flex flex-row mt-1">
+            <div class="text-center w-100" style="background-color: #BEC5C1">
+              <a
+                class="btn btn-large w-100"
+                href="/showprofile/{{ value.id }}"
+                style="color:black;text-decoration:none;"
+                >अधिक जानकारी</a
+              >
+            </div>
+          </div>
+        </div>
+        {% else %} {% if stats.pendingReq > 0 %}
+        <p>Pending Request: <a href="/connection#requests">Click here</a></p>
+        {% elif stats.connect %}
+        <p>Home Tab: <a href="/listprofiles">Call rishtey</a></p>
+        {% elif stats.shortlist %}
+        <p>Home Tab: <a href="/listprofiles">Shortlist rishtey</a></p>
+        {% else %}
+        <p>Shortlist Tab: <a href="/shortlist">Chat with shortlist</a></p>
+        {% endif %}
+        {% endfor %}
+        <div class="row d-flex flex-row mt-2">
+          <div
+            class="text-center w-100 py-2"
+            style="background-color: rgba(240, 108, 242, 0.2);"
+          >
+            भेजें हुए प्रस्ताव
+          </div>
+        </div>
+        {% for value in sendReq %}
+        <div class="text-center mt-3">
+          <div class="row d-flex row-flex profile-card">
+            <!-- Image div col-4 -->
+            <div class="col-4">
+              <img
+                class="mt-4 img-fluid"
+                src="{{ url_for('profile_img', id=value.id) }}"
+                alt="profile_pic"
+              />
+            </div>
+            <!-- Text div col-8 -->
+            <div class="col-8 text-justify mt-4">
+              <p>
+                {{ value.name }}<br />
+                {{ value.age }}<br />
+                {{ value.religion }}<br />
+                {{ value.jaati }}<br />
+                {% if value.dowry == "yes" %} Dahej Bharat Mukt Shaadi {% endif
+                %}
+              </p>
+            </div>
+          </div>
+          <!-- Second div for buttons -->
+          <div class="row d-flex flex-row shortlist-btn">
+            {% if connect or shortlist %} {% if value.interactions.connected %}
+            <div class="col w-100 connect-btn">
+              <a class="btn btn-large w-100" href="tel:+91-{{ value.mobno }}">
+                {{ value.mobno }}
+              </a>
+            </div>
+            {% elif value.interactions.pending %}
+            <div class="col w-100 connect-btn">
+              <a
+                class="btn btn-large w-100"
+                href="/connect/{{ value.id }}/approved"
+              >
+                रिक्वेस्ट स्विकार करें
+              </a>
+            </div>
+            {% elif value.interactions.sent %}
+            <div class="col w-100 shortlist-btn">
+              <a class="btn btn-large w-100" href="#">
+                आपका रिक्वेस्ट पेंडिंग है
+              </a>
+            </div>
+            {% elif value.interactions.shortlisted and connect %}
+            <div class="col w-100 connect-btn">
+              <a
+                href="/connect/{{ value.id }}/pending"
+                class="btn btn-large w-100"
+              >
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                कॉल
+              </a>
+            </div>
+            {% elif value.interactions.shortlisted %}
+            <div class="col w-100 shortlist-btn">
+              <a href="#" class="btn btn-large w-100">
+                आपने इन्हें शॉर्टलिस्ट किया
+              </a>
+            </div>
+            {% elif connect %}
+            <div class="col w-100 connect-btn">
+              <a
+                href="/connect/{{ value.id }}/pending"
+                class="btn btn-large w-100"
+              >
+                <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                कॉल
+              </a>
+            </div>
+            {% elif shortlist %}
+            <div class="col w-100 shortlist-btn">
+              <a href="/shortlist/{{ value.id }}/pending">
+                <i class="fa fa-sticky-note-o fa-2x" aria-hidden="true"></i>
+                शार्टलिस्ट
+              </a>
+            </div>
+            {% endif %} {% else %}
+            {% if value.interactions.connected %}
+            <div class="col w-100 connect-btn">
+              <a class="btn btn-large w-100" href="tel:+91-{{ value.mobno }}">
+                {{ value.mobno }}
+              </a>
+            </div>
+            {% elif value.interactions.pending %}
+            <div class="col w-100 connect-btn">
+              <a
+                class="btn btn-large w-100"
+                href="/connect/{{ value.id }}/approved"
+              >
+                रिक्वेस्ट स्विकार करें
+              </a>
+            </div>
+            {% elif value.interactions.sent %}
+            <div class="col w-100 shortlist-btn">
+              <a class="btn btn-large w-100" href="#">
+                आपका रिक्वेस्ट पेंडिंग है
+              </a>
+            </div>
+            {% elif value.interactions.shortlisted %}
+            <div class="col w-100 shortlist-btn">
+              <a href="#" class="btn btn-large w-100">
+                आपने इन्हें शॉर्टलिस्ट किया
+              </a>
+            </div>
+            {% else %}
+            <div class="col w-100 shortlist-btn">
+              <a href="/shortlist#modal">
+                शार्टलिस्ट
+              </a>
+            </div>
+            {% endif %}
+            {% endif %}
+            <!-- <div class="col w-100">
+              <a class="btn btn-large w-100" href="#">
+                आपका रिक्वेस्ट पेंडिंग है
+              </a>
+            </div> -->
+            <div class="col w-100 chat-btn">
+              <a class="btn btn-large w-100" href="/chat/{{ value.id }}">
+                <i class="fa fa-comments fa-2x" aria-hidden="true"></i>
+                चैट
+              </a>
+            </div>
+          </div>
+          <!-- Third div for additional details buttons -->
+          <div class="row d-flex flex-row mt-1">
+            <div class="text-center w-100 more-info-btn">
+              <a
+                class="btn btn-large w-100"
+                href="/showprofile/{{ value.id }}"
+                style="color:black;text-decoration:none;"
+                >अधिक जानकारी</a
+              >
+            </div>
+          </div>
+        </div>
+        {% else %} {% if stats.pendingReq > 0 %}
+        <p>Pending Request: <a href="/connection#requests">Click here</a></p>
+        {% elif stats.connect %}
+        <p>Home Tab: <a href="/listprofiles">Call rishtey</a></p>
+        {% elif stats.shortlist %}
+        <p>Home Tab: <a href="/listprofiles">Shortlist rishtey</a></p>
+        {% else %}
+        <p>Shortlist Tab: <a href="/shortlist">Chat with shortlist</a></p>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+  <script>
+    var inbutton = document.getElementById("showreq");
+    var indiv = document.getElementById("requests");
+    var otbutton = document.getElementById("showphone");
+    var outdiv = document.getElementById("phoneNumber");
+    var url = window.location.href;
+    console.log("URL: " + url);
+    if (url.split("#")[1] == "requests") {
+      console.log("Success");
+      inbutton.classList.add("active");
+      otbutton.classList.remove("active");
+      indiv.classList.remove("d-none");
+      outdiv.classList.add("d-none");
+    } else {
+      console.log("No sucess");
+    }
+    inbutton.onclick = function() {
+      inbutton.classList.add("active");
+      otbutton.classList.remove("active");
+      indiv.classList.remove("d-none");
+      outdiv.classList.add("d-none");
+    };
+    otbutton.onclick = function() {
+      otbutton.classList.add("active");
+      inbutton.classList.remove("active");
+      outdiv.classList.remove("d-none");
+      indiv.classList.add("d-none");
+    };
+  </script>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Agent - Register Vadhu</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" href="../static/vadhuRegistration.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='vadhuRegistration.css') }}">
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         <script type="text/javascript">alert("{{ message }}")</script>
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+</head>
+{% include 'navbar.html' %}
+<body>
+
+
+
+
+<!-- <h1>RISHTEY HI RISHTEY</h1> -->
+<CENTER> <h1>वधु का बायोडाटा बानये</h1></CENTER>
+<div class="container">
+
+<form method='POST' enctype="multipart/form-data" id="myForm">
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">वधु का प्रोफ़ाइल चित्र चुनें</label>
+    </div>
+    <div class="col-75">
+     <input type="file" class='UPLOAD' accept="image/png, image/jpeg, image/jpg" name="profile_image" >
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname"></label>
+    </div>
+    <div class="col-75">
+      <input type="text" placeholder="वधु का नाम दर्ज करे" name="name" id="name" required>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-25">
+        <label for="lname"></label>
+      </div>
+      <div class="col-75">
+        <input type="number" placeholder="वधु की उम्र दर्ज करें" name="age" id="age" required min="18">
+        <span class="chkage"></span>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname"></label>
+    </div>
+    <div class="col-75">
+      <input type="text" placeholder="वधु के पिता का नाम दर्ज करे" name="fname" id="fname" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname"></label>
+    </div>
+    <div class="col-75">
+      <input type="number" id='mobno' placeholder="वधु का मोबाइल नंबर दर्ज करें" name="mobno" required min="1000000000" max="9999999999">
+      <span  class='avail'></span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="lname"></label>
+    </div>
+    <div class="col-75">
+      <input type="password" placeholder="वधु का पास वर्ड दर्ज करें" name="password" required id='password'>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="lname"></label>
+    </div>
+    <div class="col-75">
+      <input type="password" placeholder="वधु का पासवर्ड फिर से दर्ज करें" name="password_again" required id='password_again'>
+      <span class="chkpass"></span>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">वधु का धर्म</label>
+    </div>
+    <div class="col-75">
+      <select name="religion" style="width: 100%" id="religion" onchange="getJatti()" required>
+        {% for item in religion %}
+          <option value="{{ item }}">{{ religion[item] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="row" id="christan_jatti">
+    <div class="col-25">
+      <label for="fname">जाति</label>
+    </div>
+    <div class="col-75">
+      <select style="width: 100%">
+        {% for item in christan_jatti %}
+          <option value="{{ item }}">{{ christan_jatti[item] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="row" id="hindu_jatti">
+    <div class="col-25">
+      <label for="fname">जाति</label>
+    </div>
+    <div class="col-75">
+      <select style="width: 100%" name='jaati' id='jaati'>
+        {% for item in hindu_jatti %}
+          <option value="{{ item }}">{{ hindu_jatti[item] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="row" id="islam_jatti">
+    <div class="col-25">
+      <label for="fname">जाति</label>
+    </div>
+    <div class="col-75" >
+      <select style="width: 100%">
+        {% for item in islam_jatti %}
+          <option value="{{ item }}">{{ islam_jatti[item] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="row" id="sikh_jatti">
+    <div class="col-25">
+      <label for="fname">जाति</label>
+    </div>
+    <div class="col-75">
+      <select style="width: 100%">
+        {% for item in sikh_jatti %}
+          <option value="{{ item }}">{{ sikh_jatti[item] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="row" id="jain_jatti">
+    <div class="col-25">
+      <label for="fname">जाति</label>
+    </div>
+    <div class="col-75">
+      <select style="width: 100%">
+        {% for item in jain_jatti %}
+          <option value="{{ item }}">{{ jain_jatti[item] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <!-- <div class="row">
+    <div class="col-25">
+      <label for=">जाति">जाति</label>
+    </div>
+    <div class="col-75">
+      <select name='jaati' id="jaati" onchange="getField()">
+          {% for item in jaati %}
+            <option value="{{ item }}">{{ item }}</option>
+          {% endfor %}
+      </select>
+      <div id="textfield">
+      </div>
+    </div>
+  </div> -->
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">वधु का कामकाज</label>
+    </div>
+    <div class="col-75">
+    <select name='occupation' style="width: 100%;" id="occupation" required>
+        {% for item in occupation %}
+          <option value="{{ item }}">{{ occupation[item] }}</option>
+        {% endfor %}
+    </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">वधु के पिता/परिवार कामकाज </label>
+    </div>
+    <div class="col-75">
+      <select name='poccupation' style="width: 100%" id="foccupation" required>
+          {% for item in occupation %}
+            <option value="{{ item }}">{{ occupation[item] }}</option>
+          {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">वधु की शिक्षा</label>
+    </div>
+    <div class="col-75">
+    <select name='education' style="width: 100%" id="education" required>
+          {% for item in education %}
+            <option value="{{ item }}">{{ education[item] }}</option>
+          {% endfor %}
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-25">
+        <label for="fname">वधु की वैवाहिक स्थिति</label>
+      </div>
+      <div class="col-75">
+      <select name='marital' style="width: 100%" id="marital" required>
+            {% for item in marital %}
+              <option value="{{ item }}">{{ marital[item] }}</option>
+            {% endfor %}
+        </select>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname"><h2>वधु का पता</h2></label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname"></label>
+    </div>
+    <div class="col-75">
+      <input type="number" onkeyup='getData()' placeholder="वधु का पिन कोड दर्ज करें" id = "pincode" name="PINCODE" required>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname"></label>
+    </div>
+    <div class="col-75">
+      <input type="text" placeholder="वधु का गांव दर्ज करें" name="village" >
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname"></label>
+    </div>
+    <div class="col-75">
+      <input type="text" placeholder="वधु का तहसील दर्ज करें" name="tehshil">
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="fname"></label>
+    </div>
+    <div class="col-75">
+      <input type="text" placeholder="वधु का जिला दर्ज करें" name="district" >
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-25">
+      <label for="country">वधु का राज्य चुनें</label>
+    </div>
+    <div class="col-75">
+      <select name="state" style="width: 100%" id = "state" required>
+        <option value=""></option>
+          {% for item in state %}
+            <option value="{{ item }}">{{ state[item] }}</option>
+          {% endfor %}
+          </select>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-25">
+        <label for="country">दूसरा पक्ष वधु से कनेक्ट करे ?</label>
+      </div>
+      <div class="col-75">
+        <select name="consent" style="width: 100%" id="consent" required>
+            {% for item in consent %}
+              <option value="{{ item }}">{{ consent[item] }}</option>
+            {% endfor %}
+            </select>
+      </div>
+    </div>
+
+  <!-- <div class="row">
+    <div class="col-25">
+      <label for="fname">वधु का पहचान पत्र अपलोड करे</label>
+    </div>
+    <div class="col-75">
+     <input type="file" class='UPLOAD' accept="image/png, image/jpeg, image/jpg" name="id_image" id = "identity" required >
+    </div>
+  </div> -->
+
+  <div class="row hide">
+    <div class="col-25">
+      <label for="fname">एजेंट कोड</label>
+    </div>
+    <div class="col-75">
+      {% if code == '0' %}
+      <input type="text" placeholder="एजेंट कोड कोड दर्ज करें" name="agent" >
+    {% else %}
+      <input type="hidden" placeholder="एजेंट कोड कोड दर्ज करें" name="agent" >
+      <h5>{{ code }}
+    {% endif %}
+    </div>
+   </div>
+
+  <br>
+
+   <div class="row">
+     <div class="col-25">
+
+     </div>
+     <div class="col-75">
+    <CENTER><input type="checkbox" checked id="checkbox" required> <a href="/termsofuse">नियम और शर्तें लागू</a></CENTER>
+     </div>
+   </div>
+
+  <br>
+
+   <div class="row">
+     <div class="col-25"></div>
+     <div class="col-75">
+       <center><input type="submit" id='btnsubmit' value="सबमिट करे"></center>
+     </div>
+   </div>
+
+
+
+</form>
+</div>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+
+var delay = (function(){
+      var timer = 0;
+      return function(callback, ms){
+        clearTimeout (timer);
+        timer = setTimeout(callback, ms);
+      };
+   })();
+function getData(){
+  delay(function(){
+           $.ajax({
+             'url': '/pincode/'+$("input[name='PINCODE']").val(),
+             'success': function (response) {
+               console.log(response);
+               $("select[name='state']").val(response['data'][3]);
+               $("input[name='district']").val(response['data'][5]);
+               document.getElementById("submit").disabled = false;
+             },
+             'error': function (e) {
+               alert("कृपया पिन कोड की जांच करे");
+               document.getElementById("submit").disabled = true;
+             }
+           });
+  }, 2000 );
+};
+
+$('input#mobno').change(()=>{
+  var agentcode = "{{ user.mobno }}";
+  $('span.avail').text('Checking')
+  if ($('input#mobno').val() > 1000000000 && $('input#mobno').val() < 9999999999){
+  $.ajax({
+    'url': '/checkmobile/'+$('input#mobno').val(),
+
+    'success': (res)=>{
+      console.log(res)
+      if(res['available']){
+        $('span.avail').text('उपलब्ध है |')
+        document.getElementById('mobno').style.color = 'green';
+      } else if($('input#mobno').val() == agentcode){
+        $('span.avail').text('एजेंट का फोन नंबर');
+        document.getElementById('mobno').style.color = 'green';
+    }
+      else{
+        $('span.avail').text('उपलब्ध नहीं है |')
+        document.getElementById('mobno').style.color = 'red';
+      }
+    },
+  })} else {
+    $('span.avail').text('फोन नंबर 10 अंकों का होना चाहिए');
+  }
+});
+
+$("#btnsubmit").click((e)=>{
+  e.preventDefault();
+  if($('input#password').val() != $('input#password_again').val()){
+    alert("दोनों में एक ही पासवर्ड डाले");
+    document.getElementById('password_again').focus();
+  } else if($('input#age').val() < 18) {
+    alert("उम्र 18 से अधिक होनी चाहिए");
+    document.getElementById('age').focus();
+  }  else if($('span.avail').text() == 'उपलब्ध नहीं है |') {
+    alert("फोन नंबर उपलब्ध नहीं है");
+    document.getElementById('mobno').focus();
+  } else if($('input#name').val() == '') {
+    alert("नाम दर्ज करें");
+    document.getElementById('name').focus();
+  }
+    else if($('input#fname').val() == '') {
+    alert("पिता का नाम दर्ज करे");
+    document.getElementById('fname').focus();
+  }
+     else if($('input#age').val() == '') {
+    alert("उम्र दर्ज करें");
+    document.getElementById('age').focus();
+  }
+      else if($('input#mobno').val() == '') {
+    alert("मोबाइल नंबर दर्ज करें");
+    document.getElementById('mobno').focus();
+  }
+    else if($('input#password').val() == '') {
+    alert("पासवर्ड दर्ज करें");
+    document.getElementById('password').focus();
+  }
+  else if($('input#password_again').val() == '') {
+    alert("दोबारा पासवर्ड दर्ज करें");
+    document.getElementById('password_again').focus();
+  }
+  else if($('select#religion').val() == '') {
+    alert("धर्म दर्ज करें");
+    document.getElementById('religion').focus();
+  }
+  else if($('select#jaati').val() == '') {
+    alert("जाति दर्ज करें");
+    document.getElementById('jaati').focus();
+  }
+  else if($('select#occupation').val() == 'null') {
+    alert("आपका कामकाज दर्ज करें");
+    document.getElementById('occupation').focus();
+  }
+  else if($('select#foccupation').val() == 'null') {
+    alert("पिता/परिवार कामकाज दर्ज करें");
+    document.getElementById('foccupation').focus();
+  }
+  else if($('select#consent').val() == 'null') {
+    alert("दूसरा पक्ष आपसे कैसे कनेक्ट करे?");
+    document.getElementById('consent').focus();
+  }
+  else if($('select#education').val() == 'null') {
+    alert("शिक्षा दर्ज करें");
+    document.getElementById('education').focus();
+  }
+  else if($('select#marital').val() == 'null') {
+    alert("वैवाहिक स्थिति दर्ज करें");
+    document.getElementById('marital').focus();
+  }
+  else if($('input#pincode').val() == '') {
+    alert("पिन कोड दर्ज करें");
+    document.getElementById('pincode').focus();
+  }
+  else if($('input#state').val() == '') {
+    alert("राज्य चुनें");
+    document.getElementById('state').focus();
+  }
+  //else if($('input#identity').val() == '') {
+  //  alert("अपना पहचान पत्र अपलोड करे");
+  //  document.getElementById('identity').focus();
+  //}  
+  else if($('input#checkbox').is(':checked') == false) {
+    alert("नियम और शर्तें लागू पे क्लिक करे");
+    document.getElementById('checkbox').focus();
+  }
+  else {
+    document.getElementById('myForm').submit();
+  }
+});
+
+$('input#password_again').change(()=>{
+  if($('input#password').val() != $('input#password_again').val()){
+    $('span.chkpass').text('दोनों में एक ही पासवर्ड डाले');
+    // document.getElementById('submit').disabled = true;
+    document.getElementById('password_again').style.color = 'red';
+  } else {
+    $('span.chkpass').text('');
+    // document.getElementById('submit').disabled = false;
+    document.getElementById('password_again').style.color = 'green';
+  }
+});
+
+$('input#age').change(()=>{
+  if($('input#age').val() < 18){
+    $('span.chkage').text("उम्र 18 से अधिक होनी चाहिए");
+  } else {
+    $('span.chkage').text('');
+  }
+});
+
+</script>
+</body>
+<script type="text/javascript">
+
+function getJatti() {
+  var elm = document.getElementById('religion');
+  var christan = document.getElementById('christan_jatti');
+  var sikh = document.getElementById('sikh_jatti');
+  var islam = document.getElementById('islam_jatti');
+  var hindu = document.getElementById('hindu_jatti');
+  var jain = document.getElementById('jain_jatti');
+  var strcon = elm.selectedIndex;
+  console.log("getJatti function "+strcon);
+  if (strcon === 0) {
+    hindu.style.display = "block";
+    $('#hindu_jatti > .col-75 > select').attr('name','jaati');
+    $('#hindu_jatti > .col-75 > select').attr('id','jaati');
+    islam.style.display = "none";
+    sikh.style.display = "none";
+    jain.style.display = "none";
+    christan.style.display = "none";
+  }
+  if (strcon === 1) {
+    islam.style.display = "block";
+    $('#islam_jatti > .col-75 > select').attr('name','jaati');
+    $('#islam_jatti > .col-75 > select').attr('id','jaati');
+    hindu.style.display = "none";
+    sikh.style.display = "none";
+    jain.style.display = "none";
+    christan.style.display = "none";
+  }
+  if (strcon === 2) {
+    sikh.style.display = "block";
+    $('#sikh_jatti > .col-75 > select').attr('name','jaati');
+    $('#sikh_jatti > .col-75 > select').attr('id','jaati');
+    islam.style.display = "none";
+    hindu.style.display = "none";
+    jain.style.display = "none";
+    christan.style.display = "none";
+  }
+  if (strcon === 3) {
+    christan.style.display = "block";
+    $('#christan_jatti > .col-75 > select').attr('name','jaati');
+    $('#christan_jatti > .col-75 > select').attr('id','jaati');
+    sikh.style.display = "none";
+    islam.style.display = "none";
+    hindu.style.display = "none";
+    jain.style.display = "none";
+  }
+  if (strcon === 4) {
+    jain.style.display = "block";
+    $('#jain_jatti > .col-75 > select').attr('name','jaati');
+    $('#jain_jatti > .col-75 > select').attr('id','jaati');
+    christan.style.display = "none";
+    sikh.style.display = "none";
+    islam.style.display = "none";
+    hindu.style.display = "none";
+  }
+}
+
+function getField() {
+  // here we add the element to our textfield div
+
+  var e = document.getElementById("jaati");
+  var strContent = e.options[e.selectedIndex].value;
+  if (strContent == "Anya") {
+    document.getElementById("textfield").innerHTML= `${strContent}: <input type="text">`;
+  } else {
+    document.getElementById("textfield").innerHTML= '';
+  }
+
+}
+</script>
+</html>

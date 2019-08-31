@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Details</title>
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         <script type="text/javascript">alert("{{ message }}")</script>
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+</head>
+{% include 'navbar.html' %}
+<style>
+    .btn{
+      background-color:#857fc8;
+      border-color: #857fc8;
+      border-radius: 10px;
+    }
+    .btn:hover{
+      background-color:#635da7;
+    }
+  select{
+      text-align-last:center !important;
+    }
+    #niyam{
+      font-size:15px;
+      text-decoration: none;
+      color:#000;
+    }
+    .text-design{
+      font-size: 12px;
+      color:#FFA500 !important;
+    }
+  </style>
+<body>
+
+<!-- <h1>RISHTEY HI RISHTEY</h1>
+<button class='logout' onclick="window.location='/logout';">Logout</button> -->
+
+<br>
+
+{% if error %}
+<p> Error Message {{error}}</p>
+{{error}}
+{% elif var %}
+<p>वर की बायोडाटाी बानये</p>
+<div class="container mt-6">
+    <div class="row text-center">
+      <div class="col align-middle">
+        <h3 class="font-weight-bold pt-4"> वर की बायोडाटाी बानये</h3>
+     </div>
+   </div>
+ </div>
+<div class="container mb-6">
+<form enctype="multipart/form-data" method='POST' id="varForm">
+    <div class="row text-center align-item-middle">
+        <div class="col-6 align-middle">
+          <label for="fname" class="pt-4">प्रोफ़ाइल चित्र बदले</label><br/>
+          <input type="file" class='UPLOAD' accept="image/png, image/jpeg, image/jpg" name="profile_image">
+        </div>
+        <div class="col-6">
+          <div class="row align-right">
+              <img src="{{ url_for('profile_img', id=vadhu.id) }}" class="img-fluid rounded-circle w-50" />
+          </div>
+        </div>
+      </div>
+  <!-- <img
+              src="{{ url_for('profile_img', id=var.id) }}"
+              class="img-fluid w-100 my-3"
+            /> -->
+
+      <div class="row my-4 text-center">
+          <div class="col">
+            <input type="text" value="{{var.name}}" name="name" id="name" required
+              class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0">
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="name_alert">नाम दर्ज करें</p>
+          </div>
+        </div>
+
+        <div class="row my-4 text-center">
+            <div class="col">
+              <input type="number" value="{{ var.age }}" name="age" id="age" required min="18"
+                class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+              <p class="w-100 lead text-muted text-design mb-2 d-none" id="age_alert">उम्र 18 से अधिक होनी चाहिए</p>
+            </div>
+          </div>
+
+          <div class="row my-4 text-center">
+              <div class="col">
+                <input type="text" value="{{var.fname}}" name="fname" id="fname" required
+                  class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+                <p class="w-100 lead text-muted text-design mb-2 d-none" id="father_name_alert">पिता का नाम दर्ज करे</p>
+              </div>
+            </div>
+
+            <div class="row my-4 text-center">
+                <div class="col">
+                  <input type="number" value="{{ var.family }}" name="fcount" id="fcount" required
+                    class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+                  <p class="w-100 lead text-muted text-design mb-2 d-none" id="family_size_alert">आपके परिवार में कितने सदस्य
+                    हैं ?</p>
+                </div>
+              </div>
+  <!-- <div class="row">
+      <div class="col-25">
+        <label for="fname">मोबाइल नंबर</label>
+      </div>
+      <div class="col-75">
+          <input type="hidden"value="{{var.mobno}}" disabled name='mobno'/>
+          {{ var.mobno }}
+      </div>
+    </div> -->
+
+    <!-- <div class="row my-4 text-center">
+        <div class="col">
+          <input type="password" placeholder="पास वर्ड दर्ज करें" name="password" required id='password'
+            class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="password_alert">पास वर्ड दर्ज करें</p>
+        </div>
+      </div>
+
+      <div class="row my-4 text-center">
+          <div class="col">
+            <input type="password" placeholder="पासवर्ड फिर से दर्ज करें" name="password_again" required
+              id='password_again' class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="confirm_password_alert">दोनों में एक ही पासवर्ड
+              डाले</p>
+          </div>
+        </div> -->
+<!-- 
+  <div class="row">
+    <div class="col-25">
+      <label for="DAHEJ BARAT MUKT SHADI"><b>DAHEJ BARAT MUKT SHADI</b></label>
+    </div>
+    <div class="col-75">
+      {% if var.dowry %}
+      <input checked type="checkbox" name="dowry" value='dowry'>
+      {% else %}
+      <input type="checkbox" name="dowry" value='dowry'>
+      {% endif %}
+    </div>
+  </div> -->
+
+
+  <div class="row mt-3 text-center">
+      <div class="col">
+        <h6 class="font-weight-normal">धर्म</h6>
+      </div>
+    </div>
+    <div class="row text-center d-flex justify-content-center">
+      <div class="col-12">
+        <select name="religion" style="width: 100%; text-align: center; text-align-last: center;" id="religion"
+          onchange="getJatti()" required
+          class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+          {% for item in religion %}
+            {% if item == var.religion %}
+            <option value="{{ item }}" selected>{{ religion[item] }}</option>
+            {%else%}
+            <option value="{{ item }}">{{ religion[item] }}</option>
+            {%endif%}
+          {% endfor %}
+        </select>
+        <p class="w-100 lead text-muted text-design mb-2 d-none" id="religion_alert">धर्म दर्ज करें</p>
+      </div>
+    </div>
+
+    <div id="christan_jatti" class="d-none">
+        <div class="row mt-3 text-center">
+          <div class="col">
+            <h6 class="font-weight-normal">जाति</h6>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col">
+            <select style="width: 100%; text-align: center; text-align-last: center;"
+              class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in jaati.christan %}
+                {% if item == var.jaati %}
+                <option value="{{ item }}" selected>{{ jaati.christan[item] }}</option>
+                {%else%}
+                <option value="{{ item }}">{{ jaati.christan[item] }}</option>
+                {%endif%}
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="religion_alert">धर्म दर्ज करें</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="hindu_jatti">
+        <div class="row mt-3 text-center">
+          <div class="col">
+            <h6 class="font-weight-normal">जाति</h6>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col">
+            <select name='jaati' id='jaati' style="width: 100%; text-align: center; text-align-last: center;"
+              class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in jaati.hindu %}
+                {% if item == var.jaati %}
+                <option value="{{ item }}" selected>{{ jaati.hindu[item] }}</option>
+                {%else%}
+                <option value="{{ item }}">{{ jaati.hindu[item] }}</option>
+                {%endif%}
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="religion_alert">धर्म दर्ज करें</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="islam_jatti" class="d-none">
+        <div class="row mt-3 text-center">
+          <div class="col">
+            <h6 class="font-weight-normal">जाति</h6>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col">
+            <select style="width: 100%; text-align: center; text-align-last: center;"
+              class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in jaati.islam %}
+                {% if item == var.jaati %}
+                <option value="{{ item }}" selected>{{ jaati.islam[item] }}</option>
+                {%else%}
+                <option value="{{ item }}">{{ jaati.islam[item] }}</option>
+                {%endif%}
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="religion_alert">धर्म दर्ज करें</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="sikh_jatti" class="d-none">
+        <div class="row mt-3 text-center">
+          <div class="col">
+            <h6 class="font-weight-normal">जाति</h6>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col">
+            <select style="width: 100%; text-align: center; text-align-last: center;"
+              class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in jaati.sikh %}
+                {% if item == var.jaati %}
+                <option value="{{ item }}" selected>{{ jaati.sikh[item] }}</option>
+                {%else%}
+                <option value="{{ item }}">{{ jaati.sikh[item] }}</option>
+                {%endif%}
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="religion_alert">धर्म दर्ज करें</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="jain_jatti" class="d-none">
+        <div class="row mt-3 text-center">
+          <div class="col">
+            <h6 class="font-weight-normal">जाति</h6>
+          </div>
+        </div>
+        <div class="row text-center" id="fdiv">
+          <div class="col" id="sdiv">
+            <select style="width: 100%; text-align: center; text-align-last: center;"
+              class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in jaati.jain %}
+                {% if item == var.jaati %}
+                <option value="{{ item }}" selected>{{ jaati.jain[item] }}</option>
+                {%else%}
+                <option value="{{ item }}">{{ jaati.jain[item] }}</option>
+                {%endif%}
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="religion_alert">धर्म दर्ज करें</p>
+          </div>
+        </div>
+      </div>
+      <!-- ++++++++++++++++++++++++++++++++++ -->
+
+      <div class="row mt-4 text-center">
+          <div class="col">
+            <h6 class="font-weight-normal">आपका कामकाज</h6>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col">
+            <select name='occupation' style="width: 100%; text-align: center; text-align-last: center;" id="occupation"
+              required class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in occupation %}
+                {% if item == var.occupation %}
+                <option value="{{ item }}" selected>{{ occupation[item] }}</option>
+                {%else%}
+                <option value="{{ item }}">{{ occupation[item] }}</option>
+                {%endif%}
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="occupation_alert">आपका कामकाज दर्ज करें</p>
+          </div>
+        </div>
+
+        <div class="row mt-4 text-center">
+            <div class="col">
+              <h6 class="font-weight-normal">पिता/परिवार कामकाज</h6>
+            </div>
+          </div>
+          <div class="row text-center">
+            <div class="col">
+              <select name='poccupation' style="width: 100%; text-align: center; text-align-last: center;" id="foccupation"
+                required class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+                {% for item in occupation %}
+                  {% if item == var.poccupation %}
+                  <option value="{{ item }}" selected>{{ occupation[item] }}</option>
+                  {%else%}
+                  <option value="{{ item }}">{{ occupation[item] }}</option>
+                  {%endif%}
+                {% endfor %}
+              </select>
+              <p class="w-100 lead text-muted text-design mb-2 d-none" id="foccupation_alert">पिता/परिवार कामकाज दर्ज करें
+              </p>
+            </div>
+          </div>
+    
+    
+          <div class="row mt-4 text-center">
+            <div class="col">
+              <h6 class="font-weight-normal">शिक्षा</h6>
+            </div>
+          </div>
+          <div class="row text-center">
+            <div class="col">
+              <select name='education' style="width: 100%; text-align: center; text-align-last: center;" id="education"
+                required class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+                {% for item in education %}
+                  {% if item == var.education %}
+                  <option value="{{ item }}" selected>{{ education[item] }}</option>
+                  {%else%}
+                  <option value="{{ item }}">{{ education[item] }}</option>
+                  {%endif%}
+                {% endfor %}
+              </select>
+              <p class="w-100 lead text-muted text-design mb-2 d-none" id="education_alert">शिक्षा दर्ज करें</p>
+            </div>
+          </div>
+    
+          <div class="row mt-4 text-center">
+            <div class="col">
+              <h6 class="font-weight-normal">वैवाहिक स्थिति</h6>
+            </div>
+          </div>
+          <div class="row text-center">
+            <div class="col">
+              <select name='marital' style="width: 100%; text-align: center; text-align-last: center;" id="marital" required
+                class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+                {% for item in marital %}
+                  {% if item == var.marital %}
+                  <option value="{{ item }}" selected>{{ marital[item] }}</option>
+                  {%else%}
+                  <option value="{{ item }}">{{ marital[item] }}</option>
+                  {%endif%}
+                {% endfor %}
+              </select>
+              <p class="w-100 lead text-muted text-design mb-2 d-none" id="marital_alert">वैवाहिक स्थिति दर्ज करें</p>
+            </div>
+          </div>
+    
+          <div class="container mt-5">
+            <div class="row text-center">
+              <div class="col align-middle">
+                <h3 class="font-weight-bold pt-4"> पता</h3>
+              </div>
+            </div>
+          </div>
+    
+          <div class="row my-4 text-center">
+            <div class="col">
+              <input type="number" onkeyup='getData()' value="{{ var.pincode }}" id="pincode" name="PINCODE" required
+                class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+              <p class="w-100 lead text-muted text-design mb-2 d-none" id="pincode_alert">पिन कोड दर्ज करें</p>
+            </div>
+          </div>
+    
+          <div class="row my-4 text-center">
+            <div class="col">
+              <input type="text" value="गांव दर्ज करें" name="village"
+                class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+            </div>
+          </div>
+    
+          <div class="row my-4 text-center">
+            <div class="col">
+              <input type="text" value="तहसील दर्ज करें" name="tehshil"
+                class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+            </div>
+          </div>
+    
+          <div class="row my-4 text-center">
+            <div class="col">
+              <input type="text" value="जिला दर्ज करें" name="district"
+                class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+            </div>
+          </div>
+    
+          <div class="row mt-3 text-center">
+            <div class="col">
+              <h6 class="font-weight-bold"> राज्य चुनें</h6>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <select name="state" style="width: 100%; text-align: center; text-align-last: center;" id="state" required
+                class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+                <option value=""></option>
+                {% for item in state %}
+                  {% if item == var.address[3] %}
+                  <option value="{{ item  }}" selected>{{ state[item] }}</option>
+                  {% else %}
+                  <option value="{{ item }}">{{ state[item] }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+              <p class="w-100 lead text-muted text-design mb-2 d-none" id="state_alert">राज्य चुनें</p>
+            </div>
+          </div>
+    
+          <div class="row mt-3 text-center">
+            <div class="col">
+              <h6 class="font-weight-bold">दूसरा पक्ष आपसे कैसे कनेक्ट करे ?</h6>
+            </div>
+          </div>
+          <div class="row text-center">
+            <div class="col">
+              <select name="consent" style="width: 100%; text-align: center; text-align-last: center;" id="consent" required
+                class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+                {% for item in consent %}
+                  {% if item == var.consent %}
+                  <option value="{{ item  }}" selected>{{ consent[item] }}</option>
+                  {% else %}
+                  <option value="{{ item }}">{{ consent[item] }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
+              <p class="w-100 lead text-muted text-design mb-2 d-none" id="consent_alert">दूसरा पक्ष आपसे कैसे कनेक्ट करे?
+              </p>
+            </div>
+          </div>
+    
+          <div class="row mt-3 text-center">
+            <div class="col">
+              <h6 class="font-weight-bold">क्या आप दहेज / बारात मुक्त शादी करना चाहते हैं ?</h6>
+            </div>
+          </div>
+          <div class="row text-center">
+            <div class="col">
+              <select name="dowry" style="width: 100%; text-align: center; text-align-last: center;" id="dowry"
+                class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+                {% for row in dowry %}
+                {% if row == var.dowry %}
+                <option value="{{ row }}" selected>{{  dowry[row]  }}</option>
+                {% else %}
+                <option value="{{ row }}">{{ dowry[row] }}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+              <!-- <p class="w-100 lead text-muted text-design mb-2 d-none" id="consent_alert">दूसरा पक्ष आपसे कैसे कनेक्ट करे?</p> -->
+            </div>
+          </div>
+
+          <!-- <div class="row text-center">
+              <div class="col">
+                <input type="checkbox" checked id="checkbox" required class="text-center"> <a href="/termsofuse"
+                  id="niyam">नियम और शर्तें लागू</a>
+                <p class="w-100 lead text-muted text-design mb-2 d-none" id="terms_alert">नियम और शर्तें लागू पे क्लिक करे</p>
+              </div>
+            </div> -->
+
+            <div class="row mt-2 mb-4 text-center">
+              <div class="col">
+                <input type="submit" id='btnsubmit' value="सबमिट करे और वर खोजे"
+                  class="btn btn-rounded-circle btn-primary w-75">
+              </div>
+            </div>
+
+</form>
+
+</div>
+{% elif vadhu %}
+<!-- ++++++++++++++++++++++VADHU HERE+++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- <center><h3>वधु की बायोडाटाी बानये</h3></center> -->
+<div class="container mt-6">
+    <div class="row text-center">
+      <div class="col align-middle">
+        <h3 class="font-weight-bold pt-4"> वधु का बायोडाटा बानये</h3>
+     </div>
+   </div>
+ </div>
+<div class="container mb-6">
+
+<form method="POST" enctype="multipart/form-data" id="vadhuform">
+
+  <div class="row text-center align-item-middle">
+      <div class="col-6 align-middle">
+        <label for="fname" class="pt-4">प्रोफ़ाइल चित्र बदले</label><br/>
+        <input type="file" class='UPLOAD' accept="image/png, image/jpeg, image/jpg" name="profile_image">
+      </div>
+      <div class="col-6">
+        <div class="row align-right">
+            <img src="{{ url_for('profile_img', id=vadhu.id) }}" class="img-fluid rounded-circle w-50" />
+        </div>
+      </div>
+    </div>
+
+    <!-- <img
+              src="{{ url_for('profile_img', id=vadhu.id) }}"
+              class="img-fluid w-100 my-3"
+            /> -->
+
+
+    <div class="row my-4 text-center">
+        <div class="col">
+          <input type="text" value="{{vadhu.name}}" name="name" id="name" required class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0">
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="name_alert">नाम दर्ज करें</p>
+        </div>
+      </div>
+    
+      <div class="row my-4 text-center">
+        <div class="col">
+          <input type="number" value="{{vadhu.age}}" name="age" id="age" required min="18" class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="age_alert">उम्र 18 से अधिक होनी चाहिए</p>
+        </div>
+      </div>
+    
+      <div class="row my-4 text-center">
+        <div class="col">
+        <input type="text" value="{{vadhu.fname}}" name="fname" id="fname" required class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+        <p class="w-100 lead text-muted text-design mb-2 d-none" id="father_name_alert">पिता का नाम दर्ज करे</p>
+        </div>
+      </div>
+
+  <!-- <div class="row">
+    <div class="col-25">
+      <label for="fname">मोबाइल नंबर</label>
+    </div>
+    <div class="col-75">
+      <input type="hidden" disabled value="{{vadhu.mobno}}" name='mobno'/>
+      {{vadhu.mobno}}
+    </div>
+  </div> -->
+
+  <!-- <div class="row my-4 text-center">
+      <div class="col">
+      <input type="password" placeholder="पास वर्ड दर्ज करें" name="password" required id='password' class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+      <p class="w-100 lead text-muted text-design mb-2 d-none" id="password_alert">पास वर्ड दर्ज करें</p>
+      </div>
+    </div>
+  
+    <div class="row my-4 text-center">
+      <div class="col">
+      <input type="password" placeholder="पासवर्ड फिर से दर्ज करें" name="password_again" required id='password_again' class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+      <p class="w-100 lead text-muted text-design mb-2 d-none" id="confirm_password_alert">दोनों में एक ही पासवर्ड डाले</p>
+      </div>
+    </div> -->
+
+    <div class="row mt-3 text-center">
+        <div class="col">
+          <h6 class="font-weight-normal">धर्म</h6>
+        </div>
+    </div>
+    <div class="row text-center">
+      <div class="col">
+        <select name="religion" style="width: 100%" id="religion" onchange="getJatti()" required class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+          {% for item in religion %}
+            {% if item == vadhu.religion %}
+            <option value="{{ item }}" selected>{{ religion[item] }}</option>
+            {%else%}
+            <option value="{{ item }}">{{ religion[item] }}</option>
+            {%endif%}
+          {% endfor %}
+        </select>
+        <p class="w-100 lead text-muted text-design mb-2 d-none" id="religion_alert">धर्म दर्ज करें</p>
+      </div>
+    </div>
+
+    <div id="christan_jatti" class="d-none">
+        <div class="row mt-3 text-center">
+            <div class="col">
+              <h6 class="font-weight-normal">जाति</h6>
+            </div>
+        </div>
+        <div class="row text-center">
+          <div class="col">
+            <select style="width: 100%" class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in jaati.christan %}
+                {% if item == vadhu.jaati %}
+                <option value="{{ item }}" selected>{{ jaati.christan[item] }}</option>
+                {%else%}
+                <option value="{{ item }}">{{ jaati.christan[item] }}</option>
+                {%endif%}
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="religion_alert">धर्म दर्ज करें</p>
+          </div>
+        </div>
+    </div>
+
+    <div id="hindu_jatti">
+        <div class="row mt-3 text-center">
+            <div class="col">
+              <h6 class="font-weight-normal">जाति</h6>
+            </div>
+        </div>
+        <div class="row text-center">
+          <div class="col">
+            <select name='jaati' id='jaati' style="width: 100%" class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in jaati.hindu %}
+                {% if item == vadhu.jaati %}
+                <option value="{{ item }}" selected>{{ jaati.hindu[item] }}</option>
+                {%else%}
+                <option value="{{ item }}">{{ jaati.hindu[item] }}</option>
+                {%endif%}
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="religion_alert">धर्म दर्ज करें</p>
+          </div>
+        </div>
+    </div>
+
+    <div id="islam_jatti" class="d-none">
+        <div class="row mt-3 text-center">
+            <div class="col">
+              <h6 class="font-weight-normal">जाति</h6>
+            </div>
+        </div>
+        <div class="row text-center">
+          <div class="col">
+            <select style="width: 100%" class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in jaati.islam %}
+                {% if item == vadhu.jaati %}
+                <option value="{{ item }}" selected>{{ jaati.islam[item] }}</option>
+                {%else%}
+                <option value="{{ item }}">{{ jaati.islam[item] }}</option>
+                {%endif%}
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="religion_alert">धर्म दर्ज करें</p>
+          </div>
+        </div>
+    </div>
+
+    <div id="sikh_jatti" class="d-none">
+        <div class="row mt-3 text-center">
+            <div class="col">
+              <h6 class="font-weight-normal">जाति</h6>
+            </div>
+        </div>
+        <div class="row text-center">
+          <div class="col">
+            <select style="width: 100%" class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in jaati.sikh %}
+                {% if item == vadhu.jaati %}
+                <option value="{{ item }}" selected>{{ jaati.sikh[item] }}</option>
+                {%else%}
+                <option value="{{ item }}">{{ jaati.sikh[item] }}</option>
+                {%endif%}
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="religion_alert">धर्म दर्ज करें</p>
+          </div>
+        </div>
+    </div>
+
+    <div id="jain_jatti" class="d-none">
+        <div class="row mt-3 text-center">
+            <div class="col">
+              <h6 class="font-weight-normal">जाति</h6>
+            </div>
+        </div>
+        <div class="row text-center" id="fdiv">
+          <div class="col" id="sdiv">
+            <select style="width: 100%" class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+              {% for item in jaati.jain %}
+                {% if item == vadhu.jaati %}
+                <option value="{{ item }}" selected>{{ jaati.jain[item] }}</option>
+                {%else%}
+                <option value="{{ item }}">{{ jaati.jain[item] }}</option>
+                {%endif%}
+              {% endfor %}
+            </select>
+            <p class="w-100 lead text-muted text-design mb-2 d-none" id="religion_alert">धर्म दर्ज करें</p>
+          </div>
+        </div>
+    </div>
+<!-- ++++++++++++++++++++++++++++++++++ -->
+
+<div class="row mt-4 text-center">
+    <div class="col">
+      <h6 class="font-weight-normal">आपका कामकाज</h6>
+    </div>
+</div>
+  <div class="row text-center">
+    <div class="col">
+<select name='occupation' style="width: 100%;" id="occupation" required class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+  {% for item in occupation %}
+    {% if item == vadhu.occupation %}
+    <option value="{{ item }}" selected>{{ occupation[item] }}</option>
+    {%else%}
+    <option value="{{ item }}">{{ occupation[item] }}</option>
+    {%endif%}
+  {% endfor %}
+</select>
+<p class="w-100 lead text-muted text-design mb-2 d-none" id="occupation_alert">आपका कामकाज दर्ज करें</p>
+</div>
+</div>
+
+<div class="row mt-4 text-center">
+<div class="col">
+  <h6 class="font-weight-normal">पिता/परिवार कामकाज</h6>
+</div>
+</div>
+<div class="row text-center">
+<div class="col">
+<select name='poccupation' style="width: 100%" id="foccupation" required class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+    {% for item in occupation %}
+    {% if item == vadhu.poccupation %}
+    <option value="{{ item }}" selected>{{ occupation[item] }}</option>
+    {%else%}
+    <option value="{{ item }}">{{ occupation[item] }}</option>
+    {%endif%}
+    {% endfor %}
+</select>
+<p class="w-100 lead text-muted text-design mb-2 d-none" id="foccupation_alert">पिता/परिवार कामकाज दर्ज करें</p>
+</div>
+</div>
+
+
+<div class="row mt-4 text-center">
+<div class="col">
+  <h6 class="font-weight-normal">शिक्षा</h6>
+</div>
+</div>
+<div class="row text-center">
+<div class="col">
+<select name='education' style="width: 100%" id="education" required class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+    {% for item in education %}
+      {% if item == vadhu.education %}
+      <option value="{{ item }}" selected>{{ education[item] }}</option>
+      {%else%}
+      <option value="{{ item }}">{{ education[item] }}</option>
+      {%endif%}
+    {% endfor %}
+</select>
+  <p class="w-100 lead text-muted text-design mb-2 d-none" id="education_alert">शिक्षा दर्ज करें</p>
+</div>
+</div>
+
+<div class="row mt-4 text-center">
+  <div class="col">
+    <h6 class="font-weight-normal">वैवाहिक स्थिति</h6>
+  </div>
+</div>
+<div class="row text-center">
+  <div class="col">
+  <select name='marital' style="width: 100%" id="marital" required class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+        {% for item in marital %}
+          {% if item == vadhu.marital %}
+          <option value="{{ item }}" selected>{{ marital[item] }}</option>
+          {%else%}
+          <option value="{{ item }}">{{ marital[item] }}</option>
+          {%endif%}
+        {% endfor %}
+    </select>
+    <p class="w-100 lead text-muted text-design mb-2 d-none" id="marital_alert">वैवाहिक स्थिति दर्ज करें</p>
+  </div>
+</div>
+
+<div class="container mt-5">
+<div class="row text-center">
+<div class="col align-middle">
+  <h3 class="font-weight-bold pt-4"> पता</h3>
+</div>
+</div>
+</div>
+
+<div class="row my-4 text-center">
+<div class="col">
+<input type="number" onkeyup='getData()' value="{{vadhu.pincode}}" id="pincode" name="PINCODE" required class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+<p class="w-100 lead text-muted text-design mb-2 d-none" id="pincode_alert">पिन कोड दर्ज करें</p>
+</div>
+</div>
+
+<div class="row my-4 text-center">
+<div class="col">
+<input type="text" value="{{ vadhu.address[0] }}" name="village" class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 " >
+</div>
+</div>
+
+<div class="row my-4 text-center">
+<div class="col">
+<input type="text" value="{{ vadhu.address[1] }}" name="tehshil" class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+</div>
+</div>
+
+<div class="row my-4 text-center">
+<div class="col">
+<input type="text" value="{{ vadhu.address[2] }}" name="district" class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 " >
+</div>
+</div>
+
+<div class="row mt-3 text-center">
+  <div class="col">
+    <h6 class="font-weight-bold"> राज्य चुनें</h6>
+  </div>
+</div>
+<div class="row">
+<div class="col">
+<select name="state" style="width: 100%" id = "state" required>
+  <option value=""></option>
+    {% for item in state %}
+      {% if item == vadhu.address[3] %}
+      <option value="{{ item  }}" selected>{{ state[item] }}</option>
+      {% else %}
+      <option value="{{ item }}">{{ state[item] }}</option>
+      {% endif %}
+    {% endfor %}
+    </select>
+    <p class="w-100 lead text-muted text-design mb-2 d-none" id="state_alert">राज्य चुनें</p>
+</div>
+</div>
+
+<div class="row mt-3 text-center">
+<div class="col">
+  <h6 class="font-weight-bold">दूसरा पक्ष आपसे कैसे कनेक्ट करे ?</h6>
+</div>
+</div>
+<div class="row text-center">
+<div class="col">
+  <select name="consent" style="width: 100%" id="consent" required>
+      {% for item in consent %}
+        {% if item == vadhu.consent %}
+        <option value="{{ item  }}" selected>{{ consent[item] }}</option>
+        {% else %}
+        <option value="{{ item }}">{{ consent[item] }}</option>
+        {% endif %}
+      {% endfor %}
+      </select>
+        <p class="w-100 lead text-muted text-design mb-2 d-none" id="consent_alert">दूसरा पक्ष आपसे कैसे कनेक्ट करे?</p>
+</div>
+</div>
+
+
+<!--
+  <div class="row">
+    <div class="col-25">
+      <label for="fname">अपना पहचान पत्र अपलोड करे Aapna Pehchan Patra Upload Karey</label>
+    </div>
+    <div class="col-75">
+     <input type="file" class='UPLOAD' accept="image/png, image/jpeg, image/jpg" name="id_image" required >
+    </div>
+  </div> -->
+
+  <!-- <div class="row">
+    <div class="col-25">
+      <label for="fname">एजेंट कोड</label>
+    </div>
+    <div class="col-75">
+        <input type="hidden" value="{{vadhu.agent_id}}" name='agent_id'/>
+        {{vadhu.agent_id}}    </div>
+   </div> -->
+   <input type="hidden" name="family" value="{{None}}">
+
+<br>
+<!-- <div class="row text-center">
+    <div class="col">
+     <input type="checkbox" checked id="checkbox" required class="text-center"> <a href="/termsofuse" id="niyam">नियम और शर्तें लागू</a>
+     <p class="w-100 lead text-muted text-design mb-2 d-none" id="terms_alert">नियम और शर्तें लागू पे क्लिक करे</p>
+    </div>
+  </div> -->
+ 
+ <!-- <br> -->
+ 
+  <div class="row m2-2 mb-4 text-center">
+    <div class="col">
+       <input type="submit" id='btnsubmit' onclick="btnsubmitclick()" value="सबमिट करे" class="btn btn-rounded-circle btn-primary w-75" >
+    </div>
+  </div>
+
+</form>
+</div>
+{% elif agent %}
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-25">
+        <label for="fname"> नाम</label>
+      </div>
+      <div class="col-75">
+        <input type="text" name="name" value='{{agent.name}}'>
+      </div>
+    </div>
+      <div class="row">
+      <div class="col-25">
+        <label for="fname"> पिता का नाम</label>
+      </div>
+      <div class="col-75">
+          <input type="text" name="fname" value='{{agent.fname}}'>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname"> मोबाइल नंबर</label>
+      </div>
+      <div class="col-75">
+        <input type="hidden" name="mobno" min="1000000000" max="9999999999" value="{{agent.mobno}}">
+        {{agent.mobno}}
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-25">
+        <label for="country"> आपके पहचान मैं अविवाहित लड़को की संख्यां</label>
+      </div>
+      <div class="col-75">
+        <input type="number" placeholder="लगभग" name="unmarried_boys" value={{agent.age[0]}} required max='10000'>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="country"> आपके पहचान मैं अविवाहित लड़कियों की संख्यां</label>
+      </div>
+      <div class="col-75">
+          <input type="number" placeholder="लगभग" name="unmarried_girls" value={{agent.age[1]}}  required max='10000'>
+      </div>
+    </div>
+<!--
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Upload your identity card आपका एक पहचान पत्र अपलोड करे आधार / वोटर / ड्राइविंग / पासपोर्ट</label>
+      </div>
+      <div class="col-75">
+         <div class="row">
+      <input type="file" accept="image/png, image/jpeg, image/jpg" name="identity_image" required>
+    </div><br>
+      </div>
+    </div> -->
+<!--
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">Choose a profile picture: प्रोफ़ाइल चित्र चुनें:</label>
+      </div>
+      <div class="col-75">
+         <div class="row">
+      <input type="file" accept="image/png, image/jpeg, image/jpg"  name="profile_image" required>
+    </div><br>
+      </div>
+    </div> -->
+
+     <h2> बैंक खाता विवरण</h2>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">अकाउंट नंबर </label>
+      </div>
+      <div class="col-75">
+        <input type="TEXT" placeholder="अकाउंट नंबर दर्ज करें" name="account" value={{agent.occupation[0]}}  required id="account">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname">दुबारा अकाउंट नंबर </label>
+      </div>
+      <div class="col-75">
+        <input type="TEXT" placeholder="दुबारा अकाउंट नंबर दर्ज करें" value={{agent.occupation[0]}}   name="account_again" required onkeyup='check_pass();' id="account_again">
+      </div>
+    </div>
+
+
+     <div class="row">
+      <div class="col-25">
+        <label for="lname">IFSC नंबर </label>
+      </div>
+      <div class="col-75">
+        <input type="TEXT" placeholder="IFSC नंबर दर्ज करें" value={{agent.occupation[1]}}   name="IFSC_number" required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="lname"> रद्द किया गया चेक</label>
+      </div>
+      <div class="col-75">
+         <div class="row">
+      <input type="file" accept="image/png, image/jpeg, image/jpg" name="check_image" >
+    </div><br><br>
+      </div>
+    </div>
+      <div class="row">
+        <input type="hidden"  name='agent_id' value="{{agent.agent_id}}" >
+        <!--<input type="submit" value=" आपका कमीशन कोड उत्पन्न करे"> -->
+      <input type="submit" id='submit' value="Submit karey" >
+    </div>
+    </form>
+  </div>
+{% endif %}
+</body>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+var delay = (function(){
+      var timer = 0;
+      return function(callback, ms){
+        clearTimeout (timer);
+        timer = setTimeout(callback, ms);
+      };
+   })();
+function getData(){
+  delay(function(){
+           $.ajax({
+             'url': '/pincode/'+$("input[name='PINCODE']").val(),
+             'success': function (response) {
+               console.log(response);
+               $("select[name='state']").val(response['data'][3]);
+               $("input[name='district']").val(response['data'][5]);
+             },
+             'error': function (e) {
+               alert(e.message)
+             }
+           });
+  }, 2000 );
+};
+function check_pass() {
+    if(document.getElementById('account').value != document.getElementById('account_again').value) {
+        document.getElementById('submit').disabled = true;
+        document.getElementById('account_again').style.color = 'red';
+    }
+    else{
+      document.getElementById('account_again').style.color = 'green';
+    }
+    if(document.getElementById('account').value == document.getElementById('account_again').value &&
+      document.getElementById('password').value == document.getElementById('password_again').value) {
+        document.getElementById('submit').disabled = false;
+    }
+}
+function btnsubmitclick() {
+  console.log("Submit logger");
+  document.getElementById('vadhuform').submit();
+}
+</script>
+
+</html>

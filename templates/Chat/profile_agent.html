@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Agent Details</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+
+/* .logout{
+  width: 200px;
+right: 10px;
+position: absolute;
+top: 20px;
+}
+.title {
+  color: grey;
+  font-size: 18px;
+} */
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #857fc8;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  border-radius: 20px;
+}
+/* 
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: black;
+} */
+
+button:hover, a:hover {
+  opacity: 0.7;
+}
+</style>
+</head>
+{% include 'navbar.html' %}
+<body>
+<!--
+<h2 style="text-align:center">रिश्ते ही रिश्ते</h2>
+<button class='logout' onclick="window.location='/logout';">Logout</button> -->
+
+
+
+<div class="card">
+  <img src="{{url_for('identity_img', id=value.id)}}" alt="John" style="max-height: 300px;">
+  <table style="width:100%">
+  <tr>
+    <td><h2>नाम</td>
+    <td> {{value.name}}</h2></td>
+  </tr>
+  <tr>
+    <td> <p>पिता का नाम </td>
+      <td> {{ value.education }}</p></td>
+  </tr>
+  <tr>
+    <td><p>मोबाइल नंबर </td>
+      <td>{{ value.mobno }}</p></td>
+  </tr>
+
+  <tr>
+    <td><p>आपके पहचान मैं अविवाहित लड़को की संख्यां</td>
+      <td> {{ value.age[0] }}</p></td>
+  </tr>
+  <tr>
+   <td><p>आपके पहचान मैं अविवाहित लड़कियों की संख्यां</td>
+     <td> {{ value.age[1] }}</p></td>
+   </tr>
+   <tr>
+     <td><p>अकाउंट नंबर </td>
+     <td>{{ value.occupation[0] }}</p></td>
+  </tr>
+  <tr>
+    <td><p>IFSC नंबर </td>
+    <td>{{ value.occupation[1] }}</p></td>
+ </tr>
+ <tr>
+   <td>रद्द किया गया चेक</td>
+   <td><img src="{{url_for('cheque_img', id=value.id)}}" alt="John" style="max-height: 150px;"></td>
+ </tr>
+
+<tr>
+  <td><p>पता</td>
+  <td>{{ value.address[0] }}</p></td>
+</tr>
+<tr>
+  <td><p>पिन कोड</td>
+  <td>{{ value.address[1] }}</p></td>
+</tr>
+
+<tr>
+  <td><p>एजेंट कोड</td>
+  <td>{{ value.agent_id }}</p></td>
+</tr>
+</table>
+  <p>विवरण संपादित करने के लिए यहां कॉल करें 9667348642</p>
+</div>
+
+</body>
+</html>

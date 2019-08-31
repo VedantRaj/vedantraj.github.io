@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<title>Rishtey</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+.teamcard{
+	height: 550px;
+    overflow-y: scroll;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  /* background-image: url("https://ibcdn.imagesbazaar.com/img1024/14581/SM544943.jpg"); */
+  background-image: url(/static/homeimage.png);
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 10px;
+}
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="#home" class="w3-bar-item w3-button w3-xxlarge ">रिश्ते ही रिश्ते
+</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="#about" class="w3-bar-item w3-button w3-xlarge">हमारे बारे में</a>
+      <a href="#agent" class="w3-bar-item w3-button w3-xlarge"><i class="fa fa-user"></i> एजेंट</a>
+      <a href="#var" class="w3-bar-item w3-button w3-xlarge"><i class="fa fa-user-circle" aria-hidden="true"></i> वर</a>
+      <a href="#vadhu" class="w3-bar-item w3-button w3-xlarge"><i class="fa fa-user-circle-o" aria-hidden="true"></i>  वधु</a>
+      <!-- <a href="#team" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> हमारी टीम</a> -->
+      <a href="#contact" class="w3-bar-item w3-button w3-xlarge">संपर्क करें</a>
+       </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-right w3-hide-medium w3-hide-large w3-display-right" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">क्लोज  ×</a>
+  <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button">हमारे बारे में</a>
+  <a href="#agent" onclick="w3_close()" class="w3-bar-item w3-button">एजेंट</a>
+  <a href="#var" onclick="w3_close()" class="w3-bar-item w3-button">वर</a>
+  <a href="#vadhu" onclick="w3_close()" class="w3-bar-item w3-button">वधु</a>
+  <!-- <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">हमारी टीम</a> -->
+  <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">संपर्क करें</a>
+  </nav>
+
+<!-- Header with full-height image -->
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-left w3-text-blue" style="padding:48px">
+    <!-- <span class="w3-jumbo w3-hide-small"><b>हजारों रिश्ते आपकी हथेली में </span><br> -->
+    <!-- <span class="w3-xxlarge w3-hide-large w3-hide-medium">हजारों रिश्ते आपकी हथेली में</b></span><br> -->
+    <!-- <span class="w3-large">Stop wasting valuable time with projects that just isn't you.</span> -->
+    <p><a href="/app" class="w3-button w3-white w3-padding-large w3-round-xlarge w3-xxlarge w3-margin-top w3-hover-opacity-off">रिश्ते ढूंढना शुरू करें <br> <span class="w3-xlarge w3-hide-medium">हजारों रिश्ते आपकी हथेली में</span></a></p>
+  </div>
+  <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
+    <!-- <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i> -->
+  </div>
+</header>
+
+<!-- About Section -->
+<div class="w3-container" style="padding:70px 16px" id="about">
+  <h2 class="w3-center"><b>हमारे बारे में</b></h2>
+  <h3 class="w3-center"><b>प्रणाम</b></h3>
+    <p class=" w3-large">
+  आज ग्रामीण लोग अपने बच्चों के लिए रिश्ते नहीं ढूंढ पा रहे हैं |यह एक सामाजिक समस्या है।  यह उनके लिए सूखा ,कर्जा , खराब फसल आदि से बड़ी समस्या है क्योंकि इसके कारण उनका वंश  आगे नहीं बढ़ पा रहा हैं ,समाज में  उनकी इज्ज़त कम होती  है और सबसे ज़रूरी समाज का ढाँचा हिलता है क्योंकि परिवार ही वो धागा है जिसने समाज को जोड़ कर रखा है |<br><br>
+
+सदियों से ग्रामीण लोग नानका , दादका और नज़दीकी रिश्तेदारों के माध्यम से अपने बच्चों का रिश्ता करते आये है परन्तु आज की तारीख मे इस माध्यम से रिश्ते नहीं हो पा रहे है | इसका कारण है की कुछ राज्यों मे शादी के लायक लड़के बहुत है और कुछ राज्यों मे शादी के लायक लड़कियाँ बहुत है पर ग्रामीण लोगो के पास रिश्ते ढूंढने का कोई माध्यम नहीं है | इस स्थिति के बहुत सारे कारण है, जैसे कुछ राज्यों में भ्रूण हत्या ,लड़कियों का लड़कों से ज्यादा पढ़ा लिखा होना ,लड़की के परिवार का नौकरी पेशे वाला लड़का खोजने की इच्छा | और दूसरी तरफ कुछ राज्य है जिसमे लड़के IAS , IIT और दूसरी बड़ी परीक्षाओं में सफलता प्राप्त करके उच्च अधिकारी बनते है और उनके परिवार वाले दहेज़ की इतनी बड़ी मांग करते है कि एक आम पिता के लिए अपनी बेटी के लिए योग्य वर ढूंढ़ना नामुमकिन है | <br><br>
+
+हमारा मानना है कि जीवन साथी का हक़ , परिवार को आगे बढ़ने का हक़ सबका है चाहे उसका जीवन यापन का ज़रिया जो भी हो चाहे लड़का खेती करता हो ,दुकान चलाता हो,नौकरी करता हो या और कुछ ,इसी तरह अपनी लड़की के लिए योग्य वर चुनना और  उसकी योग्य वर से शादी कराना बिना अपना पूरा जीवन कर्ज मे डाले हर पिता का हक़ है | <br><br>
+
+आज देश पहले से कही अधिक  विकसित हो रहा है | सड़के और मोबाइल/टेक्नोलॉजी के कारण पूरा देश एक गाँव जितना हो गया है | आप चुटकियों  में किसी से भी बात कर सकते हो ,बनिस्पर वीडियो कॉल कर सकते हो ,  आप सड़क या ट्रेन से  एक - दो दिन मे देश में कहीं भी जाया जा सकता हैं ।   हमारा मानना है कि हमे अपने बच्चों के लिए योग्य रिश्ते ढूंढने चाहिये और उसके लिए तहसील, जिला या राज्य  का बंधन नहीं होना चाहिए | जैसे हमारी बुजुर्गों की पूत-सपूत के बारे मे दी हुई सीख है ,वैसे ही आज वक़्त आ गया है कि हम अपने बच्चों के लिए योग्य वर-वधु ढूंढे चाहे वो किसी भी राज्य से ही क्यूँ न हो | जहा तक भाषा ,रीति-रिवाज का सवाल है ,हर राज्य मे हर तरह के धर्म ,जाति- उपजाति के लोग है , हमें ज़रूरत है सिर्फ अपने से ताल-मेल खाता हुआ  परिवार ढूंढने की | <br><br>
+
+इन समस्याओं के निवारण के लिए हमने एक पहल की है रिश्ते ही रिश्ते ऐप |
+  जो माता - पिता  नानका - दादका  और रिश्तेदारी के  माध्यम से आपने बच्चों  के लिए योग्य वर - वधु नहीं ढूंढ पा रहे है  हम उनको हज़ारों रिश्ते बताएं ताकि चाहे वो  लड़के के माता-पिता हो या लड़की के  , वो इज़्ज़त से अपने बच्चों की शादी कर सके |<br><br>
+
+
+हमारा मानना है कि शादी - ब्याह का संजोग ऊपरवाला बनाता है  और धरती पर माता - पिता से बेहतर अपने बच्चों का भला कोई नहीं जानता इसलिए हमारा मकसद सिर्फ हज़ारों रिश्ते आपकी हथेली मे रखना  है | इन हज़ारो रिश्तो मे से योग्य वर-वधु चुनना माता - पिता के हाथ में है |
+
+</p><br>
+
+ <h2 class="w3-center"><b>हमारी ऐप कैसे काम करती है</b></h2>
+
+  <p class=" w3-large">
+ रिश्ते की बात चलने के लिए जो जानकारी चाहिए होती है  जैसे कि वर-वधु की उम्र ,कामकाज ,परिवार/पिता का कामकाज ,धर्म ,जाति-उपजाति ,परिवार में कितने सदस्य है आदि की जानकारी हर वर-वधु की बायोडाटा में दी गयी है | साथ मे कॉल बटन भी दिया गया है जिसके माध्यम से आपस में बात भी कर सकते है | सबसे ज़रुरी बात पहले कॉल आटोमेटिक मशीन से रूट होगी और आप लोगो को एक दूसरे का मोबाइल नंबर नहीं दिखेगा | अगर पहली बात-चीत करने के बाद दोनों पक्ष बात-चीत आगे बढ़ाना चाहते है तो कृपया एक दूसरे का मोबाइल नंबर ले ले | हमने जाति - उपजाति बंधन नहीं तथा दहेज़ बारातमुक्त शादी का विकल्प भी दिया है , अगर आप अपने लड़के-लड़की की बायोडाटा बनाते हुये आप इस  विकल्प का चयन करोगे तो हमारी ऐप आपको ऐसे रिश्ते दिखायेगा जिसमे दूसरे पक्ष ने यही विकल्प का चयन किया हुआ हो |<br>
+
+हमारा मकसद, हज़ारों रिश्ते आपकी हथेली में रखना है , शादी करना आपके हाथों में है |<br>
+वधु ढूंढने के लिए : मात्र 46 पैसे प्रति रिश्ता | वर अपना प्रोफाइल बना कर और 2100 रुपये का भुगतान करके 6 महीने के लिए रोज 25 वधु के प्रोफाइल देख सकते हैं | इस प्रकार आप 4500 रिश्तों मैं से अपना जीवन साथी चुन सकते हैं! औसतन आप 46 पैसे मैं एक रिश्ता देख पायेंग|<br>
+
+वर ढूंढने के लिए: फिलहाल वधु फ्री मैं अपना प्रोफाइल बना सकती हैं | 25 अगस्त से इसकी फीस 2100 रुपये  होगी |
+
+</p>
+
+</div>
+
+<!-- Agent -->
+<div class="w3-container" style="padding:70px 16px" id="agent">
+  <h2 class="w3-center"><b>एजेंट</b></h2>
+  <p class=" w3-large">
+
+ आज ग्रामीण लोग अपने बच्चों के लिए रिश्ते नहीं ढूंढ पा रहे है , ये एक बहुत बड़ी सामाजिक समस्या है |
+इस समस्या के निवारण के लिए हमने एक पहल की है - रिश्ते ही रिश्ते ऐप <br><br>
+
+हमारे साथ जुड़ कर आप अपने घर गांव में रहते हुए प्रतिमाह 20000 से भी अधिक कमा सकते है , हमारा एजेंट बनने के लिए शिक्षा या भाषा का कोई बंधन नहीं है , अगर आप मिलनसार व्यक्ति है और आपके पास इंटरनेट डाटा वाला मोबाइल है तो  आप हमारे साथ जुड़ सकते है |<br><br>
+
+एजेंट की भर्ती 10 अगस्त 2019 तक खुली है |उसके बाद एजेंट की भर्ती अगली पोस्ट आने तक बंद रहेगी | हमारा एजेंट चुनने का तरीका इस प्रकार है - <br>
+
+</p>
+<p class=" w3-large">
+1. Rishteyhirishtey.in एप डौन्लोड करके एजेंट बटन पर क्लिक करके आवेदन फार्म भरें | डाउनलोड फ्री है | आपको आप का यूनिक एजेंट कोड अलॉट किया जाएगा |<br>
+2. अपना एजेंट कोड डाल कर तीन वधु के प्रोफाइल बनवाये, फिलहाल वधु का प्रोफाइल बनाना फ्री है |<br>
+3. आपको मिले मैसेज मैं दिए गए नंबर पर (10 से 6 के बीच ) हमें संपर्क करे | हमारी HR टीम आपका इंटरव्यू लेगी और आपके बनाये हुए तीनो वधु प्रोफाइल की जांच करेगी |<br>
+4. सिलेक्टेड कैंडिडेट 500 रुपये की रेगिस्ट्रशन फीस जमा करवा सकते हैं | यह पेमेंट ऑनलाइन करना है | यह 500 रुपए की राशि रिफंडेबल है |<br>
+5. 10 अगस्त 2019 से आपअपना कोड इस्तेमाल करके वर के प्रोफाइल बनवा कर और 25 अगस्त से वधु के प्रोफाइल बनवा कर  रूपए कमा सकते हैं |आप प्रत्येक प्रोफाइल का 1000 रूपए कमा सकते हैं |<br>
+<center><h3><a href="/agentform">एजेंट  आवेदन फॉर्म भरने के लिए यहाँ क्लिक करे</a></h3></center><br>
+
+
+</p>
+
+</div>
+
+<!-- Var -->
+<div class="w3-container" style="padding:70px 16px" id="var">
+  <h2 class="w3-center"><b>वर</b></h2>
+  <p class="w3-large">
+
+ परिवार समाज की नींव है | परिवार से ही वंश आगे बढ़ता है और समाज परिवार के धागे से बंधा हुआ है | <br><br>
+हमारा मानना है कि जीवन साथी  का हक़ , परिवार को आगे बढ़ने का हक़ सबका है चाहे उसका जीवन  यापन का ज़रिया कोई भी हों  | चाहे लड़का खेती करता हो , दुकान चलाता हो , नौकरी करता हो या कुछ भी | देश में अच्छे परिवार और लड़कियों की कमी नहीं है बात सिर्फ सही रिश्ता ढूंढ़ने की है | एक ऐसा परिवार  और लड़की जो सोच ,से आर्थिक स्थिति से ,  मान सम्मान से आपके  जैसे हो <br><br>
+
+हम आपके माता - पिता और आपको ऐसे हजारो रिश्ते बताते  है ,उसमे से रिश्ता चुनना और शादी करना आपके और आपके  परिवार के हाथ में है | <br><br>
+
+रिश्ते की बात चलने के लिए जो जानकारी चाहिए होती है  जैसे कि वर-वधु की उम्र ,कामकाज ,परिवार/पिता का कामकाज ,धर्म ,जाति-उपजाति ,परिवार में कितने सदस्य है आदि की जानकारी हर वर-वधु की बायोडाटा में दी गयी है | साथ मे कॉल बटन भी दिया गया है जिसके माध्यम से आपस में बात भी कर सकते है | सबसे ज़रुरी बात पहले कॉल आटोमेटिक मशीन से रूट होगी और आप लोगो को एक दूसरे का मोबाइल नंबर नहीं दिखेगा | अगर पहली बात-चीत करने के बाद दोनों पक्ष बात-चीत आगे बढ़ाना चाहते है तो कृपया एक दूसरे का मोबाइल नंबर ले ले | हमने जाति - उपजाति बंधन नहीं तथा दहेज़ बारातमुक्त शादी का विकल्प भी दिया है , अगर आप अपने लड़के-लड़की की बायोडाटा बनाते हुये आप ये विकल्प का चयन करोगे तो हमारी ऐप आपको ऐसे रिश्ते दिखायेगा जिसमे दूसरे पक्ष ने यही विकल्प का चयन किया हुआ हो |
+हमारा मकसद, हज़ारों रिश्ते आपकी हथेली में रखना है , शादी करना आपके हाथों में है |
+
+
+</p>
+
+</div>
+
+<!-- Vadhu -->
+<div class="w3-container" style="padding:70px 16px" id="vadhu">
+  <h2 class="w3-center"><b>वधु</b></h2>
+  <p class="w3-large">
+
+ हमारा मानना है कि लड़की बोझ नहीं होती | लड़की की इच्छा होती है कि एक अच्छा परिवार और लड़का जो मान सम्मान से उसको अपना जीवन साथी बनाये | देश में  अच्छे परिवार और लड़को की कमी नहीं है , बात सिर्फ अच्छा रिश्ता ढूंढने की है , एक ऐसा परिवार और लड़का जो सोच से, आर्थिक स्थिति , मान सम्मान से आपके जैसे हो |<br><br>
+हम आपके माता - पिता और आपको ऐसे हजारो रिश्ते बताते  है ,उसमे से रिश्ता चुनना और शादी करना आपके और आपके  परिवार के हाथ में है | <br><br>
+
+रिश्ते की बात चलाने के लिए जो जानकारी चाहिए होती है  जैसे कि वर-वधु की उम्र ,कामकाज ,परिवार/पिता का कामकाज ,धर्म ,जाति-उपजाति ,परिवार में कितने सदस्य है आदि की जानकारी हर वर-वधु की बायोडाटा में दी गयी है | साथ मे कॉल बटन भी दिया गया है जिसके द्वारा आप आपस में बात भी कर सकते है | सबसे ज़रुरी बात पहले कॉल आटोमेटिक मशीन से रूट होगी और आप लोगो को एक दूसरे का मोबाइल नंबर नहीं दिखेगा | अगर पहली बात-चीत करने के बाद लड़की पक्ष बात-चीत आगे बढ़ाना चाहते है तो कृपया एक दूसरे का मोबाइल नंबर ले ले | हमने जाति - उपजाति बंधन नहीं तथा दहेज़ बारातमुक्त शादी का विकल्प भी दिया है , अगर अपने लड़के लड़की का  बायोडाटा बनाते हुये आप इस  विकल्प का चयन करोगे तो हमारी ऐप आपको ऐसे रिश्ते दिखायेगा जिसमे दूसरे पक्ष ने यही विकल्प का चयन किया हुआ हो |
+<br><br>
+
+हमारा मकसद, हज़ारों रिश्ते आपकी हथेली में रखना है , शादी करना आपके हाथों में है |
+
+
+
+
+</p>
+
+</div>
+
+
+<!-- Team Section -->
+<!-- <div class="w3-container" style="padding:50px 16px" id="team">
+  <h3 class="w3-center">THE TEAM</h3>
+  <p class="w3-center w3-large">The ones who runs this company</p>
+  <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
+    <div class="w3-col l4 m12 w3-margin-bottom">
+      <div class="w3-card teamcard" id="team1">
+        <img src="/w3images/team2.jpg" alt="John" style="width:100%">
+        <div class="w3-container">
+          <h3>विपिन चौधरी</h3>
+          <p class="w3-opacity">CEO & Founder</p>
+          <p>15 सालों से वकालत कर रहे है और देश के अनेक अदालतों डिस्ट्रिक्ट कोर्ट और हाई कोर्ट में मामले संभल चुके है | विपिन ने अनेक बहु-राष्ट्रीय कंपनियों के लिए काम किया है जैसे की OYO ROOMS , METRO CASH & CARRY ,  ACCENTURE , VOLVO , LEVIS , MacMillian .... <br><br>
+
+विपिन, स्वर्गीय चौधरी हरी सिंह के पोते है जो कि राजस्थान के हनुमानगढ जिले में नोहर/भादरा में वकालत करते थे और समाज के सम्मानित व्यक्ति थे  | विपिन  चौधरी जुगल किशोर सिंह के सुपुत्र है जो की एक किसान है | विपिन को प्राथमिक शिक्षा के बाद परिवार ने मसूरी देहरादून के बोर्डिंग स्कूल में पढ़ने भेजा , विपिन ने दिल्ली यूनिवर्सिटी की दिल्ली कॉलेज ऑफ़ आर्ट्स एंड कॉमर्स से हिस्ट्री होनोर्स की डिग्री प्राप्त की , उसके पश्चात विपिन ने बंगलौर यूनिवर्सिटी से 2003 में LLB की डिग्री हासिल की | <br><br>
+
+ ग्रामीण जडो  और देश - विदेश की अनेक बहु-राष्ट्रीय कंपनियों में काम करने से विपिन ने दुनिया के दोनों पहलू देखे - शहरी और ग्रामीण | दिल से विपिन अपने आप को किसान मानते है और किसान समाज की समस्याओं के लिए कुछ करना चाहते है और इसी दिशा में रिश्ते ही रिश्ते उनकी पहली कोशिश है |
+
+</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l4 m12 w3-margin-bottom">
+      <div class="w3-card teamcard" id="team2">
+        <img src="/w3images/team1.jpg" alt="Jane" style="width:100%">
+        <div class="w3-container">
+          <h3>चंद्रिका चौधरी</h3>
+          <p class="w3-opacity">Co-Founder</p>
+          <p>चन्द्रिका स्वर्गीय चौधरी महेंद्र सिंह की सुपुत्री है जो हरियाणा के हिसार जिले गावङ गाव के किसान परिवार से थे और अपनी काबिलियत से आबकारी कराधान अधिकारी बने | चन्द्रिका ने हरियाणा के अलग-अलग शहरों से प्राथमिक शिक्षा प्राप्त की , HAU से बीएससी और GJU से  एमएससी  साइकोलॉजी की डिग्री हासिल की , NET पऱीक्षा  पास करके   बंगलोर में st. Claret कॉलेज में लेक्चरर थी और AMITY , DAV जैसे संस्थानों मे कौंसलर का काम किया है | चन्द्रिका का रुझान शिक्षा के क्षेत्र  में रहा है | उनका मानना है की सही शिक्षा और संस्कार समाज को सही दिशा प्रदान करते है | दोनों परिवारों के आशीर्वाद से चन्द्रिका और विपिन का विवाह हुआ | <br><br>
+
+
+ग्रामीण पृष्ठभूमि में पालन-पोषण , ग्रामीण परिवार में शादी और देश के अनेक शहरों में बड़ी-बड़ी संस्थाओं के साथ काम करने से चन्द्रिका का मानना है की देश का हित किसान के हित में है और इस लिए चन्द्रिका रिश्ते ही रिश्ते की पहल से जुडी हुई है |
+
+</p>
+
+        </div>
+      </div>
+    </div>
+    <div class="w3-col l4 m12 w3-margin-bottom">
+      <div class="w3-card teamcard" id="team3">
+        <img src="/w3images/team3.jpg" alt="Mike" style="width:100%">
+        <div class="w3-container">
+          <h3>sharad kumar</h3>
+          <p class="w3-opacity">CO</p>
+          <p>Sharad, Shri Sunil Kumar ke suptra hai. Sharad ne apni sikha Patna ke DAV School se haasil ki aur apni kadi mehant se IIT Kahrgpur main select hue jaahan se unhone 2018 Main Masters in Chemistry ki degree haasil ki. Duniya ki saari videshi companiyan hamare yaahn ki ladkon ko IIT karte hi laakhon ka package se lubah kar le jaati hain. Sharad ne use laalch ko chod kar ek deshi company main naukri le aur desh /samaaj ke liye kuch karne ke liye ustahit hain. Apni isse soch ke kaaran who rishet hi rishtey se jud gaye hain aur hamare kaam main yuva darshtikon laate hain!
+</p>
+
+        </div>
+      </div>
+    </div>
+
+
+</div> -->
+
+<!-- Contact Section -->
+<div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
+  <h3 class="w3-center">हमसे संपर्क करें</h3>
+  <!-- <p class="w3-center w3-large">हमे सन्देश भेज क्र संपर्क करे :</p> -->
+  <div style="margin-top:48px">
+    <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i>Address : Urban Pendu Pvt Ltd, KH No. 253, GF front side, Kohinoor Enclave, Westend Marg, Saidulajab, New Delhi. PinCode-122003</p>
+    <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> मोबाइल नंबर : +91 9811965835</p>
+    <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: Contact@RishteyhiRishtey.in</p>
+    <br>
+    <form action="" method="POST">
+      <p><input class="w3-input w3-border" type="text" placeholder="नाम" required name="name"></p>
+
+      <p><input class="w3-input w3-border" type="number" placeholder="मोबाइल नंबर" required name="subject"></p>
+      <p><input class="w3-input w3-border" type="text" placeholder="सन्देश लिखे" required name="message"></p>
+      <p>
+        <button class="w3-button w3-black" type="submit">
+          <i class="fa fa-paper-plane"></i> <a href="thankyou">सन्देश भेजे</a>
+        </button>
+      </p>
+    </form>
+
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    <!-- <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i> -->
+  </div>
+
+</footer>
+
+<script>
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+
+
+</script>
+
+</body>
+</html>

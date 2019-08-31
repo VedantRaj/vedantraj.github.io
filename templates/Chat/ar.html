@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Agent Registration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% with messages = get_flashed_messages() %}
+   {% if messages %}
+      {% for message in messages %}
+         <script type="text/javascript">alert("{{ message }}")</script>{{ message }}
+      {% endfor %}
+   {% endif %}
+{% endwith %}
+</head>
+</head>
+  {% include 'navbar.html' %}
+  <style>
+    .btn{
+      background-color:#857fc8;
+      border-color: #857fc8;
+      border-radius: 10px;
+    }
+    .text-design{
+      font-size: 12px;
+      color:#FFA500 !important;
+    }
+  </style>
+<body>
+<div class="container mt-6">
+  <div class="row text-center">
+    <div class="col align-middle">
+      <h3 class="font-weight-bold pt-4"> एजेंट आवेदन फॉर्म</h3>
+    </div>
+  </div>
+</div>
+<div class="container mb-6">
+  <form method='POST' enctype="multipart/form-data" id="myForm">
+    <div class="row text-center align-item-middle">
+      <div class="col-12 align-middle">
+        <label for="fname" class="pt-4">प्रोफ़ाइल चित्र चुनें</label><br />
+          <input type="file" class='UPLOAD' accept="image/png, image/jpeg, image/jpg" name="profile_image" style='padding: 0 3em;'>
+      </div>
+      <!-- <div class="col-8">
+      <div class="row text-right">
+        <div class="col">
+            <img src="JOJOThemes.png" class="img-fluid rounded-circle w-50" /> 
+        </div>
+      </div>
+    </div> -->
+    </div>
+
+    <div class="row my-4 text-center">
+      <div class="col">
+        <input type="text" placeholder="नाम दर्ज करे" name="name" id="name" required
+          class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0">
+        <p class="w-100 lead text-muted text-design mb-2 d-none" id="name_alert">नाम दर्ज करें</p>
+      </div>
+    </div>
+
+    <div class="row my-4 text-center">
+      <div class="col">
+        <input type="text" placeholder="पिता का नाम दर्ज करे" name="fname" id="fname" required
+          class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+        <p class="w-100 lead text-muted text-design mb-2 d-none" id="father_name_alert">पिता का नाम दर्ज करे</p>
+      </div>
+    </div>
+
+    <div class="row my-4 text-center">
+      <div class="col">
+        <input type="number" id='mobno' placeholder="मोबाइल नंबर दर्ज करें" name="mobno" required min="1000000000"
+          max="9999999999" class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+        <p class="w-100 lead text-muted text-design mb-2 d-none" id="mobno_alert">फोन नंबर उपलब्ध नहीं है</p>
+      </div>
+    </div>
+
+    <div class="row my-4 text-center">
+      <div class="col">
+        <input type="password" placeholder="पास वर्ड दर्ज करें" name="password" required id='password'
+          class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+        <p class="w-100 lead text-muted text-design mb-2 d-none" id="password_alert">पास वर्ड दर्ज करें</p>
+      </div>
+    </div>
+
+    <div class="row my-4 text-center">
+      <div class="col">
+        <input type="password" placeholder="पासवर्ड फिर से दर्ज करें" name="password_again" required
+          id='password_again' class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+        <p class="w-100 lead text-muted text-design mb-2 d-none" id="confirm_password_alert">दोनों में एक ही पासवर्ड
+          डाले</p>
+      </div>
+    </div>
+
+    <div class="row my-4 text-center">
+      <div class="col">
+        <input type="number" placeholder="आपके पहचान मैं अविवाहित लड़को की संख्यां" name="unmarried_boys" id="unmarried_boys" required max="1000"
+          class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+        <p class="w-100 lead text-muted text-design mb-2 d-none" id="unmarried_boys_alert">आपके पहचान मैं अविवाहित लड़को की संख्यां</p>
+      </div>
+    </div>
+
+    <div class="row my-4 text-center">
+        <div class="col">
+          <input type="number" placeholder=" आपके पहचान मैं अविवाहित लड़कियों की संख्यां" name="unmarried_girls" id="unmarried_girls" required
+            class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="unmarried_girls_alert"> आपके पहचान मैं अविवाहित लड़कियों की संख्यां</p>
+        </div>
+      </div>
+
+    <div class="row mt-4 text-center">
+      <div class="col">
+        <h6 class="font-weight-normal">शिक्षा</h6>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col">
+        <select name='education' style="width: 100%; text-align: center; text-align-last: center;" id="education"
+          required class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+          {% for item in education %}
+          {% if item != "8th" %}
+          <option value="{{ item }}">{{ education[item] }}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+        <p class="w-100 lead text-muted text-design mb-2 d-none" id="education_alert">शिक्षा दर्ज करें</p>
+      </div>
+    </div>
+
+    <div class="row mt-4 text-center">
+      <div class="col-12 align-middle">
+          <label for="fname" class="pt-4">आपका एक पहचान पत्र अपलोड करे : <br/> आधार / वोटर / ड्राइविंग / पासपोर्ट</label><br />
+            <input type="file" class='UPLOAD' accept="image/png, image/jpeg, image/jpg" name="identity_image" style='padding: 0 3em;'>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row text-center">
+        <div class="col align-middle">
+          <h3 class="font-weight-bold pt-4"> पता</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="row my-4 text-center">
+      <div class="col">
+        <input type="number" onkeyup='getData()' placeholder="पिन कोड दर्ज करें" id="pincode" name="PINCODE" required
+          class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+        <p class="w-100 lead text-muted text-design mb-2 d-none" id="pincode_alert">पिन कोड दर्ज करें</p>
+      </div>
+    </div>
+
+    <div class="row my-4 text-center">
+      <div class="col">
+        <input type="text" placeholder="गांव दर्ज करें" name="address"
+          class="w-100 text-center border-bottom-1 border-top-0 border-right-0 border-left-0 ">
+      </div>
+    </div>
+
+    <div class="row mt-4 text-center">
+        <div class="col">
+          <h6 class="font-weight-normal">आपको इस पंजीकरण के बारे में कैसे पता चला ?</h6>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col">
+          <select name='knowus' style="width: 100%; text-align: center; text-align-last: center;" id="knowus"
+            required class="d-block input_writer text-center w-100 bg-light border-1 border-light">
+            {% for item in knowus %}
+            <option value="{{ item }}">{{ knowus[item] }}</option>
+            {% endfor %}
+          </select>
+          <p class="w-100 lead text-muted text-design mb-2 d-none" id="knowus_alert">आपको इस पंजीकरण के बारे में कैसे पता चला ?</p>
+        </div>
+      </div>
+
+    <br>
+
+    <div class="row text-center">
+      <div class="col">
+        <input type="checkbox" checked id="checkbox" required class="text-center"> <a href="/termsofuse"
+          id="niyam">नियम और शर्तें लागू</a>
+        <p class="w-100 lead text-muted text-design mb-2 d-none" id="terms_alert">नियम और शर्तें लागू पे क्लिक करे</p>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row m2-2 mb-4 text-center">
+      <div class="col">
+        <input type="submit" id='btnsubmit' value="सबमिट करे"
+          class="btn btn-rounded-circle btn-primary w-75">
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+var delay = (function(){
+  var timer=0;
+  return function(callback, ms){
+    clearTimeout(timer);
+    timer = setTimeout(callback, ms);
+  };
+})();
+function getData(){
+  delay(function(){
+    $.ajax({
+      'url':'/pincode/'+$("input[name='PINCODE']").val(),
+      'success': function(res) {
+        console.log(res);
+        document.getElementById("pincode_alert").classList.add("d-none");
+      },
+      'error': function(e){
+        // alert("कृपया पिन कोड की जांच करे");
+        document.getElementById('pincode_alert').textContent = "कृपया पिन कोड की जांच करे";
+        document.getElementById('pincode_alert').classList.remove("d-none");
+      }
+    });
+  }, 2000);
+};
+$('input#mobno').change(()=>{
+  $('span.avail').text('Checking')
+  if ($('input#mobno').val() > 1000000000 && $('input#mobno').val() < 9999999999){
+  $.ajax({
+    'url': '/checkmobile/'+$('input#mobno').val(),
+
+    'success': (res)=>{
+      console.log(res)
+      if(res['available']){
+        document.getElementById('mobno_alert').textContent= 'फोन नंबर उपलब्ध है';
+        document.getElementById("mobno_alert").classList.remove("d-none");
+        document.getElementById('mobno').style.color = 'green';
+      }
+      else{
+        //$('span.avail').text('उपलब्ध नहीं है |')
+        document.getElementById('mobno_alert').textContent= 'फोन नंबर उपलब्ध नहीं है';
+        document.getElementById("mobno_alert").classList.remove("d-none");
+        document.getElementById('mobno').style.color = 'red';
+      }
+    },
+  })} else {
+    // $('span.avail').text('फोन नंबर 10 अंकों का होना चाहिए');
+    document.getElementById('mobno_alert').textContent= 'फोन नंबर 10 अंकों का होना चाहिए';
+    document.getElementById("mobno_alert").classList.remove("d-none");
+  }
+});
+$('input#password_again').change(() => {
+  if ($('input#password').val() != $('input#password_again').val()) {
+    document.getElementById('password_again_alert')
+    //$('span.chkpass').text('दोनों में एक ही पासवर्ड डाले');
+    document.getElementById('confirm_password_alert').textContent = 'दोनों में एक ही पासवर्ड डाले';
+    document.getElementById('confirm_password_alert').classList.remove("d-none");
+    // document.getElementById('submit').disabled = true;
+    //document.getElementById('password_again').style.color = 'red';
+  } else {
+    // $('span.chkpass').text('');
+    document.getElementById('confirm_password_alert').classList.add("d-none");
+    document.getElementById('password_alert').classList.add('d-none');
+    // document.getElementById('submit').disabled = false;
+    //document.getElementById('password_again').style.color = 'green';
+  }
+});
+$("#btnsubmit").click((e) => {
+  e.preventDefault();
+  var count = 0;
+  if ($('input#name').val() == '') {
+    document.getElementById('name_alert').classList.remove('d-none');
+    document.getElementById('name').focus(); 
+  }
+  else if ($('input#name').val() != '') {
+    document.getElementById('name_alert').classList.add('d-none'); count++;
+  }
+
+  if ($('input#fname').val() == '') {
+    document.getElementById('father_name_alert').classList.remove('d-none');
+    document.getElementById('fname').focus(); 
+  }
+  else if ($('input#fname').val() != '') {
+    document.getElementById('father_name_alert').classList.add('d-none'); count++;
+  }
+
+  if ($('input#unmarried_boys').val() == '') {
+    document.getElementById('unmarried_boys_alert').classList.remove('d-none');
+    document.getElementById('unmarried_boys').focus(); 
+  }
+
+  else if ($('input#unmarried_boys').val() != '') {
+    document.getElementById('unmarried_boys_alert').classList.add('d-none'); count++;
+  }
+
+  if ($('input#unmarried_girls').val() == '') {
+    document.getElementById('unmarried_girls_alert').classList.remove('d-none');
+    document.getElementById('unmarried_girls').focus(); 
+  }
+
+  else if ($('input#unmarried_girls').val() != '') {
+    document.getElementById('unmarried_girls_alert').classList.add('d-none'); count++;
+  }
+
+  if ($('input#mobno').val() == '') {
+    document.getElementById('mobno_alert').textContent = 'मोबाइल नंबर दर्ज करें';
+    document.getElementById('mobno_alert').classList.remove('d-none');
+    document.getElementById('mobno').focus(); 
+  }
+  else if ($('#mobno_alert').text() != 'फोन नंबर उपलब्ध है') {
+    document.getElementById('mobno_alert').textContent = 'फोन नंबर उपलब्ध नहीं है';
+    document.getElementById('mobno_alert').classList.remove('d-none');
+    document.getElementById('mobno').focus(); 
+  }
+  else if ($('#mobno_alert').text() == 'फोन नंबर उपलब्ध है') {
+    document.getElementById('mobno_alert').textContent = 'फोन नंबर उपलब्ध है';
+    document.getElementById('mobno_alert').classList.remove('d-none');  count++;
+  }
+
+  if ($('input#password').val() == '') {
+    document.getElementById('password_alert').classList.remove('d-none');
+    document.getElementById('password').focus(); 
+  }
+
+  else if ($('input#password').val() != '') {
+    document.getElementById('password_alert').classList.add('d-none');  count++;
+  }
+
+  if ($('input#password_again').val() == '') {
+    document.getElementById('confirm_password_alert').textContent = 'दोबारा पासवर्ड दर्ज करें';
+    document.getElementById('confirm_password_alert').classList.remove('d-none');
+    document.getElementById('password_again').focus(); 
+  }
+  else if ($('input#password').val() != $('input#password_again').val()) {
+    document.getElementById('confirm_password_alert').textContent = 'दोनों में एक ही पासवर्ड डालेें';
+    document.getElementById('confirm_password_alert').classList.remove('d-none');
+    document.getElementById('password_again').focus(); 
+  }
+  else if ($('input#password').val() == $('input#password_again').val()) {
+    document.getElementById('confirm_password_alert').classList.add('d-none'); count++;
+  }
+
+  if ($('select#education').val() == 'null') {
+    document.getElementById('education_alert').classList.remove('d-none');
+    document.getElementById('education').focus(); 
+  }
+  else if ($('select#education').val() != 'null') {
+    document.getElementById('education_alert').classList.add('d-none'); count++;
+  }
+
+  if ($('select#knowus').val() == 'null') {
+    document.getElementById('knowus_alert').classList.remove('d-none');
+    document.getElementById('knowus').focus(); 
+  }
+  else if ($('select#education').val() != 'null') {
+    document.getElementById('knowus_alert').classList.add('d-none'); count++;
+  }
+  
+  if ($('input#pincode').val() == '') {
+    document.getElementById('pincode_alert').classList.remove('d-none');
+    document.getElementById('pincode').focus(); 
+  }
+  else if ($('input#pincode').val() != '') {
+    document.getElementById('pincode_alert').classList.add('d-none'); count++;
+  }
+  
+  if ($('input#checkbox').is(':checked') == false) {
+    document.getElementById('terms_alert').classList.remove('d-none');
+    document.getElementById('checkbox').focus(); 
+  }
+  else if ($('input#checkbox').is(':checked') == true) {
+    document.getElementById('terms_alert').classList.add('d-none'); count++;
+  }
+  if (count == 11) {
+    document.getElementById('myForm').submit();
+  }
+});
+
+</script>
+</body>
+<script type="text/javascript">
+	function check_pass() {
+    if (document.getElementById('password').value != document.getElementById('password_again').value){
+    	document.getElementById('password_again').style.color = 'red';
+      $('span.chkpass').text("दोनों में एक ही पासवर्ड डाले");
+    }
+    else{
+    	document.getElementById('password_again').style.color = 'green';
+      $('span.chkpass').text("");
+    }
+    if(document.getElementById('account').value != document.getElementById('account_again').value) {
+        document.getElementById('account_again').style.color = 'red';
+        $('span.chkacc').text("दोनों में एक ही अकाउंट नंबर डाले");
+    }
+    else{
+    	document.getElementById('account_again').style.color = 'green';
+      $('span.chkacc').text("");
+    }
+}
+
+function check_file() {
+if ($('#check_image').get(0).files.length !== 0) {
+    document.getElementById('account').removeAttribute("required");
+    document.getElementById('account_again').removeAttribute("required");
+    document.getElementById('IFSC_number').removeAttribute("required");
+}
+else{
+    document.getElementById('account').required= true;
+    document.getElementById('account_again').required= true;
+    document.getElementById('IFSC_number').required= true;
+}
+}
+
+</script>
+
+</html>

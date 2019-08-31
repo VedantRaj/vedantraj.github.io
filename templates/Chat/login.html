@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% with messages = get_flashed_messages() %} {% if messages %} {% for
+    message in messages %}
+    <script type="text/javascript">
+      alert("{{ message }}");
+    </script>
+    {{
+      message
+    }}
+    {% endfor %} {% endif %} {% endwith %}
+  </head>
+  {% include 'navbar.html' %}
+  <style>
+    .btn-primary {
+      border-radius: 35px;
+      background-color: #857fc8;
+      border-radius: 12px;
+      border-color: #857fc8;
+    }
+    .btn:hover {
+      background-color: #625bb5;
+      border-color: #625bb5;
+    }
+  </style>
+  <body>
+    <form method="POST" class="mt-6">
+      <div class="container form-group">
+        <div class="row text-center">
+          <div class="col align-middle">
+            <h1 class="font-weight-bold text-center pb-5 pt-3">
+              यहाँ लॉगिन करें
+            </h1>
+            <input
+              class="d-block input_writer text-center w-100 border-top-0 border-left-0 border-right-0 border-bottom-1 pt-3"
+              style="text-align:center;"
+              type="number"
+              placeholder="रजिस्टर्ड मोबाइल नंबर डालिए"
+              name="mobno"
+              required
+            />
+            <input
+              class="d-block input_writer text-center w-100 border-top-0 border-left-0 border-right-0 border-bottom-1 pt-3"
+              style="text-align:center;"
+              type="password"
+              placeholder="अपना पासवर्ड डाले"
+              name="password"
+              required
+            />
+            <button
+              type="submit"
+              class="btn btn-primary w-75 mt-5 mb-3"
+              style="text-align:center;"
+            >
+              लॉगिन करे</button
+            ><br />
+            <a href="/forgotpassword" style="text-decoration:none;color:black;"
+              >पासवर्ड भूल गए ?</a
+            >
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
