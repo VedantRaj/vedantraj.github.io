@@ -1,0 +1,15 @@
+.head{
+  font-weight:500;
+}
+
+.btn{
+   color:white;
+   background-color: #857fc8;
+   border-radius: 12px;
+   border-color:#857fc8;
+}
+.btn:hover{
+  color:white;
+  background-color: #625bb5;
+  border-color: #625bb5;
+}

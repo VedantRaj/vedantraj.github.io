@@ -5,6 +5,7 @@
 <title>Agent Registration</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../static/style3.css">
+<link rel="stylesheet" type="text/css" href="common.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='style3.css') }}">
 {% with messages = get_flashed_messages() %}
    {% if messages %}
@@ -43,7 +44,7 @@
           <input type="text" placeholder="नाम दर्ज करे" name="name" id="name" required>
         </div>
       </div>
-    
+
       <div class="row">
         <div class="col-25">
           <label for="fname"></label>
@@ -62,7 +63,7 @@
           <span  class='avail'></span>
         </div>
       </div>
-    
+
       <div class="row">
         <div class="col-25">
           <label for="lname"></label>
@@ -71,7 +72,7 @@
           <input type="password" placeholder="पास वर्ड दर्ज करें" name="password" required id='password'>
         </div>
       </div>
-    
+
       <div class="row">
         <div class="col-25">
           <label for="lname"></label>
@@ -87,7 +88,7 @@
       <label for="country"></label>
     </div>
     <div class="col-75">
-      <input type="number" placeholder="आपके पहचान मैं अविवाहित लड़को की संख्यां" name="unmarried_boys" required max='10000' id="unmarried_boys"> 
+      <input type="number" placeholder="आपके पहचान मैं अविवाहित लड़को की संख्यां" name="unmarried_boys" required max='10000' id="unmarried_boys">
     </div>
   </div>
   <div class="row">
@@ -318,7 +319,7 @@ $('#btnsubmit').click((e)=>{
   else if($('input#identity').val() == '') {
     alert("अपना पहचान पत्र अपलोड करे");
     document.getElementById('identity').focus();
-  }  
+  }
   else if($('input#checkbox').is(':checked') == false) {
     alert("नियम और शर्तें लागू पे क्लिक करे");
     document.getElementById('checkbox').focus();
