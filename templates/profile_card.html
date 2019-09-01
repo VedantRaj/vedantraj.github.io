@@ -2,11 +2,11 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="common.css">
-<!--<styl>
-.card {
+  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="common.css">
+  <!--<styl>
+  .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 700px;
   margin: auto;
@@ -15,53 +15,53 @@
 }
 
 .title {
-  color: grey;
-  font-size: 18px;
+color: grey;
+font-size: 18px;
 }
 
 button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: Green;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
+border: none;
+outline: 0;
+display: inline-block;
+padding: 8px;
+color: white;
+background-color: Green;
+text-align: center;
+cursor: pointer;
+width: 100%;
+font-size: 18px;
 }
 
 a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
+text-decoration: none;
+font-size: 22px;
+color: black;
 }
 
 button:hover, a:hover {
-  opacity: 0.7;
+opacity: 0.7;
 }
 </styl>-->
 <style>
-  table{
-    border-collapse: separate;
-    border-spacing: 10px;
-  }
-  .btn{
-    background-color:#857fc8;
-    border-color: #857fc8;
-    border-radius: 10px;
-  }
-  .btn:hover{
-    background-color:#635da7;
-  }
+table{
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+.btn{
+  background-color:#857fc8;
+  border-color: #857fc8;
+  border-radius: 10px;
+}
+.btn:hover{
+  background-color:#635da7;
+}
 </style>
 </head>
 <body>
 
-<h2 style="text-align:center" class="mt-4">रिश्ते ही रिश्ते</h2>
-<!--
-<div class="card">
+  <h2 style="text-align:center" class="mt-4">रिश्ते ही रिश्ते</h2>
+  <!--
+  <div class="card">
   <img src="{{url_for('profile_img', id=value.id)}}" alt="John" style="max-height: 300px;">
   <h2>Name - {{value.name}}</h2>
   <p>Age - {{ value.age }}</p>
@@ -87,103 +87,103 @@ button:hover, a:hover {
   <p><button onclick="window.location='/login';">Login</button></p>
 </div>
 -->
-      <section id="display" class="px-3">
-              <div class="container">
-                <div class="row justify-content-center text-center">
-                  <div class="col align-self-center">
-                    <img src="JOJOThemes.png" class="img-fluid rounded-circle w-25 my-3" />
-                    <br />
-                      <table class="table table-borderless">
-                        <tbody>
-                        <tr>
-                            <td class="table-active w-50">नाम</td>
-                            <td class="table-active w-50"><input value="name" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
-                        </tr>
-                        <tr>
-                            <td class="table-active w-50">आयु</td>
+<section id="display" class="px-3">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col align-self-center">
+        <img src="JOJOThemes.png" class="img-fluid rounded-circle w-25 my-3" />
+        <br />
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td class="table-active w-50">नाम</td>
+              <td class="table-active w-50"><input value="name" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
+            </tr>
+            <tr>
+              <td class="table-active w-50">आयु</td>
 
-                            <td class="table-active w-50"><input value="age" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
-                        </tr>
-                        <tr>
-                            <td class="table-active w-50">मोबाइल नंबर</td>
+              <td class="table-active w-50"><input value="age" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
+            </tr>
+            <tr>
+              <td class="table-active w-50">मोबाइल नंबर</td>
 
-                            <td class="table-active w-50"><input value="mobno" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
-                        </tr>
-                        <tr>
-                            <td class="table-active w-50">धर्म</td>
+              <td class="table-active w-50"><input value="mobno" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
+            </tr>
+            <tr>
+              <td class="table-active w-50">धर्म</td>
 
-                            <td class="table-active w-50"><input value="religion" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
-                        </tr>
-                        <tr>
-                            <td class="table-active w-50">जाती</td>
+              <td class="table-active w-50"><input value="religion" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
+            </tr>
+            <tr>
+              <td class="table-active w-50">जाती</td>
 
-                            <td class="table-active w-50"><input value="jaati" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
-                        </tr>
-                        <tr>
-                            <td class="table-active w-50">आपका कामकाज</td>
+              <td class="table-active w-50"><input value="jaati" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
+            </tr>
+            <tr>
+              <td class="table-active w-50">आपका कामकाज</td>
 
-                            <td class="table-active w-50"><input value="occupation" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
-                        </tr>
-                        <tr>
-                            <td class="table-active w-50">पिता परिवार कामकाज</td>
+              <td class="table-active w-50"><input value="occupation" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
+            </tr>
+            <tr>
+              <td class="table-active w-50">पिता परिवार कामकाज</td>
 
-                            <td class="table-active w-50"><input value="poccupation" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
-                        </tr>
-                        <tr>
-                            <td class="table-active w-50">शिक्षा</td>
+              <td class="table-active w-50"><input value="poccupation" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
+            </tr>
+            <tr>
+              <td class="table-active w-50">शिक्षा</td>
 
-                            <td class="table-active w-50"><input value="education" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
-                        </tr>
-                        <tr>
-                            <td class="table-active w-50">गांव</td>
+              <td class="table-active w-50"><input value="education" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
+            </tr>
+            <tr>
+              <td class="table-active w-50">गांव</td>
 
-                            <td class="table-active w-50"><input value="address[0]" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
-                        </tr>
-                        <tr>
-                            <td class="table-active w-50">तहसील</td>
+              <td class="table-active w-50"><input value="address[0]" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
+            </tr>
+            <tr>
+              <td class="table-active w-50">तहसील</td>
 
-                            <td class="table-active w-50"><input value="address[1]" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
-                        </tr>
-                        <tr>
-                            <td class="table-active w-50">जिला</td>
+              <td class="table-active w-50"><input value="address[1]" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
+            </tr>
+            <tr>
+              <td class="table-active w-50">जिला</td>
 
-                            <td class="table-active w-50"><input value="address[2]" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
-                        </tr>
-                        <tr>
-                            <td class="table-active w-50">राज्य</td>
+              <td class="table-active w-50"><input value="address[2]" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
+            </tr>
+            <tr>
+              <td class="table-active w-50">राज्य</td>
 
-                            <td class="table-active w-50"><input value="address[3]" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
-                        </tr>
+              <td class="table-active w-50"><input value="address[3]" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
+            </tr>
 
-                        <tr>
-                            <td class="table-active w-50">पिन कोड</td>
-                            <td class="table-active w-50"><input value="pincode" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
-                        </tr>
-                      <!--  {% endif %}-->
-                  <tr>
-                      <td class="table-active w-50">अपना पहचान पत्र</td>
-                      <td class="table-active w-50"><img src="{{url_for('identity_img', id=value.id)}}" alt="John" style="max-height: 100px;"></td>
-                </tr>
-                      <!--  {% if not (value.agent_id == '') %}-->
-                        <tr>
-                          <td class="table-active w-50">एजेंट कोड</td>
-                          <td class="table-active w-50">
-                            <input value="agent.id" type="text" style="background:transparent; border:none;text-align:center;"/ >
-                          </td>
-                        </tr>
-                      <!--  {%endif%}-->
+            <tr>
+              <td class="table-active w-50">पिन कोड</td>
+              <td class="table-active w-50"><input value="pincode" type="text" style="background:transparent; border:none;text-align:center;"/ ></td>
+            </tr>
+            <!--  {% endif %}-->
+            <tr>
+              <td class="table-active w-50">अपना पहचान पत्र</td>
+              <td class="table-active w-50"><img src="{{url_for('identity_img', id=value.id)}}" alt="John" style="max-height: 100px;"></td>
+            </tr>
+            <!--  {% if not (value.agent_id == '') %}-->
+            <tr>
+              <td class="table-active w-50">एजेंट कोड</td>
+              <td class="table-active w-50">
+                <input value="agent.id" type="text" style="background:transparent; border:none;text-align:center;"/ >
+              </td>
+            </tr>
+            <!--  {%endif%}-->
 
-                    </tbody>
-                  </table>
-                  <button class="btn btn-rounded-circle  w-50 mt-2" type="submit"><a href="/edit-profile" style="text-decoration:none;color:#FFF;">प्रोफाइल एडिट करें</a>
-                  </button>
-                </div>
-              </div>
-            </div>
-        </section>
+          </tbody>
+        </table>
+        <button class="btn btn-rounded-circle  w-50 mt-2" type="submit"><a href="/edit-profile" style="text-decoration:none;color:#FFF;">प्रोफाइल एडिट करें</a>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
 
-   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>
